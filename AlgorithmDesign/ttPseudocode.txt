@@ -1,0 +1,73 @@
+Variables from questionnaire:
+1) int					confidenceLevelIn<INSERT MODULE>
+2) boolean 			preferFocusOnOneSubjectAtATime *
+3) time 				studyBestTime *
+4) String				preferredStudyPlace
+5) boolean			likeStudyingBeforeUni *
+6) int (in 5)		maxStudyMinsAtOneTime
+7) int (in 5)		breakMinsTime
+13) time				startTime, endTime
+
+8) boolean			hasReccuringExtraCur
+		time				extraCur1Time, extraCur2Time etc.
+9) boolean			hasJob
+		time				jobTime
+10) int					travelTimeToUni
+
+
+
+Pseudocode:
+2)
+if preferFocusOnOneSubjectAtATime
+	Make sure when adding new subject to schedule, it is not the same as the last
+
+5)
+if !likeStudyingBeforeUni
+	Never put study sessions before uni
+
+
+setUpBaseTimetable(all the variables)
+{
+  insertSchoolClasses();
+  if (hasJob)
+    insertJobSlots(jobTime);
+  if (hasReccuringExtraCur)
+    for (1 to noOfJobs)
+      insertExtraCur(extraCurTime);
+  insertTravelTimeToUni();
+}
+
+addStudySessions()
+{
+  availableHours = getAvailableHoursToStudy();
+  allSubjectRatings = module1Confidence + module2Confidence + etc.
+  
+  // We work out how much a unit of rating is worth in the amount of time we have to study in
+  hoursWorthOf1Rating = available / allSubjectRatings;
+
+  hoursOfModule1Study = hoursWorthOf1Rating * module1Confidence;
+  hoursOfModule2Study = hoursWorthOf2Rating * module1Confidence;
+  etc.
+
+  if likeStudyingBeforeUni
+    can place study slots anywhere
+  else
+    can only place study slots AFTER last uni class on each day
+  
+
+}
+
+getAvailableHoursToStudy()
+  Works out how many hours are not currently taken up by school/extra cur/work and is within the startTime and endTime
+
+
+
+
+
+
+
+
+
+
+
+

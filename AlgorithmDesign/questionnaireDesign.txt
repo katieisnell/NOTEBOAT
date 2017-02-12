@@ -10,6 +10,8 @@ Study habits
 5) Do you like studying before university? (yes/no) 
 6) How long can you study for in one period? (time which is multiple of 5mins)
 7) How long are your study breaks? (time which is multiple of 5mins)
+13) From what time to what time do you study? (start time and end time)
+14) When do you have to hand homework in for <INSERT MODULE NAME>? (time)
 
 Extracurricular and work
 8) Do you have reoccuring extracurricular? (yes/no)
