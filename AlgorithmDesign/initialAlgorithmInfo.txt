@@ -1,0 +1,44 @@
+General overview
+	-Timetable originally displays as being from 9am to 9pm (but is scrollable)
+	-Will get basic CM timetable from http://studentnet.cs.manchester.ac.uk/ugt/timetable/timetable.php?year=2016&timetable=SPLUSBCDF0C-2016!SPLUSBCDF0D-2016!SPLUSBCDF0E-2016&weeks=SEM2
+	-User will be able to edit anything if they wish (so if they want to skip ((((((but really incase we integrate their official classes wrong)))))) 
+	-Login with their student email (and password???)
+	-Include deadlines, deadline alerts?
+
+
+Possible implementation?
+	-Module ‘String’ to uniquely identify modules (COMP10120)
+	-Database for CM students? (think we can only get their logins ngl but i have message andrea)
+	-Where are storing blank questionnaire?
+	-How are we storing their responses to questionnaire?
+
+
+Questions to ask student initially
+Questions which give us info we need to “manipulate”:
+	-How confident do you feel on each module: COMP10120, MATH10131 etc. on scale 0 to 5 (0 = I don't understand anything, 5 = I understand everything)
+		->In lectures
+		->Coursework/labwork
+		->Homework
+		->Exam revision
+	-Do you prefer focusing on one subject at a time or various subjects? (one subject or many)
+
+Questions which gives us pure information (i.e. we don’t need to manipulate):
+	-Which year and semester are you currently in? (year and semester)
+	-When do you study best (time of the day)?
+	-Do you work better at home/library/<<INSERT BUILDING PREFERENCE>>?
+		->Coursework/labwork
+		->Homework
+		->Exam revision
+	-How long does it take you to get to uni? (minutes)
+	-Do you like studying before university? (yes/no) 
+	-Do you have a job? (yes/no)
+		->What times do you work? (enter different times of different days)
+	-How long can you study for in one period? (time which is multiple of 5mins)
+	-How long are your study breaks? (time which is multiple of 5mins)
+
+
+Questions to ask regularly (using popups):
+	-Are you falling behind on a module?  (yes or no)
+		->By how many weeks? (1, 2, or 3 or more)
+
+
