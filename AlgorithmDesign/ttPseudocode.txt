@@ -7,6 +7,8 @@ Variables from questionnaire:
 6) int (in 5)		maxStudyMinsAtOneTime
 7) int (in 5)		breakMinsTime
 13) time				startTime, endTime
+14) int 				semesterNo
+15) optionalModule 
 
 8) boolean			hasReccuringExtraCur
 		time				extraCur1Time, extraCur2Time etc.
