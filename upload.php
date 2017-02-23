@@ -1,5 +1,6 @@
 <?php
 $file_result = "";
+$loggedInUser = "mbaxask3";
 if ($_FILES["file"]["error"] > 0)
 {
   $file_result .= "No file uploaded or invalid file";
@@ -7,50 +8,25 @@ if ($_FILES["file"]["error"] > 0)
 }
 else
 {
-  $file_result . =
-  "Upload: " . $_FILES["file"]["name"] . "<br>" .
-  "Type: " . $_FILES["file"]["type"] . "<br>" .
-  "Size: " . ($_FILES["file"]["size"] / 1024) . " Kb<br>" .
-  "Temp file: " . $_FILES["file"]["tmp_name"] . "<br>";
+  if (file_exists("uploads/$loggedInUser/" . $_FILES["file"]["name"]))
+  {
+    $file_result .= "A file with the same name exists. Please choose a new name";
+  }
+  else
+   {
+     if ($_FILES["file"]["type"] === 'application/pdf')
+     {
+       move_uploaded_file($_FILES["file"]["tmp_name"],
+       "uploads/$loggedInUser/" . $_FILES["file"]["name"]);
 
-  move_uploaded_file($_FILES["file"]["tmp_name"],
-  "/var/www/html/NOTEBOAT/uploads/" . $_FILES["file"]["name"]);
+       $file_result .= "File uploaded successfully";
+     }
+     else
+     {
+       $file_result .= "Only pdf files can be uploaded";
+     }
+  }
 
-  $file_result .= "File uploaded successfully";
 }
-//
-// if(isset($_FILES['file']))
-// {
-//   $file = $_FILES['file'];
-//
-//
-//   //File properties
-//   $file_name = $file['name'];
-//   $file_tmp = $file['tmp_name'];
-//   $file_size = $file['size'];
-//   $file_error = $file['error'];
-//
-//   //Work out the file extensions
-//   $file_ext = explode('.', $file_name);
-//   $file_ext = strtolower(end($file_ext));
-//
-//   $allowed = array('txt');
-//
-//   if (in_array($file_ext, $allowed))
-//   {
-//     if ($file_error === 0)
-//     {
-//       if ($file_size <= 2097152)
-//       {
-//         $file_name_new = uniqid('', true) . '.' . $file_ext;
-//         $file_destination = '/var/www/html/NoteBoat/uploads/' . $file_name_new;
-//
-//         if (move_uploaded_file($file_temp, $file_destination))
-//         {
-//           echo $file_destination;
-//         }
-//       }
-//     }
-//   }
-// }
+echo $file_result;
 ?>
