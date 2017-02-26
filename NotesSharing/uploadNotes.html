@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<link rel="stylesheet" type="text/css" href="sharingiscaring.css">
+<title>Note Boat Note Sharing</title>
+</head>
+
+<body>
+
+<h1>Note Sharing</h1>
+
+<div class="container">
+  <div class="module-selector">
+    <select name="modules" id="modules">
+      <option value="#">Pick a module</option>
+      <option value="#">COMP10120</option>
+      <option value="#">COMP16121</option>
+      <option value="#">COMP16212</option>
+      <option value="#">MATH10111</option>
+      <option value="#">MATH10131</option>
+      <option value="#">MATH10212</option>
+      <option value="#">MATH10232</option>
+      <option value="#">COMP14112</option>
+      <option value="#">Computation</option>
+      <option value="#">Distributed Systems</option>
+    </select>
+  </div>
+
+  <form action="upload.php" method="post" enctype="multipart/form-data">
+
+  <input type="checkbox" checked="unchecked" name="isPrivate">Private</br> 
+  <input type="file" name="file" id="file" size="80">
+  <input type="submit" value="upload" id="button">
+ 
+
+  </form>
+  
+</div>
+
+</body>
+
+</html>
