@@ -3,7 +3,7 @@ public class Student
   final private String firstName;
   final private String lastName;
   final private String username;
-  
+
   // Every measure of minutes will be validated as being only units of 5 mins
   private int maxStudyMinsAtOneTime;
   private int breakTime;
@@ -12,7 +12,7 @@ public class Student
   private int extraCurMins;
   private int uniTravelTimeMins;
 
-  private Module[] ModulesTaking; 
+  private Module[] ModulesTaking;
 
   public Student(String username)
   {
@@ -20,3 +20,4 @@ public class Student
 
 
   }
+}
