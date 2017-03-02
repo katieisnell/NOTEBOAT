@@ -1,0 +1,24 @@
+/*navigation bar css*/
+
+ul {
+  float: right;
+  list-style-type: none;
+  margin-top:15px;
+  background-color: skyblue;
+}
+
+li {
+  padding-top: 10px;
+  display: inline-block;
+  width: 125px;
+  text-align: center;
+}
+
+a{
+  display: block;
+  font-size: 20px;
+  text-decoration: none;
+}
+li a:hover {
+  background-color: red;
+}
