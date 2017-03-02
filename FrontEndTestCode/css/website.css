@@ -1,24 +1,27 @@
 /*navigation bar css*/
 
 ul {
-  float: right;
+  height: 50px;
   list-style-type: none;
   margin-top:15px;
-  background-color: skyblue;
+  background-color: white;
 }
 
 li {
-  padding-top: 10px;
+  background-color: white;
+  height: 50px;
   display: inline-block;
   width: 125px;
   text-align: center;
+  font-size: 17px;
 }
 
 a{
-  display: block;
-  font-size: 20px;
+  display:block;
+  height: 50px;
   text-decoration: none;
 }
-li a:hover {
-  background-color: red;
+
+li :hover {
+  background-color: skyblue;
 }
