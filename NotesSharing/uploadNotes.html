@@ -12,23 +12,24 @@
 
 <div class="container">
   <div class="module-selector">
-    <select name="modules" id="modules">
-      <option value="#">Pick a module</option>
-      <option value="#">COMP10120</option>
-      <option value="#">COMP16121</option>
-      <option value="#">COMP16212</option>
-      <option value="#">MATH10111</option>
-      <option value="#">MATH10131</option>
-      <option value="#">MATH10212</option>
-      <option value="#">MATH10232</option>
-      <option value="#">COMP14112</option>
-      <option value="#">Computation</option>
-      <option value="#">Distributed Systems</option>
-    </select>
+
   </div>
 
   <form action="upload.php" method="post" enctype="multipart/form-data">
 
+    <select name="modules" id="modules">
+      <option value="">Pick a module</option>
+      <option value="COMP10120">COMP10120</option>
+      <option value="COMP16121">COMP16121</option>
+      <option value="COMP16212">COMP16212</option>
+      <option value="MATH10111">MATH10111</option>
+      <option value="MATH10131">MATH10131</option>
+      <option value="MATH10212">MATH10212</option>
+      <option value="MATH10232">MATH10232</option>
+      <option value="COMP14112">COMP14112</option>
+      <option value="COMP11212">COMP11212</option>
+      <option value="COMP18112">COMP18112</option>
+    </select>
   <input type="file" name="file" id="file" size="80000">
   <input type="submit" value="upload" id="button">
  

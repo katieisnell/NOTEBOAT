@@ -1,7 +1,7 @@
 <?php
 $file_result = "";
-$loggedInUser = "mbaxask3";
-$fileModule = "MATH10111";
+$loggedInUser = "mbaxaks2";
+$fileModule = $_POST['modules'];
 $isFilePublic = 1;
 $newFileID = rand();
 $currentDateTime = date('d/m/Y h:i:s', time());
@@ -10,11 +10,9 @@ if ($_FILES["file"]["error"] > 0)
 {
   $file_result .= "No file uploaded or invalid file";
   $file_result .= "Error Code: " .$_FILES["file"]["error"] . "<br>";
-  echo $_FILES["file"]["size"];
 }//if
 else
 {
-  echo "FILE NAME: " . $_FILES["file"]["name"];
   if (file_exists("uploads/$loggedInUser/" . $_FILES["file"]["name"]))
   {
     $file_result .= "A file with the same name exists. Please choose a new name";
@@ -26,7 +24,7 @@ else
 
     $file_result .= "File uploaded successfully";
 
-    require_once('config.inc.php');
+    require_once('/home/pi/NOTEBOAT/config.inc.php');
     $conn = new mysqli($database_host, $database_user, $database_pass,
                        $database_name);
 
@@ -39,15 +37,21 @@ else
     $query = "INSERT INTO `Notes` (`fileID`, `userID`, `fileName`, `fileModuleCode`, `uploadDate`, `filePublic`) VALUES ('$newFileID','$loggedInUser','$fileName','$fileModule', '$currentDateTime' , '$isFilePublic')";
 
     $added = $conn -> query($query);
-      echo "Added to the DB YO!";
-      echo "<br>";
-      echo $query;
-      echo "<br>";
-      echo "added= " . $added;
+    
   }//if
-  else
+  else if (getimagesize($_FILES["file"]["tmp_name"]))
   {
-    $file_result .= "Only pdf files can be uploaded";
+     move_uploaded_file($_FILES["file"]["tmp_name"],
+    "uploads/$loggedInUser/" . $_FILES["file"]["name"]);
+    chdir('/home/pi/NOTEBOAT/NotesSharing/uploads/' . $loggedInUser);
+    $fileName = $_FILES["file"]["name"];
+    echo shell_exec("java -jar /home/pi/NOTEBOAT/NotesSharing/img2pdf.jar " . $fileName . " " . $fileName . ".pdf 2>&1");
+	echo shell_exec("rm " . $fileName);
+//NEED TO ADD SQL INSERT QUERY
+  }
+  else 
+  {
+    $file_result .= "Please upload a pdf or an image file";
   }
 }
 echo $file_result;
