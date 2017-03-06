@@ -3,22 +3,26 @@ include("/home/pi/NOTEBOAT/config.inc.php");
 session_start();
 $error = "";
 if($_SERVER["REQUEST_METHOD"] == "POST") {
-  // username and password sent from form 
+  // username and password sent from form
   $db = mysqli_connect($database_host, $database_user, $database_pass, $database_name);
   $myusername = mysqli_real_escape_string($db,$_POST['username']);
   $mypassword = mysqli_real_escape_string($db,$_POST['password']); 
   
-  $sql = "SELECT * FROM registeredUsers WHERE userID = '$myusername' AND password = '$mypassword' AND isVerified='1'";
-echo $sql;
+  $sql = "SELECT * FROM registeredUsers WHERE userID = '$myusername'";
+  $sql1 = "SELECT * FROM registeredUsers WHERE password = '$mypassword'";
   $result = mysqli_query($db,$sql);
+  $result1 = mysqli_query($db,$sql1);
   $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+  $row1 = mysqli_fetch_array($result1,MYSQLI_ASSOC);
   $active = $row['active'];
+  $active1 = $row1['active'];
   
   $count = mysqli_num_rows($result);
+  $count1 = mysqli_num_rows($result);
   
   // If result matched $myusername and $mypassword, table row must be 1 row
 
-  if($count == 1) 
+  if(($count == 1) && ($count1 == 1)) 
   {
      //session_register("myusername");
      $_SESSION['login_user'] = $myusername;
