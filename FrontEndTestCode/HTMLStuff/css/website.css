@@ -1,0 +1,41 @@
+/*navigation bar css*/
+
+ul {
+  height: 50px;
+  list-style-type: none;
+  margin-top:15px;
+  background-color: white;
+}
+
+li {
+  background-color: white;
+  height: 50px;
+  display: inline-block;
+  width: 125px;
+  text-align: center;
+  font-size: 17px;
+}
+
+a{
+  display:block;
+
+  text-decoration: none;
+}
+
+li :hover {
+  background-color: skyblue;
+}
+
+li a{
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+}
+
+section.navigation div.container {
+  padding-top: 10px;
+}
+
+section.login div.container {
+  padding-top: 50px;
+}

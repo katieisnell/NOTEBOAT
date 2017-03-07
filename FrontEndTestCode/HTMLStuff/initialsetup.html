@@ -1,11 +1,11 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 
   <!-- Basic Page Needs
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta charset="utf-8">
-  <title>Registration </title>
+  <title>Setup</title>
   <meta name="description" content="">
   <meta name="author" content="">
 
@@ -43,62 +43,64 @@
         <img class="u-full-width" src="images/logo2.png">
       </a>
     </div>
+
+
+    <div id="navigation" class="nine columns">
+      <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#introduction">Introduction</a></li>
+        <li><a href="#login">Login</a></li>
+        <li><a href="#register">Register</a></li>
+      </ul>
+    </nav>
+    </div>
   </div>
   </div>
   </section>
 
   <section class="login">
     <div class="container">
-    <h4>Create an account</h4>
     <form action="dashboard.html" method="post">
 
     <div class="row">
-      <div class="four columns offset-by-two">
-        <label for="firstNameInput">First Name(s)</label>
-        <input class="u-full-width" type="text" placeholder="..." id="firstNameInput" required>
+      <div class="six columns">
+      <label>1. How often do you spend studying every day?</label>
+      <select class="u-full-width" id="studytime">
+        <option value="Option 0">Please select</option>
+        <option value="Option 1">Less than an hour</option>
+        <option value="Option 2">Between 1 and 3 hours</option>
+        <option value="Option 3">More than 3 hours</option>
+      </select>
       </div>
 
-      <div class="four columns">
-        <label for="lastNameInput">Last Name</label>
-        <input class="u-full-width" type="text" placeholder="..." id="lastNameInput" required>
+      <div class="six columns">
+      <label>2. Which of these modules is your strongest</label>
+      <select class="u-full-width" id="bestmod">
+        <option value="Option 0">Please select</option>
+        <option value="Option 1">MATH10212</option>
+        <option value="Option 2">COMP16212</option>
+        <option value="Option 3">MATH10232</option>
+      </select>
       </div>
     </div>
 
     <div class="row">
-      <div class="four columns offset-by-two">
-        <label for="userInput">Student Username</label>
-        <input class="u-full-width" type="text" placeholder="..." id="userInput" required>
-      </div>
-
-      <div class="four columns  ">
-        <label for="persUserInput">Create NoteBoat username</label>
-        <input class="u-full-width" type="text" placeholder="..." id="persUserInput" required>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="eight columns offset-by-two">
-        <label for="emailInput">Preferred email address (student email is default)</label>
-        <input class="u-full-width" type="email" placeholder="..." id="emailInput">
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="four columns offset-by-two">
-        <label for="passwordInput">Password</label>
-        <input class="u-full-width" type="password" placeholder="..." id="passwordInput" required>
-      </div>
-      <div class="four columns">
-        <label for="confirmPass">Confirm Password</label>
-        <input class="u-full-width" type="password" placeholder="..." id="confirmPass" required>
+      <div class="six columns">
+      <label>3. Are you prepared to work more on weekends?</label>
+      <select class="u-full-width" id="bestmod">
+        <option value="Option 0">Please select</option>
+        <option value="Option 1">No</option>
+        <option value="Option 2">Yes</option>
+      </select>      
       </div>
     </div>
 
     <div class="row">
        <div class="six columns offset-by-three">
-         <button class="u-full-width" type="submit" style="margin-top:20px;">Register</button>
+         <button class="u-full-width" type="submit" style="margin-top:20px;">Submit Answers</button>
        </div>
-    </div>  
+    </div>
 
   </form>
   </div>

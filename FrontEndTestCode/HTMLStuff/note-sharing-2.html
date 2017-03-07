@@ -1,11 +1,11 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 
   <!-- Basic Page Needs
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta charset="utf-8">
-  <title>Registration </title>
+  <title>Note Sharing</title>
   <meta name="description" content="">
   <meta name="author" content="">
 
@@ -43,62 +43,61 @@
         <img class="u-full-width" src="images/logo2.png">
       </a>
     </div>
+
+
+    <div id="navigation" class="nine columns">
+      <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#introduction">Introduction</a></li>
+        <li><a href="#login">Login</a></li>
+        <li><a href="#register">Register</a></li>
+      </ul>
+    </nav>
+    </div>
   </div>
   </div>
   </section>
 
   <section class="login">
     <div class="container">
-    <h4>Create an account</h4>
     <form action="dashboard.html" method="post">
 
     <div class="row">
-      <div class="four columns offset-by-two">
-        <label for="firstNameInput">First Name(s)</label>
-        <input class="u-full-width" type="text" placeholder="..." id="firstNameInput" required>
+      <div class="six columns">
+      <label>Choose a module</label>
+      <select name="modules" id="modules">
+        <option value="#">Pick a module</option>
+        <option value="#">COMP10120 - First Year Project</option>
+        <option value="#">COMP16121 - Java Semester 1</option>
+        <option value="#">COMP16212 - Java Semester 2</option>
+        <option value="#">COMP14112 - AI</option>
+        <option value="#">COMP11212 - Computation</option>
+        <option value="#">COMP18112 - Distributed Systems</option>
+        <option value="#">MATH10111 - Foundation in Pure Mathematics</option>
+        <option value="#">MATH10131 - Calc and Vectors</option>
+        <option value="#">MATH10212 - Linear Algebra</option>
+        <option value="#">MATH10232 - Calc and Applictions</option>
+      </select>
       </div>
 
-      <div class="four columns">
-        <label for="lastNameInput">Last Name</label>
-        <input class="u-full-width" type="text" placeholder="..." id="lastNameInput" required>
+      <div class="six columns">
+        <label>Search for keywords</label>
+        <input class="u-full-width" type="text" placeholder="Search " name="username" required>
       </div>
     </div>
 
-    <div class="row">
-      <div class="four columns offset-by-two">
-        <label for="userInput">Student Username</label>
-        <input class="u-full-width" type="text" placeholder="..." id="userInput" required>
+      <div class="row">  
+        <div class="six columns offset-by-three ">
+          <button class="u-full-width" type="button" style="margin-top:27px;">Browse Notes</button>
+        </div>
       </div>
 
-      <div class="four columns  ">
-        <label for="persUserInput">Create NoteBoat username</label>
-        <input class="u-full-width" type="text" placeholder="..." id="persUserInput" required>
+      <div class="row">  
+        <div class="six columns offset-by-three ">
+          <button class="u-full-width" type="button" style="margin-top:10px;">Upload Notes</button>
+        </div>
       </div>
-    </div>
-
-    <div class="row">
-      <div class="eight columns offset-by-two">
-        <label for="emailInput">Preferred email address (student email is default)</label>
-        <input class="u-full-width" type="email" placeholder="..." id="emailInput">
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="four columns offset-by-two">
-        <label for="passwordInput">Password</label>
-        <input class="u-full-width" type="password" placeholder="..." id="passwordInput" required>
-      </div>
-      <div class="four columns">
-        <label for="confirmPass">Confirm Password</label>
-        <input class="u-full-width" type="password" placeholder="..." id="confirmPass" required>
-      </div>
-    </div>
-
-    <div class="row">
-       <div class="six columns offset-by-three">
-         <button class="u-full-width" type="submit" style="margin-top:20px;">Register</button>
-       </div>
-    </div>  
 
   </form>
   </div>
