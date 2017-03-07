@@ -1,7 +1,7 @@
-/*navigation bar css*/
+/*footer navigation bar css*/
 
 ul {
-  height: 50px;
+  height: 45px;
   list-style-type: none;
   margin-top:15px;
   background-color: white;
@@ -9,11 +9,13 @@ ul {
 
 li {
   background-color: white;
-  height: 50px;
+  height: 45px;
   display: inline-block;
-  width: 125px;
   text-align: center;
   font-size: 17px;
+  width: ;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 a{
@@ -23,19 +25,54 @@ a{
 }
 
 li :hover {
-  background-color: skyblue;
+  background-color:;
+  text-decoration: underline;
 }
 
 li a{
-  height: 50px;
-  line-height: 50px;
+  height: 45px;
+  line-height: 45px;
   text-align: center;
 }
 
-section.navigation div.container {
-  padding-top: 10px;
+section.header div.container {
+  padding-top: 30px;
 }
 
 section.login div.container {
   padding-top: 50px;
+}
+
+section.login div.container {
+  padding-top: 50px;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f;
+    min-width: 160px;
+    z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
 }
