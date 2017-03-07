@@ -31,3 +31,11 @@ li a{
   line-height: 50px;
   text-align: center;
 }
+
+section.navigation div.container {
+  padding-top: 10px;
+}
+
+section.login div.container {
+  padding-top: 50px;
+}
