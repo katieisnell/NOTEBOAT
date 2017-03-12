@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<link rel="stylesheet" type="text/css" href="sharingiscaring.css">
+<title>Note Boat Note Sharing</title>
+</head>
+
+<body>
+<div class="header">
+  <div class="navigation">
+
+    <div class="navleft"><img src="img/boat.png" style="float:left;"></div>
+    <div class="navcenter">Note Sharing</div>
+
+      <div class="dropdown" style="float:right">
+        <button class="dropbtn">Profile</button>
+        <div class="dropdown-content">
+          <a href="#">Settings</a>
+          <a href="#">Sign Out</a>
+        </div>
+      </div>
+
+
+  </div>
+</div>
+
+<div class="main">
+
+  <div class="container">
+    <div class="module-selector">
+      <select name="modules" id="modules">
+        <option value="#">Pick a module</option>
+        <option value="#">COMP10120 - First Year Project</option>
+        <option value="#">COMP16121 - Java Semester 1</option>
+        <option value="#">COMP16212 - Java Semester 2</option>
+        <option value="#">MATH10111 - Foundation in Pure Mathematics</option>
+        <option value="#">MATH10131 - Calc and Vectors</option>
+        <option value="#">MATH10212 - Linear Algebra</option>
+        <option value="#">MATH10232 - Calc and Applictions</option>
+        <option value="#">Artificial intelligience</option>
+        <option value="#">Computation</option>
+        <option value="#">Distributed Systems</option>
+      </select>
+    </div>
+
+    <form action="notesharing.php" method="post">
+
+    <input type="checkbox" checked=""checked>Private</br>
+
+    <button class="browsebtn" type="submit">Browse</button>
+    <button class="uploadbtn" type="submit">Upload</button>
+
+    </form>
+
+  </div>
+</div>
+
+</body>
+
+</html>

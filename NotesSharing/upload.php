@@ -36,8 +36,8 @@ else
     $fileName = $_FILES["file"]["name"] . "<" . $newFileID;
     $query = "INSERT INTO `Notes` (`fileID`, `userID`, `fileName`, `fileModuleCode`, `uploadDate`, `filePublic`) VALUES ('$newFileID','$loggedInUser','$fileName','$fileModule', '$currentDateTime' , '$isFilePublic')";
 
-    $added = $conn -> query($query);
-    
+    $added = $conn -> quhoery($query);
+
   }//if
   else if (getimagesize($_FILES["file"]["tmp_name"]))
   {
@@ -49,7 +49,7 @@ else
 	echo shell_exec("rm " . $fileName);
 //NEED TO ADD SQL INSERT QUERY
   }
-  else 
+  else
   {
     $file_result .= "Please upload a pdf or an image file";
   }
