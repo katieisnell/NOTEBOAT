@@ -31,7 +31,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
      //session_register("myusername");
      $_SESSION['login_user'] = $inputUsername;
 
-     header("location: welcome.php");
+     header("location: dashboard.html");
   }
   else
   {
@@ -117,7 +117,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
   <div class="row">
      <div class="six columns offset-by-three">
-       <a href="registration.html"><button class="u-full-width">Sign Up</button></a>
+       <a href="registration.php"><button class="u-full-width">Sign Up</button></a>
      </div>
   </div>
 
