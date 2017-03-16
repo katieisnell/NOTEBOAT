@@ -32,10 +32,7 @@ table, td {
 </style>
 <div>
 	<table id="filesTable">
-		 <tr>
-  			  <td>Row1 cell1</td>
-    		  <td>Row1 cell2</td>
-  		</tr>
+
 	</table>
 	
 	<br>
@@ -44,7 +41,7 @@ table, td {
 <script>
 function createRow(name, module) 
 {
-    var table = document.getElementById("filesTable");
+    var table = document.getElementById("filesTable")
     var row = table.insertRow(0);
     var cell1 = row.insertCell(0);
     var cell2 = row.insertCell(1);
@@ -87,8 +84,10 @@ $numOfFiles = mysqli_num_rows($foundFiles);
 	while($row = $foundFiles->fetch_assoc())
 	{
 		echo $row["fileName"];
-		$test =  '<script type="text/javascript"> createRow($row["fileName"] , $row["fileModuleCode"]); </script>';
-    }
+    $name = $row["fileName"];
+    $module = $row["fileModuleCode"];
+		echo '<script type="text/javascript"> createRow(\'' . $name . '\' , \'' . $module . '\'); </script>';
+  }
 //}
 
 }
