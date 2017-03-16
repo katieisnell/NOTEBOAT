@@ -1,29 +1,4 @@
-<?php
-$chosenModule = $_POST['modules'];
-$loggedInUser = "mbaxask3";
-require(/home/pi/NOTEBOAT/config.inc.php);
-$conn = new mysqli($database_host, $database_user, $database_pass, $database_name);
-
-if($conn -> connect_error)
-{
-    die('Connect Error (' . $conn -> connect_errno . ')' . $conn -> connect_error);
-}
-
-$query = "SELECT * FROM Notes WHERE fileModuleCode = '$chosenModule'";
-$foundFiles = $conn -> query($query);
-
-$numOfFiles = mysli_num_rows($foundFiles);
-
-echo $numOfFiles;
-for ($i = 1; $i <= $numOfFiles; $i++)
-{
-    
-}
-
-?>
-
 <html>
-
 <head>
 <link rel="stylesheet" type="text/css" href="sharingiscaring.css">
 <title>Note Boat Note Sharing</title>
@@ -53,19 +28,14 @@ for ($i = 1; $i <= $numOfFiles; $i++)
       <option value="COMP11212">COMP11212</option>
       <option value="COMP18112">COMP18112</option>
     </select>
-      
-  <button type="submit" value="upload" id="button"> 
+  <input type="file" name="file" id="file">  
+  <input type="submit" value="Upload" id="button"> 
   </form>
   
 </div>
 
-<div>
-    <h1>Notes</h1>
-    <script>
-            
-    </script>
-    
-</div>
 </body>
 
 </html>
+
+

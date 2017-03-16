@@ -1,4 +1,6 @@
 <?php
+if($_SERVER["REQUEST_METHOD"] == "POST")
+{
 $file_result = "";
 $loggedInUser = "mbaxaks2";
 $fileModule = $_POST['modules'];
@@ -36,18 +38,34 @@ else
     $fileName = $_FILES["file"]["name"] . "<" . $newFileID;
     $query = "INSERT INTO `Notes` (`fileID`, `userID`, `fileName`, `fileModuleCode`, `uploadDate`, `filePublic`) VALUES ('$newFileID','$loggedInUser','$fileName','$fileModule', '$currentDateTime' , '$isFilePublic')";
 
-    $added = $conn -> quhoery($query);
+    $added = $conn -> query($query);
 
   }//if
   else if (getimagesize($_FILES["file"]["tmp_name"]))
   {
-     move_uploaded_file($_FILES["file"]["tmp_name"],
+    move_uploaded_file($_FILES["file"]["tmp_name"],
     "uploads/$loggedInUser/" . $_FILES["file"]["name"]);
     chdir('/home/pi/NOTEBOAT/NotesSharing/uploads/' . $loggedInUser);
     $fileName = $_FILES["file"]["name"];
-    echo shell_exec("java -jar /home/pi/NOTEBOAT/NotesSharing/img2pdf.jar " . $fileName . " " . $fileName . ".pdf 2>&1");
-	echo shell_exec("rm " . $fileName);
-//NEED TO ADD SQL INSERT QUERY
+	$newName = explode(".", $fileName);
+	$newFileName = $newName[0];
+    echo shell_exec("java -jar /home/pi/NOTEBOAT/NotesSharing/img2pdf.jar " . $fileName . " " . $newFileName . ".pdf 2>&1");
+	  echo shell_exec("rm " . $fileName);
+
+    require_once('/home/pi/NOTEBOAT/config.inc.php');
+    $conn = new mysqli($database_host, $database_user, $database_pass,
+                       $database_name);
+
+    if($conn -> connect_error)
+    {
+      die('Connect Error ('.$conn -> connect_errno.')'.$conn -> connect_error);
+    }
+    
+    $fileName = $newFileName . ".pdf<" . $newFileID;
+    $query = "INSERT INTO `Notes` (`fileID`, `userID`, `fileName`, `fileModuleCode`, `uploadDate`, `filePublic`) VALUES ('$newFileID','$loggedInUser','$fileName','$fileModule', '$currentDateTime' , '$isFilePublic')";
+
+    $added = $conn -> query($query);
+
   }
   else
   {
@@ -55,4 +73,5 @@ else
   }
 }
 echo $file_result;
+}
 ?>

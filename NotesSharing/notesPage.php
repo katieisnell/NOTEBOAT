@@ -34,32 +34,34 @@ table, td {
 	<table id="filesTable">
 
 	</table>
-	
+
 	<br>
 </div>
 
 <script>
-function createRow(name, module) 
-{
-    var table = document.getElementById("filesTable")
-    var row = table.insertRow(0);
-    var cell1 = row.insertCell(0);
-    var cell2 = row.insertCell(1);
-    cell1.innerHTML = name;
-    cell2.innerHTML = module;
-}
+  function createRow(name, module, fileOwner)
+  {
+      var nameArray = name.split("<");
+      var fileName = nameArray[0];
+      var table = document.getElementById("filesTable")
+      var row = table.insertRow(0);
+      var cell1 = row.insertCell(0);
+      var cell2 = row.insertCell(1);
+      cell1.innerHTML = "<a href=\"/home/pi/NOTEBOAT/NotesSharing/uploads/" + fileOwner + "/" + fileName + "\"> " + fileName + "</a>";
+      cell2.innerHTML = module;
+  }
 
-function deleteRow() 
-{
-    document.getElementById("myTable").deleteRow(0);
-}
+  function deleteRow()
+  {
+      document.getElementById("myTable").deleteRow(0);
+  }
 </script>
 </body>
 </html>
 
 <?php
 
-if($_SERVER["REQUEST_METHOD"] == "POST") 
+if($_SERVER["REQUEST_METHOD"] == "POST")
 {
 
 $chosenModule = $_POST['module'];
@@ -78,18 +80,14 @@ $query = "SELECT * FROM Notes WHERE fileModuleCode = '$chosenModule'";
 $foundFiles = $conn -> query($query);
 $numOfFiles = mysqli_num_rows($foundFiles);
 
-
-//for ($i = 1; $row <= $numOfFiles; $i++)
-//{
 	while($row = $foundFiles->fetch_assoc())
 	{
 		echo $row["fileName"];
+    $fileOwner = $row["userID"];
     $name = $row["fileName"];
     $module = $row["fileModuleCode"];
-		echo '<script type="text/javascript"> createRow(\'' . $name . '\' , \'' . $module . '\'); </script>';
+		echo '<script type="text/javascript"> createRow(\'' . $name . '\' , \'' . $module . '\' , \'' . $fileOwner . '\'); </script>';
   }
-//}
-
 }
 ?>
 
