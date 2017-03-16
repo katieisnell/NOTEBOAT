@@ -1,33 +1,40 @@
 <!DOCTYPE html>
 
 <?php 
-  require("/home/pi/NOTEBOAT/config.inc.php");
-  $conn = new mysqli($database_host, $database_user, $database_pass, $database_name);
-  
   if ($_SERVER["REQUEST_METHOD"] == "POST")
   {
+    require("/home/pi/NOTEBOAT/config.inc.php");
+    $conn = new mysqli($database_host, $database_user, $database_pass, $database_name);
+
+    if ($conn -> connect_error)
+    {
+      die('Connect Error ('.$conn -> connect_errno.')'.$conn -> connect_error);
+    }
+    
     $username = trim(strtolower($_POST['username']));
     $fname = $_POST['fname'];
     $lname = $_POST['lname'];
+    $email = "";
+    //check if they entered a personal email
     if (empty($_POST['email']))
     {
-      $getEmailQuery = "SELECT `email` FROM allStudents WHERE `userID` = $username";
-      $emailResult = $conn -> query($getEmailQuery);
+      $getEmailQuery = "SELECT * FROM allStudents WHERE `userID` = $username";
       
-      $email = $emailResult -> fetch_assoc();
+      $emailResult = mysqli_query($conn, $getEmailQuery);
+      while ($row = mysqli_fetch_assoc($emailResult))
+      {
+        $email = $row["email"];
+      }
       echo "YOUR UNI EMAIL IS " . $email;
     }
-    else 
+    else
     {
       $email = $_POST['email'];
     }
     $password = $_POST['password1'];
     $outputMessage;
 
-    if ($conn -> connect_error)
-    {
-      die('Connect Error ('.$conn -> connect_errno.')'.$conn -> connect_error);
-    }
+  
     
     $checkUser = "SELECT * FROM allStudents WHERE `userID` = '$username'";
     $isRegQuery = "SELECT * FROM allStudents WHERE `userID` = '$username' AND `registered` = 1";
