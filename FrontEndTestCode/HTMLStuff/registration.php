@@ -18,14 +18,14 @@
     //check if they entered a personal email
     if (empty($_POST['email']))
     {
-      $getEmailQuery = "SELECT * FROM allStudents WHERE `userID` = $username";
+      $getEmailQuery = "SELECT * FROM `allStudents` WHERE `userID` = '$username'";
       
-      $emailResult = mysqli_query($conn, $getEmailQuery);
-      while ($row = mysqli_fetch_assoc($emailResult))
+      $emailResult = $conn -> query($getEmailQuery);
+  
+      while ($row = $emailResult->fetch_assoc())
       {
         $email = $row["email"];
       }
-      echo "YOUR UNI EMAIL IS " . $email;
     }
     else
     {
@@ -43,25 +43,25 @@
     $countFound = mysqli_num_rows($foundUser);
     $countReg = mysqli_num_rows($foundRegistered);
 
-    if ($countFound == 1 && $foundRegistered == 0)
+    if ($countFound == 1 && $countReg == 0)
     {
       // Use the current time for our unique salt for each user
       $currentTime = time();
-      $salt = hash('sha512', $username + $currentTime);
-      
+echo "time mofo: " . $currentTime . "<br>";
+      $salt = hash('sha512', $username . $currentTime);
+	  echo $salt . "<br>";
+     
       // Then create a hashed password with the unique salt, we will have to compare hashed password and salt
       // each time the user logs in
-      $hashPassword = hash('sha512', $password + $salt);
+      $hashPassword = hash('sha512', $password . $salt);
 
-
-      $insertQuery = "INSERT INTO registeredUsers (`userID`, `prefFirstName`, `prefLastName`, `prefEmailAddress`, `password`, `salt`, `isVerified`)" 
-                     . " VALUES ('$username', '$fname', ''$lname', '$email', '$hashPassword', '$salt', '1')";
+      $insertQuery = "INSERT INTO registeredUsers (`userID`, `prefFirstName`, `prefLastName`, `prefEmailAddress`, `courseID` , `schoolYear` , `password`, `salt`, `isVerified`) VALUES ('$username', '$fname', '$lname', '$email', 'cm', '1' , '$hashPassword', '$salt', '1')";
 
       $insertSuccess = $conn -> query($insertQuery);
       echo $insertSuccess;
       echo "You have now boarded the NoteBoat!";
     }
-    else if ($countFound == 1 && $foundRegistered == 1)
+    else if ($countFound == 1 && $countReg == 1)
     {
       echo "Bruh you already registered!";
     }

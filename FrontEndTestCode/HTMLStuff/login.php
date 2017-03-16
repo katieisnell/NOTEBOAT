@@ -11,26 +11,41 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 //  $myusername = mysqli_real_escape_string($conn,$_POST['username']);
 //  $mypassword = mysqli_real_escape_string($conn,$_POST['password']);
   //check for errors before doing anything else
-    if($conn -> connect_error)
-    {
-      die('Connect Error ('.$conn -> connect_errno.')'.$conn -> connect_error);
-    }
-   $checkLogin = "SELECT * FROM registeredUsers WHERE userID = '$inputUsername'";
-//AND WHERE password = '$inputPassword'";
-
+  if($conn -> connect_error)
+  {
+    die('Connect Error ('.$conn -> connect_errno.')'.$conn -> connect_error);
+  }
+  $checkLogin = "SELECT * FROM registeredUsers WHERE `userID` = '$inputUsername'";
+  //AND WHERE password = '$inputPassword'";
   $result = $conn -> query($checkLogin);
-
+  
   $row = mysqli_fetch_array($result);
-  $active = $row['active'];
+//  $active = $row['active'];
 
   $count = mysqli_num_rows($result);
+  
+  $grantAccess = false;
+  
+  if ($count == 1)
+  {
+    $dbPassword = $row["password"];
+    $dbSalt = $row["salt"];
+    
+    $hashPassword = hash('sha512', $inputPassword . $dbSalt);
 
+    echo "Input: ". $inputPassword . "<br> dbPassword: " . $dbPassword .  "<br> hashPwords: $hashPassword"; 
+     
+    if ($hashPassword == $dbPassword)
+    {
+      $grantAccess = true;
+    }
+  }
   // If result matched $myusername and $mypassword, table row must be 1 row
-  if($count == 1)
+  if($grantAccess)
   {
      //session_register("myusername");
      $_SESSION['login_user'] = $inputUsername;
-
+     
      header("location: dashboard.html");
   }
   else
@@ -38,6 +53,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $error = "Your Login Name or Password is invalid";
   }
 }
+echo $error;
 ?>
 <html>
 <html lang="en">
