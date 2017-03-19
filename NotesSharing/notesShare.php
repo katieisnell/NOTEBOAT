@@ -33,43 +33,78 @@
   <!-- Primary Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 
+
+  <!-- <div class="row">
+    <div class="six columns offset-by-three ">
+      <button class="u-full-width button-primary" type="button">Upload Notes</button>
+    </div>
+  </div> -->
+
+
 <div class="container">
 
-  <section class="navigation">
+  <section class="header">
   <div class="container">
   <div class="row">
+
     <div id ="logo" class="three columns">
-      <a href="index.html">
+      <a href="dashboard.html">
         <img class="u-full-width" src="images/logo2.png">
       </a>
     </div>
 
-
-    <div id="navigation" class="nine columns">
-      <nav>
-      <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#introduction">Introduction</a></li>
-        <li><a href="#login">Login</a></li>
-        <li><a href="#register">Register</a></li>
-      </ul>
-    </nav>
+    <div class="one column offset-by-eight">
+      <div class="dropdown">
+         <button class="dropbtn">-----</button>
+         <div class="dropdown-content">
+         <a href="/NOTEBOAT/dashboard.html">TimeTable</a>
+         <a href="#">Note Sharing</a>
+         <a href="/NOTEBOAT/settings.html">Settings</a>
+         <a href="/NOTEBOAT/logout.php">Logout</a>
+         </div>
+      </div>
     </div>
+
   </div>
   </div>
   </section>
 
-  <section class="login">
-    <div class="container">
-    <form id="viewNotes" action="" method="post">
+  <div class="container">
+    <div class="module-selector">
 
-    <div class="row">
-      <div class="six columns">
-      <label>Choose a module</label>
+
+    <form action="upload.php" method="post" enctype="multipart/form-data">
+
       <select name="modules" id="modules">
         <option value="">Pick a module</option>
+        <option value="COMP10120">COMP10120</option>
+        <option value="COMP16121">COMP16121</option>
+        <option value="COMP16212">COMP16212</option>
+        <option value="MATH10111">MATH10111</option>
+        <option value="MATH10131">MATH10131</option>
+        <option value="MATH10212">MATH10212</option>
+        <option value="MATH10232">MATH10232</option>
+        <option value="COMP14112">COMP14112</option>
+        <option value="COMP11212">COMP11212</option>
+        <option value="COMP18112">COMP18112</option>
+      </select>
+    <input type="file" name="file" id="button">
+    <input class="button" type="submit" value="Upload" id="button">
+    </form>
+   </div>
+  </div>
+
+  <section class="main">
+    <div class="container">
+    <form action="" method="post">
+
+    <div class="row">
+      <div class="five columns offset-by-one">
+      <label>Choose a module</label>
+      <select class="u-full-width" name="modules" id="modules">
+        <option value="">Pick a module</option>
         <option value="COMP10120">COMP10120 - First Year Project</option>
-        <option value="COMP16112">COMP16121 - Java Semester 1</option>
+        <option value="COMP16121">COMP16121 - Java Semester 1</option>
         <option value="COMP16212">COMP16212 - Java Semester 2</option>
         <option value="COMP14112">COMP14112 - AI</option>
         <option value="COMP11212">COMP11212 - Computation</option>
@@ -81,58 +116,54 @@
       </select>
       </div>
 
-      <div class="six columns">
+      <div class="four columns offset-by-one">
         <label>Search for keywords</label>
-        <input class="u-full-width" type="text" placeholder="Search " name="username">
+        <input class="u-full-width" type="text" placeholder="Search " name="search">
       </div>
     </div>
-    
-    <div class="row">  
-      <div class="six columns offset-by-three ">
-        <button class="u-full-width" type="submit" style="margin-top:27px;">Browse Notes</button>
-      </div>
-    </div>
-    </form>
-<!-- JESSICA NEEDS TO SORT THIS DIV STUFF OUT AND MAKE IT LOOK NICE -->
-<div>
-  <style>
-    table, td 
-    {
-      border: 1px solid black;
-    }
-  </style>
-  <table id="filesTable">
-	</table>
 
-	<br>
-</div>
-
-
-      <div class="row">  
+      <div class="row">
         <div class="six columns offset-by-three ">
-          <button class="u-full-width" type="button" style="margin-top:10px;">Upload Notes</button>
+          <button class="u-full-width" type="submit">Browse Notes</button>
         </div>
       </div>
 
-  
+
+
+  </form>
   </div>
+  </section>
+
+  <section class="notes">
+    <div class="container">
+
+        <div class="row">
+        <style>
+          table, td
+          {
+            border: 1px solid black;
+          }
+        </style>
+          <table id="filesTable">
+          </table>
+
+        </div>
+
+    </div>
   </section>
 
   <section class="footer">
   <div class="container">
   <div class="row">
-    <div class="one column">One1</div>
-    <div class="one column">One2</div>
-    <div class="one column">One3</div>
-    <div class="one column">One4</div>
-    <div class="one column">One5</div>
-    <div class="one column">One6</div>
-    <div class="one column">One7</div>
-    <div class="one column">One8</div>
-    <div class="one column">One9</div>
-    <div class="one column">One10</div>
-    <div class="one column">One11</div>
-    <div class="one column">One12</div>
+    <div id="navigation" class="twelve columns">
+      <nav>
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="termsAndConditions.html">Terms &amp; Conditions</a></li>
+      </ul>
+    </nav>
+    </div>
   </div>
   </div>
   </section>
@@ -183,7 +214,9 @@ $query = "SELECT * FROM Notes WHERE fileModuleCode = '$chosenModule'";
 $foundFiles = $conn -> query($query);
 $numOfFiles = mysqli_num_rows($foundFiles);
 
-	while($row = $foundFiles->fetch_assoc())
+if ($foundFiles -> num_rows > 0)
+{
+  while($row = $foundFiles->fetch_assoc())
 	{
 		echo $row["fileName"];
     $fileOwner = $row["userID"];
@@ -191,6 +224,12 @@ $numOfFiles = mysqli_num_rows($foundFiles);
     $module = $row["fileModuleCode"];
 		echo '<script type="text/javascript"> createRow(\'' . $name . '\' , \'' . $module . '\' , \'' . $fileOwner . '\'); </script>';
   }
+}
+else
+{
+  echo "No files found!";
+}
+
 }
 ?>
 

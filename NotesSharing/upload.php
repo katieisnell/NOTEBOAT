@@ -1,8 +1,9 @@
 <?php
+session_start();
 if($_SERVER["REQUEST_METHOD"] == "POST")
 {
 $file_result = "";
-$loggedInUser = "mbaxaks2";
+$loggedInUser = $_SESSION['login_user'];
 $fileModule = $_POST['modules'];
 $isFilePublic = 1;
 $newFileID = rand();
@@ -34,12 +35,12 @@ else
     {
       die('Connect Error ('.$conn -> connect_errno.')'.$conn -> connect_error);
     }
-
+    
     $fileName = $_FILES["file"]["name"] . "<" . $newFileID;
     $query = "INSERT INTO `Notes` (`fileID`, `userID`, `fileName`, `fileModuleCode`, `uploadDate`, `filePublic`) VALUES ('$newFileID','$loggedInUser','$fileName','$fileModule', '$currentDateTime' , '$isFilePublic')";
-
+    
     $added = $conn -> query($query);
-
+    $file_result = $fileName . " uploaded!";
   }//if
   else if (getimagesize($_FILES["file"]["tmp_name"]))
   {
@@ -72,6 +73,7 @@ else
     $file_result .= "Please upload a pdf or an image file";
   }
 }
-echo $file_result;
+echo '<script type="text/javascript"> alert(\'UPLOADED!\'); </script>';
+///header("location:/NOTEBOAT/NotesSharing/notesShare.php");
 }
 ?>

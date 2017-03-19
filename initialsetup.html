@@ -35,66 +35,51 @@
 
 <div class="container">
 
-  <section class="navigation">
+  <section class="header">
   <div class="container">
   <div class="row">
-    <div id ="logo" class="three columns">
+    <div id ="logo" class="six columns offset-by-three">
       <a href="index.html">
         <img class="u-full-width" src="images/logo2.png">
       </a>
-    </div>
-
-
-    <div id="navigation" class="nine columns">
-      <nav>
-      <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#introduction">Introduction</a></li>
-        <li><a href="#login">Login</a></li>
-        <li><a href="#register">Register</a></li>
-      </ul>
-    </nav>
     </div>
   </div>
   </div>
   </section>
 
-  <section class="login">
+  <section class="main">
     <div class="container">
-    <form action="dashboard.html" method="post">
+    <form action="php/setupContinued.php" method="post">
 
     <div class="row">
-      <div class="six columns">
-      <label>1. How often do you spend studying every day?</label>
-      <select class="u-full-width" id="studytime">
-        <option value="Option 0">Please select</option>
-        <option value="Option 1">Less than an hour</option>
-        <option value="Option 2">Between 1 and 3 hours</option>
-        <option value="Option 3">More than 3 hours</option>
-      </select>
-      </div>
-
-      <div class="six columns">
-      <label>2. Which of these modules is your strongest</label>
-      <select class="u-full-width" id="bestmod">
-        <option value="Option 0">Please select</option>
-        <option value="Option 1">MATH10212</option>
-        <option value="Option 2">COMP16212</option>
-        <option value="Option 3">MATH10232</option>
-      </select>
+      <div class="eight columns offset-by-two">
+      <label>During a weekday, what is the time range you are willing to work?</label>
+      Start Time: <input type="time" name="wkdayStartTime"><br>
+      End Time<input type="time" name="wkdayEndTime">
       </div>
     </div>
+        
+    <div class="row">
+      <div class="eight columns offset-by-two">
+      <label>During the weekend, what is the time range you are willing to work?</label>
+      Start Time: <input type="time" name="wkendStartTime"><br>
+      End Time: <input type="time" name="wkendEndTime">
+      </div>
+    </div>
+<!--questions depending on semester after here--->
 
     <div class="row">
-      <div class="six columns">
-      <label>3. Are you prepared to work more on weekends?</label>
-      <select class="u-full-width" id="bestmod">
-        <option value="Option 0">Please select</option>
-        <option value="Option 1">No</option>
-        <option value="Option 2">Yes</option>
+      <div class="eight columns offset-by-two">
+      <label>3. What semester are are you currently in?</label>
+      <select class="u-full-width" name="semester" >
+        <option disabled="true" selected="true">Please select</option>
+        <option value="sem1">Semester 1</option>
+        <option value="sem2">Semester 2</option>
       </select>      
       </div>
     </div>
+        
+    
 
     <div class="row">
        <div class="six columns offset-by-three">
@@ -109,22 +94,19 @@
   <section class="footer">
   <div class="container">
   <div class="row">
-    <div class="one column">One1</div>
-    <div class="one column">One2</div>
-    <div class="one column">One3</div>
-    <div class="one column">One4</div>
-    <div class="one column">One5</div>
-    <div class="one column">One6</div>
-    <div class="one column">One7</div>
-    <div class="one column">One8</div>
-    <div class="one column">One9</div>
-    <div class="one column">One10</div>
-    <div class="one column">One11</div>
-    <div class="one column">One12</div>
+    <div id="navigation" class="twelve columns">
+      <nav>
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="termsAndConditions.html">Terms &amp; Conditions</a></li>
+      </ul>
+    </nav>
+    </div>
   </div>
   </div>
   </section>
-
+    
 </div>
 
 <!-- End Document
