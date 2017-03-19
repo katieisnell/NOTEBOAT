@@ -12,6 +12,7 @@ determined before
 <body>
 
   <?php
+
     require_once('config.inc.php');
     $conn = mysqli_connect($database_host, $database_user, $database_pass, $database_name);
     // Check connection
@@ -36,101 +37,67 @@ determined before
     echo "0 results from find course";
     }
 
-    // Now we have their course, we can find out their mandatory modules,
-    // which we will store in an array
-    $sqlFindModules = "SELECT moduleID FROM courseTimetable WHERE courseID='"
-                                          . $courseID . "' AND schoolYear='" . $schoolYear . "'";
-
-    // Will store the no of mandatory modules in array
-    $modulesArray = array();
-
-//    $resultFindModules = $conn->query($sqlFindModules);
-    $resultFindModules = mysqli_query($conn, $sqlFindModules);
-
-    if (mysqli_num_rows($resultFindModules) > 0) {
-      while($row = $resultFindModules->fetch_assoc()) {
-        // Use array_push to add to the end of the array
-        array_push($modulesArray, $row['moduleID']);
-      }
-    } else {
-    echo "0 results from find modules";
-    }
-
-
-
 
     // Now we have the modules they can do, we have to find out more specific details about each module
     // Basically have to figure out what is mandatory, what semster the modules happen in
-    $sqlFindMandatoryModules = "SELECT courseTimetable.moduleID, moduleInfo.isMandatory, moduleInfo.semesterNo
-                                                           FROM courseTimetable
-                                                           INNER JOIN moduleInfo
-                                                           ON courseTimetable.moduleID=moduleInfo.moduleID
-                                                           WHERE courseID='" . $courseID . "' AND schoolYear='" . $schoolYear . "'";
+    $sqlFindMandatoryModules = "SELECT courseTimetable.moduleID, moduleInfo.isMandatory,
+                                                             moduleInfo.semesterNo,  moduleClasses.startTime, moduleClasses.duration,
+                                                             moduleClasses.weekNo, moduleClasses.location, moduleClasses.className
+                                                             FROM courseTimetable
+                                                             LEFT JOIN moduleInfo ON courseTimetable.moduleID=moduleInfo.moduleID
+                                                             LEFT JOIN moduleClasses on courseTimetable.moduleID=moduleClasses.moduleID
+                                                             WHERE courseTimetable.courseID='" . $courseID . "' AND courseTimetable.schoolYear='"
+                                                                                                                                                                 . $schoolYear . "'";
+
 
     $resultFindMandatoryModules = mysqli_query($conn, $sqlFindMandatoryModules);
 
-    // 2D arrays which store: (moduleID, semesterNo
+    // 2D arrays which store: (moduleID, semesterNo, start time of lec, duration of it, what weekno the lec is on, the location,
+    // and the class name which will be the output to the user of what it is
     $mandatoryModulesArray  = array();
-    $optionalModulesArray  = array();
 
-//    $rowNo = 0;
+    // Just store these here for now, this will not be used in this php though
+    $optionalModulesArray  = array();
 
     if (mysqli_num_rows($resultFindMandatoryModules) > 0) {
       while($row = $resultFindMandatoryModules->fetch_assoc()) {
 
         if ($row['isMandatory'] == 1) {
-          array_push($mandatoryModulesArray, array($row['moduleID'], $row['semesterNo']));
-        } else {
-          array_push($optionalModulesArray, array($row['moduleID'], $row['semesterNo']));
-        }
-
-      }
-    } else {
-    echo "0 results from find modules";
-    }
-
-
-
-    // Now we have the modules they can do, we have to find out more specific details about each module
-    // Basically have to figure out what is mandatory, what semster the modules happen in
-    $sqlFindMandatoryModules2 = "SELECT courseTimetable.moduleID, moduleInfo.isMandatory, moduleInfo.semesterNo, moduleClasses.startTime, moduleClasses.duration, moduleClasses.weekNo, moduleClasses.location, moduleClasses.className
-                                                           FROM courseTimetable
-LEFT JOIN moduleInfo ON courseTimetable.moduleID=moduleInfo.moduleID
-                              LEFT JOIN moduleClasses on courseTimetable.moduleID=moduleClasses.moduleID
-
-                                                           WHERE courseTimetable.courseID='" . $courseID . "' AND courseTimetable.schoolYear='" . $schoolYear . "'";
-//echo $sqlFindMandatoryModules2;
-
-    $resultFindMandatoryModules2 = mysqli_query($conn, $sqlFindMandatoryModules2);
-
-    // 2D arrays which store: (moduleID, semesterNo, start time of lec, duration of it, what weekno the lec is on, the location,
-    // and the class name which will be the output to the user of what it is
-    $mandatoryModulesArray2  = array();
-    $optionalModulesArray2  = array();
-
-//    $rowNo = 0;
-
-    if (mysqli_num_rows($resultFindMandatoryModules2) > 0) {
-      while($row = $resultFindMandatoryModules2->fetch_assoc()) {
-
-        if ($row['isMandatory'] == 1) {
-          array_push($mandatoryModulesArray2, array($row['moduleID'], $row['semesterNo'], $row['startTime'],
+          array_push($mandatoryModulesArray, array($row['moduleID'], $row['semesterNo'], $row['startTime'],
                                                                                               $row['duration'], $row['weekNo'], $row['location'], $row['className']));
         } else {
-          array_push($optionalModulesArray2, array($row['moduleID'], $row['semesterNo'], $row['startTime'],
+          array_push($optionalModulesArray, array($row['moduleID'], $row['semesterNo'], $row['startTime'],
                                                                                               $row['duration'], $row['weekNo'], $row['location'], $row['className']));
         }
 
       }
     } else {
-    echo "0 results from find modules 2";
+    echo "0 results from find mandatory modules";
     }
 
+    // Need to find what optional module the user take by using INNER JOIN?
+    $sqlUserOptionalModule = "SELECT moduleInfo.moduleID
+                                                     FROM moduleInfo
+                                                     INNER JOIN modulesEnrolled
+                                                     ON moduleInfo.moduleID=modulesEnrolled.moduleID
+                                                     WHERE modulesEnrolled.userID='" . $userID . "' AND moduleInfo.isMandatory=0";
+
+    // Store the optionals the user takes
+    $userOptionalModulesArray  = array();
+
+    $resultUserOptionalModule = mysqli_query($conn, $sqlUserOptionalModule);
+
+    if (mysqli_num_rows($resultUserOptionalModule) > 0) {
+      while($row = $resultUserOptionalModule->fetch_assoc()) {
 
 
+          array_push($userOptionalModulesArray, $row['moduleID']);
 
 
-
+      }
+    } else {
+    echo "0 results from find optional modules";
+    }
 
 
 
@@ -139,48 +106,42 @@ LEFT JOIN moduleInfo ON courseTimetable.moduleID=moduleInfo.moduleID
     echo "UserID: " . $userID ;
     echo " Course: " . $courseID ;
     echo " School year: " . $schoolYear ;
-    echo "<br>" ;
-    $arrayLength = count($modulesArray);
-    for ($index = 0; $index < $arrayLength; $index++) {
-      echo $modulesArray[$index] . "<br>";
-    }
+
 
 for ($row = 0; $row < count($mandatoryModulesArray); $row++) {
   echo "<p><b>Mandatory module $row</b></p>";
   echo "<ul>";
-  for ($col = 0; $col < 2; $col++) {
-    echo "<li>".$mandatoryModulesArray[$row][$col]."</li>";
+  for ($col = 0; $col < 7; $col++) {
+    switch ($col) {
+      case 1:
+        echo "<li>Semester no: ".$mandatoryModulesArray[$row][$col]."</li>";
+        break;
+      case 2:
+        echo "<li>Start time: ".$mandatoryModulesArray[$row][$col]."</li>";
+        break;
+      case 4:
+        echo "<li>Week no: ".$mandatoryModulesArray[$row][$col]."</li>";
+        break;
+
+      default:
+      echo "<li>".$mandatoryModulesArray[$row][$col]."</li>";
+      }
   }
   echo "</ul>";
 }
 
-for ($row = 0; $row < count($optionalModulesArray); $row++) {
+for ($row = 0; $row < count($userOptionalModulesArray); $row++) {
   echo "<p><b>Optional module $row</b></p>";
   echo "<ul>";
-  for ($col = 0; $col < 2; $col++) {
-    echo "<li>".$optionalModulesArray[$row][$col]."</li>";
-  }
+  echo "<li>".$userOptionalModulesArray[$row]."</li>";
   echo "</ul>";
 }
 
 
-for ($row = 0; $row < count($mandatoryModulesArray2); $row++) {
-  echo "<p><b>!!!!!!!!!!!!Mandatory module $row</b></p>";
-  echo "<ul>";
-  for ($col = 0; $col < 7; $col++) {
-    echo "<li>".$mandatoryModulesArray2[$row][$col]."</li>";
-  }
-  echo "</ul>";
-}
 
-for ($row = 0; $row < count($optionalModulesArray2); $row++) {
-  echo "<p><b>!!!!!!!!!!!!Optional module $row</b></p>";
-  echo "<ul>";
-  for ($col = 0; $col < 7; $col++) {
-    echo "<li>".$optionalModulesArray2[$row][$col]."</li>";
-  }
-  echo "</ul>";
-}
+
+
+
 
     $conn->close();
   ?>
