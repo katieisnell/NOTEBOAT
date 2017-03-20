@@ -1,6 +1,7 @@
 <style type="text/css">
 body {
   background-color:black;
+  color:pink;
   font-family: Signika Negative, Asap, sans-serif;
 }
 
@@ -94,32 +95,18 @@ div.grid{
   </div>
 
   <div id="timetableMeat">
-  	    <div class="box" id="box1" style="left:0px; top:0px; min-height: 162.5; background-color:red;"><span></span></div>
-        <div class="box" id="box2" style="left:0px; top:0px; min-height: 162.5; background-color:red;"><span></span></div>
-        <div class="box" id="box3" style="left:0px; top:0px; min-height: 162.5; background-color:red;"><span></span></div>
-        <div class="box" id="box4" style="left:0px; top:0px; min-height: 162.5; background-color:red;"><span></span></div>
-        <div class="box" id="box5" style="left:0px; top:0px; min-height: 162.5; background-color:red;"><span></span></div>
-        <div class="box" id="box6" style="left:0px; top:0px; min-height: 162.5; background-color:red;"><span></span></div>
-        <div class="box" id="box7" style="left:0px; top:0px; min-height: 162.5; background-color:red;"><span></span></div>
-        <div class="box" id="box8" style="left:0px; top:0px; min-height: 162.5; background-color:red;"><span></span></div>
-        <div class="box" id="box9" style="left:0px; top:0px; min-height: 162.5; background-color:red;"><span></span></div>
-        <div class="box" id="box10" style="left:0px; top:0px; min-height: 162.5; background-color:red;"><span>  <span></div>
-        <div class="box" id="box11" style="left:0px; top:0px; min-height: 162.5; background-color:red;"><span></span></div>
-        <div class="box" id="box12" style="left:0px; top:0px; min-height: 162.5; background-color:red;"><span></span></div>
-
-
 
   </div>
 </div>
 
-div id="input">
+<div id="input">
 <h1>Make Activity</h1>
 <form id="makeActivity" >
   > Activity Name*:<br>
   <input type="text" name="activityName" ><br><br>
 
-> Activity Length*:<br>
-<select name="activityLengthHrs" form="makeActivity">
+  > Activity Length*:<br>
+  <select name="activityLengthHrs" form="makeActivity">
   <option value="0">0</option>
   <option value="1">1</option>
   <option value="2">2</option>
@@ -145,25 +132,36 @@ div id="input">
   <option value="22">22</option>
   <option value="23">23</option>
   <option value="24">24</option>
-</select>Hours
+  </select>Hours
 
-<select name="activityLengthMins" form="makeActivity">
+  <select name="activityLengthMins" form="makeActivity">
   <option value="0">0</option>
-  <option value="5">5</option>
-  <option value="10">10</option>
-  <option value="15">15</option>
-  <option value="20">20</option>
-  <option value="25">25</option>
-  <option value="30">30</option>
-  <option value="35">35</option>
-  <option value="40">40</option>
-  <option value="45">45</option>
-  <option value="50">50</option>
-  <option value="55">55</option>
-</select>Mins<br><br>
+  <option value="1">5</option>
+  <option value="2">10</option>
+  <option value="3">15</option>
+  <option value="4">20</option>
+  <option value="5">25</option>
+  <option value="6">30</option>
+  <option value="7">35</option>
+  <option value="8">40</option>
+  <option value="9">45</option>
+  <option value="10">50</option>
+  <option value="11">55</option>
+  </select>Mins<br><br>
 
-> Start Time*:<br>
-<select name="startHour", form="makeActivity">
+  > Start Day*:<br>
+  <select name="startDay" form="makeActivity">
+  <option value="0">Saturday</option>
+  <option value="1">Sunday</option>
+  <option value="2">Monday</option>
+  <option value="3">Tuesday</option>
+  <option value="4">Wednesday</option>
+  <option value="5">Thursday</option>
+  <option value="6">Friday</option>
+  </select><br><br>
+
+  > Start Time*:<br>
+  <select name="startHour", form="makeActivity">
   <option value="0">12am</option>
   <option value="1">1am</option>
   <option value="2">2am</option>
@@ -188,245 +186,257 @@ div id="input">
   <option value="21">9pm</option>
   <option value="22">10pm</option>
   <option value="23">11pm</option>
-</select> :
+  </select> :
 
-<select name="startMin" form="makeActivity">
+  <select name="startMin" form="makeActivity">
   <option value="0">0</option>
-  <option value="5">5</option>
-  <option value="10">10</option>
-  <option value="15">15</option>
-  <option value="20">20</option>
-  <option value="25">25</option>
-  <option value="30">30</option>
-  <option value="35">35</option>
-  <option value="40">40</option>
-  <option value="45">45</option>
-  <option value="50">50</option>
-  <option value="55">55</option>
-</select><br><br>
+  <option value="1">5</option>
+  <option value="2">10</option>
+  <option value="3">15</option>
+  <option value="4">20</option>
+  <option value="5">25</option>
+  <option value="6">30</option>
+  <option value="7">35</option>
+  <option value="8">40</option>
+  <option value="9">45</option>
+  <option value="10">50</option>
+  <option value="11">55</option>
+  </select><br><br>
 
-> Activity Type*:<br>
-<select name="Type" form="makeActivity">
+
+
+  > Activity Type*:<br>
+  <select name="activityType" form="makeActivity">
   <option value="1">Revision</option>
   <option value="2">Extra curricular</option>
   <option value="3">Job</option>
   <option value="4">Misc</option>
-</select><br><br>
+  </select><br><br>
 
 
   > Activity Colour*:<br>
   <input type="color" name="activityColour"><br>
   <input type="submit">
 </form>
-
+<button id="SaveChanges" onclick="saveChanges()">Save Changes</button>
 
 </div>
 
 <script>
 
-	var $table = $("#timetableHolder"),
-  $tableMeat = $("#timetableMeat"),
-  $tableHeader = $("#timetableHeader"),
-	gridWidth = (($('#timetableHolder').width() -1)/8 ) ,
-	gridHeight = ($('#timetableHolder').height() -1)/9,
-	gridRows = 24,
-	gridColumns = 8,
-	boxCount =13,
-  timeValue=12,
-  dayHalf ="am",
-  secondSwitch,
-  arrayOfClasses,
-	i, x, y, day, time ;
+var $table = $("#timetableHolder"),
+$tableMeat = $("#timetableMeat"),
+$tableHeader = $("#timetableHeader"),
+gridWidth = (($('#timetableHolder').width() -1)/8 ) ,
+gridHeight = ($('#timetableHolder').height() -1)/9,
+gridRows = 24,
+gridColumns = 8,
+boxCount =0,
+timeValue=12,
+dayHalf ="am",
+secondSwitch,
+arrayOfClasses,
+arrayToAdd,
+i, x, y, day, time;
+var m=0;
 
-var m =0;
 
   //header of timetable
 
-document.getElementById('timetableHeader').style.width= ((gridWidth*8)  +'px');
-document.getElementById('timetableHeader').style.minHeight= ((gridHeight-1) +'px');
+  document.getElementById('timetableHeader').style.width= ((gridWidth*8)  +'px');
+  document.getElementById('timetableHeader').style.minHeight= ((gridHeight-1) +'px');
 
-$tableMeat.height(gridHeight*8);
-$tableMeat.width(gridWidth*8 );
-$('#timetableMeat').css('top', gridHeight)
+  $tableMeat.height(gridHeight*8);
+  $tableMeat.width(gridWidth*8 );
+  $('#timetableMeat').css('top', gridHeight)
 
-//making a grid yo
+  //making a grid yo
 
-for (i = 0; i < 8; i++) {
-	y = Math.floor(i / gridColumns) * gridHeight -1;
-	x = (i * gridWidth) % (gridColumns * gridWidth) -1;
-  if (x> gridWidth*8 )
-    x=0
+  for (i = 0; i < 8; i++) {
+  	y = Math.floor(i / gridColumns) * gridHeight -1;
+  	x = (i * gridWidth) % (gridColumns * gridWidth) -1;
+    if (x> gridWidth*8 )
+      x=0
 
-	$("<div/>").text(time).attr('class', "grid").css({ width:gridWidth-1, height:gridHeight-1, top:y, left:x}).prependTo($tableHeader);
-}
-x=0;
-y=0;
-for (i = 0; i < gridRows *gridColumns ; i++) {
-	y = Math.floor(i / gridColumns) * gridHeight  ;
-	x = (i * gridWidth) % (gridColumns * gridWidth)  ;
-  if (x> gridWidth*7.5 )
-    x=0
+  	$("<div/>").text(time).attr('class', "grid").css({ width:gridWidth-1, height:gridHeight-1, top:y, left:x}).prependTo($tableHeader);
+  }
+  x=0;
+  y=0;
+  for (i = 0; i < gridRows *gridColumns ; i++) {
+  	y = Math.floor(i / gridColumns) * gridHeight  ;
+  	x = (i * gridWidth) % (gridColumns * gridWidth)  ;
+    if (x> gridWidth*7.5 )
+      x=0
 
-	getDay(i);
-	$("<div/>").text(time).attr('class', "grid").css({ width:gridWidth-1, height:gridHeight-1, top:y, left:x}).prependTo($tableMeat);
-}
+  	getDay(i);
+  	$("<div/>").text(time).attr('class', "grid").css({ width:gridWidth-1, height:gridHeight-1, top:y, left:x}).prependTo($tableMeat);
+  }
 
-	$("<div/>").attr('id', 'container').css({position:"absolute", width: ((gridWidth)*(gridColumns-1)), height:( (gridHeight)*(gridRows)), top:gridHeight, left:gridWidth+1 }).prependTo($table);
+  	$("<div/>").attr('id', 'container').css({position:"absolute", width: ((gridWidth)*(gridColumns-1)+1), height:( (gridHeight)*(gridRows)), top:gridHeight, left:gridWidth }).prependTo($table);
 
-function getDay(index) {
+  function getType(type){
+    var typeName;
+    switch(type){
+  		case "1": typeName = "Revision"; break;
+  		case "2": typeName = "Extra Curricular";  break;
+  		case "3": typeName = "Job";  break;
+  		case "4": typeName = "Misc"; break;
+      default: typeName ="Misc";
+    }
 
-  if(index%8 == 0)
-  {
-    time = "" + timeValue + dayHalf;
+    return typeName;
 
-    timeValue++;
-    if(timeValue ==13)
+  }
+  function getDay(index) {
+
+    if(index%8 == 0)
     {
-      timeValue-=12;
-      if(secondSwitch)
-        dayHalf = "pm";
-      secondSwitch = true;
-    }
-    }
-  else
-    time = "";
+      time = "" + timeValue + dayHalf;
 
-}
-
-for (i = 1; i < gridColumns; i++) {
-	y = Math.floor(i / gridColumns) * gridHeight;
-	x = (i * gridWidth) % (gridColumns * gridWidth);
-	switch(i){
-		case 3:
-		  day = "Monday";
-		  break;
-		case 4:
-		  day = "Tuesday";
-		  break;
-		case 5:
-		  day = "Wednesday";
-		  break;
-		case 6:
-		  day = "Thursday";
-		  break;
-		case 7:
-		  day = "Friday";
-		  break;
-		case 1:
-		  day = "Saturday";
-		  break;
-		case 2:
-		  day = "Sunday";
-		  break;
-	}
-	$("<div/>").text(day).attr('class','grid').css({ width:gridWidth-1, height:gridHeight-1, top:0, left:x,  "text-align":"center"}).prependTo($table);
-}
-
-
-
-for(i=1; i<=12; i++)
-{
-  document.getElementById('box'+i).style.top=((gridHeight/12 * (i-1) +1 )+'px');
-  document.getElementById('box'+i).style.left=((gridWidth +1)+'px');
-  document.getElementById('box'+i).style.minHeight=(((gridHeight)/12) -2 +'px');
-  document.getElementById('box'+i).style.minWidth=((gridWidth-2)+'px');
-
-
-}
-
-
-
-function makeActivity(activId, startTime, duration) {
-dayX = Math.floor(startTime/288)+1
-dayY = startTime % 288
-
-
-var string = 'string'
-
-$("<div class='box' id='unmovableBox13' style='left:0px; top:0px; min-height: 162.5; background-color:red;'><span>Gossip with suvi</span></div>").appendTo('#timetableMeat');
-
-document.getElementById(activId).style.top=(((gridHeight/12) *dayY +1 )+'px');
-document.getElementById(activId).style.left=((gridWidth*dayX +1)+'px');
-document.getElementById(activId).style.minHeight=(((gridHeight)/12) *duration -2 +'px');
-document.getElementById(activId).style.minWidth=((gridWidth-2)+'px');
-
-
-}
-
-
-function extractClasses(activArray)
-{
-  for (i = 0; i < 21; i++)
-  {
-    var name = activArray[i][0]  ,
-    sem = activArray[i][1],
-    start = activArray[i][2],
-    duration = activArray[i][3],
-    weekNo = activArray[i][4],
-    location = activArray[i][5],
-    className = activArray[i][6];
-
-
-
-   placeClass('unmovableBox', start, duration, name);
+      timeValue++;
+      if(timeValue ==13)
+      {
+        timeValue-=12;
+        if(secondSwitch)
+          dayHalf = "pm";
+        secondSwitch = true;
+      }
+      }
+    else
+      time = "";
 
   }
 
-}
-
-function placeClass(activId, startTime, duration, name) {
-
-
-
-
-dayX = Math.floor(startTime/288)+1;
-dayY = startTime % 288;
-var type = 'lec'
-
-
-$("<div class='box' id='unmovableBox'  style='left:0px; top:0px; min-height: 162.5; background-color:red;'></div>").appendTo('#timetableMeat');
-
-$('#unmovableBox').attr('id', 'unmovableBox'+m);
-$('#unmovableBox'+m ).html('<span> '+name+'<br>'+type+'</span>');
-
-document.getElementById('unmovableBox'+m).style.top=(((gridHeight/12) *dayY +1 )+'px');
-document.getElementById('unmovableBox'+m).style.left=((gridWidth*dayX +1)+'px');
-document.getElementById('unmovableBox'+m).style.minHeight=(((gridHeight)/12) *duration -2 +'px');
-document.getElementById('unmovableBox'+m).style.minWidth=((gridWidth-2)+'px');
-
-
-m++;
-}
-
-
-
-
-
-for(i=1; i<=boxCount; i++)
-      $( "#box"+i ).draggable(  {grid: [gridWidth,gridHeight/12], containment: "#container",opacity: 0.7} );
+  for (i = 1; i < gridColumns; i++) {
+  	y = Math.floor(i / gridColumns) * gridHeight;
+  	x = (i * gridWidth) % (gridColumns * gridWidth);
+  	switch(i){
+  		case 3:
+  		  day = "Monday";
+  		  break;
+  		case 4:
+  		  day = "Tuesday";
+  		  break;
+  		case 5:
+  		  day = "Wednesday";
+  		  break;
+  		case 6:
+  		  day = "Thursday";
+  		  break;
+  		case 7:
+  		  day = "Friday";
+  		  break;
+  		case 1:
+  		  day = "Saturday";
+  		  break;
+  		case 2:
+  		  day = "Sunday";
+  		  break;
+  	}
+  	$("<div/>").text(day).attr('class','grid').css({ width:gridWidth-1, height:gridHeight-1, top:0, left:x,  "text-align":"center"}).prependTo($table);
+  }
 
 
-/*
-document.getElementById('box1').style.top=((gridHeight-gridHeight +1)+'px');
-document.getElementById('box1').style.left=((gridWidth +1)+'px');
-document.getElementById('box1').style.minHeight=((gridHeight/12) -2 +'px');
-document.getElementById('box1').style.minWidth=((gridWidth-2)+'px');
+  function updateDraggables(){
+    for(i=1; i<=boxCount; i++)
+          $( "#box"+i ).draggable(  {grid: [gridWidth,gridHeight/12], containment: "#container",opacity: 0.7} );
+    }
 
-*/
-/*
- // making the container
-	$("<div/>").attr('id', 'container').css({position:"absolute", width: ((gridWidth)*(gridColumns-1)), height:( (gridHeight)*(gridRows-1)), top:gridHeight-1, left:gridWidth-1}).prependTo($table);
+  updateDraggables();
 
-  $("#input").css({left:0,  top: (gridHeight)*(gridRows+1)})
+  function placeActivity(name, startTime, duration, type, colour) {
 
-*/
+    dayX = Math.floor(startTime/288)+1;
+    dayY = startTime % 288;
+
+    boxCount++
+
+    $("<div class='box' id='box'  style='left:0px; top:0px; min-height: 0px; background-color:yellow;'></div>").appendTo('#timetableMeat');
+    type=getType(type);
+    $('#box').attr('id', 'box'+boxCount);
+    $('#box'+boxCount ).html('<span> '+name+'<br>'+type+'</span>');
+
+    document.getElementById('box'+boxCount).style.top=(((gridHeight/12) *dayY +1 )+'px');
+    document.getElementById('box'+boxCount).style.left=((gridWidth*dayX +1)+'px');
+    document.getElementById('box'+boxCount).style.minHeight=(((gridHeight)/12) *duration -2 +'px');
+    document.getElementById('box'+boxCount).style.minWidth=((gridWidth-2)+'px');
+
+    updateDraggables();
+
+  }
+
+  function placeClass(name, startTime, duration, type) {
 
 
+    dayX = Math.floor(startTime/288)+1;
+    dayY = startTime % 288;
 
-</script>
+
+    $("<div class='box' id='unmovableBox'  style='left:0px; top:0px; min-height: 162.5; background-color:red;'></div>").appendTo('#timetableMeat');
+
+    $('#unmovableBox').attr('id', 'unmovableBox'+m);
+    $('#unmovableBox'+m ).html('<span> '+name+'<br>'+type+'</span>');
+
+    document.getElementById('unmovableBox'+m).style.top=(((gridHeight/12) *dayY +1 )+'px');
+    document.getElementById('unmovableBox'+m).style.left=((gridWidth*dayX +1)+'px');
+    document.getElementById('unmovableBox'+m).style.minHeight=(((gridHeight)/12) *duration -2 +'px');
+    document.getElementById('unmovableBox'+m).style.minWidth=((gridWidth-2)+'px');
+
+    m++;
+  }
+
+  function extractClasses(activArray){
+    for (index = 0; index < activArray.length; index++)
+    {
+      var name = activArray[index][0]  ,
+      sem = activArray[index][1],
+      start = activArray[index][2],
+      duration = activArray[index][3],
+      weekNo = activArray[index][4],
+      location = activArray[index][5],
+      className = activArray[index][6];
+
+      placeClass(name, start, duration, className);
+
+    }
+  }
+
+  function extractActivities(activArray){
+    var shizInArray = activArray.length;
+    for (index = 0; index < activArray.length; index++)
+    {
+      var name = activArray[index][1]  ,
+      start = activArray[index][2],
+      duration = activArray[index][3],
+      type = activArray[index][0]
+      colour = activArray[index][4];
 
 
+      placeActivity(name, start, duration, type, colour);
 
+    }
+  }
+
+  $("#makeActivity").submit(function(e) {
+      e.preventDefault();
+  });
+
+  $("#makeActivity").submit(function(){
+   var name = document.forms["makeActivity"]["activityName"].value;
+   var duration = parseInt(document.forms["makeActivity"]["activityLengthHrs"].value * 12) + parseInt(document.forms["makeActivity"]["activityLengthMins"].value);
+   var startTime = parseInt(document.forms["makeActivity"]["startDay"].value * 288) + parseInt(document.forms["makeActivity"]["startHour"].value*12) +parseInt(document.forms["makeActivity"]["startMin"].value);
+   var activityType = document.forms["makeActivity"]["activityType"].value;
+   var colour = document.forms["makeActivity"]["activityColour"].value;
+   arrayToAdd.push([type, name, startTime, duration, colour]);
+   if(duration>0)
+     placeActivity(name, startTime, duration, activityType, colour);
+
+  });
+
+  function saveChanges(){
+    //arrayToAdd
+  }
+  </script>
 
 
 
@@ -498,6 +508,34 @@ document.getElementById('box1').style.minWidth=((gridWidth-2)+'px');
     echo "0 results from find mandatory modules";
     }
 
+
+
+
+    // Get all the activities the student does
+    $sqlGetActivities = "SELECT activityType, activityName, startTime, duration, colour
+                                       FROM studentActivities
+                                       WHERE userID='" . $userID . "'";
+
+    $userActivitiesArray = array();
+
+    $resultGetActivities = mysqli_query($conn, $sqlGetActivities);
+
+    if (mysqli_num_rows($resultGetActivities) > 0) {
+      while($row = $resultGetActivities->fetch_assoc()) {
+
+          array_push($userActivitiesArray, array($row['activityType'], $row['activityName'],
+                                                 $row['startTime'], $row['duration'], $row['colour']));
+
+      }
+    } else {
+      echo "0 results from find optional modules";
+    }
+
+
+
+
+
+
     $conn->close();
   ?>
 
@@ -505,4 +543,6 @@ document.getElementById('box1').style.minWidth=((gridWidth-2)+'px');
 <script type="text/javascript">
    var jArray =<?php echo json_encode($mandatoryModulesArray); ?>;
    extractClasses(jArray);
+   var jArray2 =<?php echo json_encode($userActivitiesArray); ?>;
+   extractActivities(jArray2);
   </script>

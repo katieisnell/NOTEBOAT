@@ -19,7 +19,7 @@ determined before
 
     //function insertToTable() {
 
-    
+
 if (isset($_POST['array'])) {
   echo "hello?";
 echo "---".$_POST['array']."---";
@@ -30,7 +30,7 @@ echo "---".$_POST['array']."---";
 
 
 
- 
+
 
 
 
@@ -46,7 +46,7 @@ echo "---".$_POST['array']."---";
 /*
 
        // Will use in future -> $userID = $_SESSION['userID'];
-    $userID = 'mbaxaks2';    
+    $userID = 'mbaxaks2';
 
 
 
@@ -93,7 +93,7 @@ echo "---".$_POST['array']."---";
 
 
 
-	// SQL statement which gets the student's course 
+	// SQL statement which gets the student's course
         $sqlInsertNewActivity = "INSERT INTO studentActivities (userID, activityType, activityName, startTime, duration, colour)
                              VALUES('" . $userID . "', " . $activityType . ", '" . $activityName . "', " . $startTime . ", " . $duration . ", '" . $colour . "')";
 
@@ -110,23 +110,23 @@ echo "<script type='text/javascript'>alert('$errorMessage');</script>";
 
         $conn->close();
     */
-    
+
   ?>
 
 
 <form id="form" action="insertNewActivityWithButton.php" method="post">
-  <input type="hidden" name="array" id="array"> 
+  <input type="hidden" name="array" id="array">
 </form>
-  <button id="button">Click to pass array to php</button> 
+  <button id="button">Click to pass array to php</button>
 
 <script type="text/javascript" >
 
 console.log("hello");
 function submit() {
 
-    var array = [ 
-      [1, "COMP16212 homework", 12, 12, "orange"], 
-      [2, "Orchestra", 1104, 24, "purple"] 
+    var array = [
+      [1, "COMP16212 homework", 12, 12, "orange"],
+      [2, "Orchestra", 1104, 24, "purple"]
     ];
 
   $('#array').val(JSON.stringify(array));
