@@ -171,7 +171,7 @@
 </div>
 
 <script>
-  function createRow(name, module, fileOwner)
+  function createRow(name, module, fileOwner, ownerName)
   {
       var nameArray = name.split("<");
       var fileName = nameArray[0];
@@ -179,13 +179,22 @@
       var row = table.insertRow(0);
       var cell1 = row.insertCell(0);
       var cell2 = row.insertCell(1);
+      var cell3 = row.insertCell(2);
       cell1.innerHTML = "<a href=\"/NOTEBOAT/NotesSharing/uploads/" + fileOwner + "/" + fileName + "\"> " + fileName + "</a>";
       cell2.innerHTML = module;
+      cell3.innerHTML = ownerName;
   }
 
-  function deleteRow()
+  function addTableHeader()
   {
-      document.getElementById("myTable").deleteRow(0);
+    var table = document.getElementById("filesTable")
+    var row = table.insertRow(0);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    cell1.innerHTML = "File Name";
+    cell2.innerHTML = "Module";
+    cell3.innerHTML = "Owner";
   }
 </script>
 <!-- End Document
@@ -218,12 +227,19 @@ if ($foundFiles -> num_rows > 0)
 {
   while($row = $foundFiles->fetch_assoc())
 	{
-		echo $row["fileName"];
     $fileOwner = $row["userID"];
     $name = $row["fileName"];
     $module = $row["fileModuleCode"];
-		echo '<script type="text/javascript"> createRow(\'' . $name . '\' , \'' . $module . '\' , \'' . $fileOwner . '\'); </script>';
+
+    $nameQuery = "SELECT * FROM registeredUsers WHERE userID = '$fileOwner'";
+    $foundUser = $conn -> query($nameQuery);
+    $r = $foundUser->fetch_assoc();
+
+    $ownerName = $r["prefFirstName"] . " " . $r["prefLastName"];
+
+		echo '<script type="text/javascript"> createRow(\'' . $name . '\' , \'' . $module . '\' , \'' . $fileOwner . '\' , \'' . $ownerName . '\'); </script>';
   }
+    echo '<script type="text/javascript"> addTableHeader(); </script>';
 }
 else
 {
