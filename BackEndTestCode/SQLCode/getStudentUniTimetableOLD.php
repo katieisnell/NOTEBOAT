@@ -203,6 +203,3 @@ determined before
     $conn->close();
   ?>
 </body>
-
-
-
