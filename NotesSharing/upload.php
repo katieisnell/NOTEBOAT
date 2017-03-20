@@ -1,5 +1,6 @@
 <?php
 session_start();
+echo $_SESSION['login_user'];
 if($_SERVER["REQUEST_METHOD"] == "POST")
 {
 $file_result = "";
@@ -13,9 +14,19 @@ if ($_FILES["file"]["error"] > 0)
 {
   $file_result .= "No file uploaded or invalid file";
   $file_result .= "Error Code: " .$_FILES["file"]["error"] . "<br>";
+  echo "FILE ERROR";
 }//if
 else
 {
+  if (!file_exists("uploads/$loggedInUser/"))
+  {
+    mkdir("uploads/" . $loggedInUser, 0777);
+    echo "NEW DIRECT MADE!";
+  }
+  else {
+  echo "DIRECTORY EXISTS!";
+  }
+  
   if (file_exists("uploads/$loggedInUser/" . $_FILES["file"]["name"]))
   {
     $file_result .= "A file with the same name exists. Please choose a new name";
@@ -35,10 +46,10 @@ else
     {
       die('Connect Error ('.$conn -> connect_errno.')'.$conn -> connect_error);
     }
-    
+
     $fileName = $_FILES["file"]["name"] . "<" . $newFileID;
     $query = "INSERT INTO `Notes` (`fileID`, `userID`, `fileName`, `fileModuleCode`, `uploadDate`, `filePublic`) VALUES ('$newFileID','$loggedInUser','$fileName','$fileModule', '$currentDateTime' , '$isFilePublic')";
-    
+
     $added = $conn -> query($query);
     $file_result = $fileName . " uploaded!";
   }//if
@@ -48,8 +59,8 @@ else
     "uploads/$loggedInUser/" . $_FILES["file"]["name"]);
     chdir('/home/pi/NOTEBOAT/NotesSharing/uploads/' . $loggedInUser);
     $fileName = $_FILES["file"]["name"];
-	$newName = explode(".", $fileName);
-	$newFileName = $newName[0];
+	  $newName = explode(".", $fileName);
+	  $newFileName = $newName[0];
     echo shell_exec("java -jar /home/pi/NOTEBOAT/NotesSharing/img2pdf.jar " . $fileName . " " . $newFileName . ".pdf 2>&1");
 	  echo shell_exec("rm " . $fileName);
 
@@ -61,7 +72,7 @@ else
     {
       die('Connect Error ('.$conn -> connect_errno.')'.$conn -> connect_error);
     }
-    
+
     $fileName = $newFileName . ".pdf<" . $newFileID;
     $query = "INSERT INTO `Notes` (`fileID`, `userID`, `fileName`, `fileModuleCode`, `uploadDate`, `filePublic`) VALUES ('$newFileID','$loggedInUser','$fileName','$fileModule', '$currentDateTime' , '$isFilePublic')";
 
@@ -73,7 +84,8 @@ else
     $file_result .= "Please upload a pdf or an image file";
   }
 }
-echo '<script type="text/javascript"> alert(\'UPLOADED!\'); </script>';
+echo '<script type="text/javascript"> alert(\''. $file_result . '\'); </script>';
 ///header("location:/NOTEBOAT/NotesSharing/notesShare.php");
 }
 ?>
+
