@@ -1,4 +1,4 @@
-<html>
+
 
 <!--
 A program which stores an activity to the table studentActivities
@@ -12,7 +12,7 @@ determined before
 
 -->
 
-<body>
+
 
 <?php
 
@@ -74,37 +74,30 @@ if (isset($_POST['array'])) {
       die("Connection failed: " . $conn->connect_error);
     }
 
-for ($row = 0; $row < count($studentActivitiesToAddArray); $row++)
-{
- $activityType = $studentActivitiesToAddArray[$row][0];
-$activityName = $studentActivitiesToAddArray[$row][1];
-  $startTime = $studentActivitiesToAddArray[$row][2];
-$duration = $studentActivitiesToAddArray[$row][3];
-$colour = $studentActivitiesToAddArray[$row][4];
+    for ($row = 0; $row < count($studentActivitiesToAddArray); $row++)
+    {
+      $activityType = $studentActivitiesToAddArray[$row][0];
+      $activityName = $studentActivitiesToAddArray[$row][1];
+      $startTime = $studentActivitiesToAddArray[$row][2];
+      $duration = $studentActivitiesToAddArray[$row][3];
+      $colour = $studentActivitiesToAddArray[$row][4];
 
-  // SQL statement which gets the student's course
-        $sqlInsertNewActivity = "INSERT INTO studentActivities (userID, activityType, activityName, startTime, duration, colour)
+      // SQL statement which gets the student's course
+      $sqlInsertNewActivity = "INSERT INTO studentActivities (userID, activityType, activityName, startTime, duration, colour)
                              VALUES('" . $userID . "', " . $activityType . ", '" . $activityName . "', " . $startTime . ", " . $duration . ", '" . $colour . "')";
 
-        $resultInsertNewActivity = $conn->query($sqlInsertNewActivity);
+      $resultInsertNewActivity = $conn->query($sqlInsertNewActivity);
 
-        if(mysqli_query($conn, $sqlInsertNewActivity)) {
+      if(mysqli_query($conn, $sqlInsertNewActivity)) {
 
-echo "<script type='text/javascript'>alert('Records inserted successfully.');</script>";
-	     // echo "Records inserted successfully.";
-	} else {
+        echo "<script type='text/javascript'>alert('Records inserted successfully.');</script>";
+	      // echo "Records inserted successfully.";
+	    } else {
 	      $errorMessage = "ERROR: Could not able to execute $sqlInsertNewActivity. " . mysqli_error($conn);
-echo "<script type='text/javascript'>alert('$errorMessage');</script>";
-        }
-
-
-
-}
-
-
-
-
-        $conn->close();
+        echo "<script type='text/javascript'>alert('$errorMessage');</script>";
+      }
+    }
+  $conn->close();
 
 
   ?>
@@ -144,9 +137,3 @@ $(document).ready(function() {
 });
 
 </script> -->
-
-</body>
-
-
-
-</html>
