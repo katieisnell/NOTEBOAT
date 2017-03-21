@@ -243,6 +243,7 @@ dayHalf ="am",
 secondSwitch,
 arrayOfClasses,
 arrayToAdd = [],
+arrayToRemove = [],
 i, x, y, day, time;
 var m=0;
 
@@ -278,7 +279,7 @@ var m=0;
   	$("<div/>").text(time).attr('class', "grid").css({ width:gridWidth-1, height:gridHeight-1, top:y, left:x}).prependTo($tableMeat);
   }
 
-  	$("<div/>").attr('id', 'container').css({position:"absolute", width: ((gridWidth)*(gridColumns-1)+1), height:( (gridHeight)*(gridRows)), top:gridHeight, left:gridWidth }).prependTo($table);
+  	$("<div/>").attr('arrayRemovingid', 'container').css({position:"absolute", width: ((gridWidth)*(gridColumns-1)+1), height:( (gridHeight)*(gridRows)), top:gridHeight, left:gridWidth }).prependTo($table);
 
   function getType(type){
     var typeName;
@@ -409,7 +410,7 @@ var m=0;
 
   function extractActivities(activArray){
     var shizInArray = activArray.length;
-    for (index = 0; index < activArray.length; index++)
+    for (index = 0; index < activArray.length; index++)arrayToAdd = [],
     {
       var name = activArray[index][1]  ,
       start = activArray[index][2],
@@ -446,6 +447,7 @@ var m=0;
 
   function passArray() {
     $('#array').val(JSON.stringify(arrayToAdd));
+    $('#arrayRemoving').val(JSON.stringify(arrayToAdd));
     //console.log(JSON.stringify(array));
     $('#form').submit();
     arrayToAdd =[];
