@@ -21,40 +21,6 @@ if (isset($_POST['array'])) {
 $userID = 'mbaxaks2';
 
 
-
-// for ($row = 0; $row < count($array); $row++) {
-//   echo "<p><b>" . $userID . "'s activity shit to do $row</b></p>";
-//   echo "<ul>";
-//   for ($col = 0; $col < 5; $col++) {
-//     switch ($col) {
-//       case 0:
-//         echo "<li>Activity type: ".$array[$row][$col]."</li>";
-//         $activityType = $array[$row][$col];
-//         break;
-//       case 1:
-//         echo "<li>Activity name: ".$array[$row][$col]."</li>";
-//         $activityName = $array[$row][$col];
-//         break;
-//       case 2:
-//         echo "<li>Start time: ".$array[$row][$col]."</li>";
-//         $startTime = $array[$row][$col];
-//         break;
-//       case 3:
-//         echo "<li>Duration: ".$array[$row][$col]."</li>";
-//         $duration = $array[$row][$col];
-//         break;
-//       case 4:
-//         echo "<li>Colour: ".$array[$row][$col]."</li>";
-//         $colour = $array[$row][$col];
-//         break;
-//       default:
-//       echo "<li>".$array[$row][$col]."</li>";
-//       }
-//   }
-//   echo "</ul>";
-// }
-
-
 require_once('config.inc.php');
 $conn = mysqli_connect($database_host, $database_user, $database_pass, $database_name);
 // Check connection
@@ -85,6 +51,23 @@ for ($row = 0; $row < count($studentActivitiesToAddArray); $row++)
     echo "<script type='text/javascript'>alert('$errorMessage');</script>";
   }
 }
+
+
+for ($row = 0; $row < count($studentActivitiesToDeleteArray); $row++)
+{
+  $startTime = $studentActivitiesToDeleteArray[$row][2];
+
+  // SQL statement which deletes the record from the activities table
+  $sqlDeleteActivity = "DELETE FROM studentActivities
+                        WHERE userID='" . $userID . "' AND startTime=" . $startTime;
+
+  $resultDeleteActivity = $conn->query($sqlDeleteActivity);
+
+
+}
+
+
+
 $conn->close();
 }
 

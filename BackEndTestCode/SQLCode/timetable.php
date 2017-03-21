@@ -222,6 +222,7 @@ div.grid{
 
 <form id="form" action="insertNewActivityWithButton.php" method="post">
   <input type="hidden" name="array" id="array">
+  <input type="hidden" name="arrayRemoving" id="arrayRemoving">
 </form>
 <button id="saveChanges">Save Changes</button>
 
