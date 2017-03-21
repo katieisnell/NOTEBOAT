@@ -355,14 +355,14 @@ var m=0;
 
     dayX = Math.floor(startTime/288)+1;
     dayY = startTime % 288;
-
+    var suvi =10;
     boxCount++
 
-    $("<div class='box' id='box' oncontextmenu='removeDiv($(this), type, name, startTime, duration, colour);' style='left:0px; top:0px; min-height: 0px; background-color:yellow;'></div>").appendTo('#timetableMeat');
+    $("<div class='box' id='box' oncontextmenu='removeDiv($(this));' style='left:0px; top:0px; min-height: 0px; background-color:yellow;'></div>").appendTo('#timetableMeat');
     //
-    type=getType(type);
+    var typeString=getType(type);
     $('#box').attr('id', 'box'+boxCount);
-    $('#box'+boxCount ).html('<span> '+name+'<br>'+type+'</span>');
+    $('#box'+boxCount ).html('<span> '+name+'<br>'+typeString+'</span>');
 
     document.getElementById('box'+boxCount).style.top=(((gridHeight/12) *dayY +1 )+'px');
     document.getElementById('box'+boxCount).style.left=((gridWidth*dayX +1)+'px');
@@ -441,12 +441,12 @@ var m=0;
 
   });
 
-  function removeDiv(div, type, name, startTime, duration, colour){
+  function removeDiv(div){
     var confirmDelete = confirm("delete this div or nah");
-    /*if(confirmDelete){
-      div.removeDiv
-      arrayToRemove.push([type, name, startTime, duration, colour]);
-      */
+    if(confirmDelete){
+      div.remove()
+    //arrayToRemove.push([type, name, startTime, duration, colour]);
+
     }
   }
 
