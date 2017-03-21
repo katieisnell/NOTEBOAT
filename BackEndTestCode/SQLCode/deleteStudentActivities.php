@@ -24,8 +24,8 @@ determined before
 
   // for testing create an array to delete 2 student activities
   $studentActivitiesToDeleteArray = [
-    [1, "IT MIGHJT WORK", 12, "#000000"],
-    [3, "suvi hey", 624, "#000000"]
+    [1, "IT MIGHJT WORK", 0, 12, "#000000"],
+    [3, "test2", 1152, 12, "#000000"]
   ];
 
 
@@ -86,11 +86,11 @@ determined before
     $sqlDeleteActivity = "DELETE FROM studentActivities
                           WHERE userID='" . $userID . "' AND startTime=" . $startTime;
 
-
+    echo $sqlDeleteActivity;
     $resultDeleteActivity = $conn->query($sqlDeleteActivity);
 
     if (mysqli_query($conn, $sqlDeleteActivity)) {
-      echo "<script type='text/javascript'>alert('Records inserted successfully.');</script>";
+      echo "<script type='text/javascript'>alert('Records deleted successfully.');</script>";
 	    // echo "Records deleted successfully.";
 	  } else {
 	    $errorMessage = "ERROR: Could not able to execute $sqlDeleteActivity. " . mysqli_error($conn);
