@@ -400,7 +400,7 @@ var m=0;
 
   function passArray() {
     $('#array').val(JSON.stringify(arrayToAdd));
-    $('#arrayToRemove').val(JSON.stringify(arrayToRemove));
+    //$('#arrayToRemove').val(JSON.stringify(arrayToRemove));
     //console.log(JSON.stringify(array));
     $('#form').submit();
     arrayToAdd =[];
