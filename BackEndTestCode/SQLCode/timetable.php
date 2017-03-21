@@ -405,7 +405,7 @@ var m=0;
     $('#form').submit();
     arrayToAdd =[];
   }
-
+/*
   function removeDiv(div, type, name, startTime, duration, colour){
     var confirmDelete = confirm("Delete the div or nah");
     if(confirmDelete){
@@ -414,7 +414,7 @@ var m=0;
 
     }
   }
-
+*/
 
   $(document).ready(function() {
 
