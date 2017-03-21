@@ -1,21 +1,14 @@
-
-
-<!--
-A program which stores an activity to the table student activities
-It will only insert one activity at a time (for simplicty), so this php
-file will have to be called multiple times if the user adds multiple
-new activities (after they press save)
-Using userID 'mbaxaks2' for testing; in the real product this userID will be
-determined before
-
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
-
--->
-
-
-
 <?php
 
+
+// A program which stores an activity to the table student activities
+// It will only insert one activity at a time (for simplicty), so this php
+// file will have to be called multiple times if the user adds multiple
+// new activities (after they press save)
+// Using userID 'mbaxaks2' for testing; in the real product this userID will be
+// determined before
+//
+// <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
 
 
 
