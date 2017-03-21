@@ -172,7 +172,10 @@ div.grid{
   <option value="6">6am</option>
   <option value="7">7am</option>
   <option value="8">8am</option>
-  <option value="9">9am</option>
+  <option value="9">9am</option>    $('#array').val(JSON.stringify(arrayToAdd));
+    //console.log(JSON.stringify(array));
+    $('#form').submit();
+    arrayToAdd =[];
   <option value="10">10am</option>
   <option value="11">11am</option>
   <option value="12">12pm</option>
@@ -222,6 +225,7 @@ div.grid{
 
 <form id="form" action="insertNewActivityWithButton.php" method="post">
   <input type="hidden" name="array" id="array">
+  <input type="hidden" name="arrayToRemove" id="arrayToRemove">
 </form>
 <button id="saveChanges">Save Changes</button>
 
@@ -242,6 +246,7 @@ dayHalf ="am",
 secondSwitch,
 arrayOfClasses,
 arrayToAdd = [],
+arrayToRemove = [],
 i, x, y, day, time;
 var m=0;
 
@@ -291,55 +296,8 @@ var m=0;
 
     return typeName;
 
-  }
-  function getDay(index) {
+  }  for (i = 0; i < gridRows *gridColumns ; i++) {
 
-    if(index%8 == 0)
-    {
-      time = "" + timeValue + dayHalf;
-
-      timeValue++;
-      if(timeValue ==13)
-      {
-        timeValue-=12;
-        if(secondSwitch)
-          dayHalf = "pm";
-        secondSwitch = true;
-      }
-      }
-    else
-      time = "";
-
-  }
-
-  for (i = 1; i < gridColumns; i++) {
-  	y = Math.floor(i / gridColumns) * gridHeight;
-  	x = (i * gridWidth) % (gridColumns * gridWidth);
-  	switch(i){
-  		case 3:
-  		  day = "Monday";
-  		  break;
-  		case 4:
-  		  day = "Tuesday";
-  		  break;
-  		case 5:
-  		  day = "Wednesday";
-  		  break;
-  		case 6:
-  		  day = "Thursday";
-  		  break;
-  		case 7:
-  		  day = "Friday";
-  		  break;
-  		case 1:
-  		  day = "Saturday";
-  		  break;
-  		case 2:
-  		  day = "Sunday";
-  		  break;
-  	}
-  	$("<div/>").text(day).attr('class','grid').css({ width:gridWidth-1, height:gridHeight-1, top:0, left:x,  "text-align":"center"}).prependTo($table);
-  }
 
 
   function updateDraggables(){
@@ -356,7 +314,7 @@ var m=0;
 
     boxCount++
 
-    $("<div class='box' id='box'  style='left:0px; top:0px; min-height: 0px; background-color:yellow;'></div>").appendTo('#timetableMeat');
+    $("<div class='box' id='box' oncontextmenu='removeDiv($(this), type, name, startTime, duration, colour)'  style='left:0px; top:0px; min-height: 0px; background-color:yellow;'></div>").appendTo('#timetableMeat');
     type=getType(type);
     $('#box').attr('id', 'box'+boxCount);
     $('#box'+boxCount ).html('<span> '+name+'<br>'+type+'</span>');
@@ -438,18 +396,24 @@ var m=0;
 
   });
 
-  function saveChanges(){
-    //arrayToAdd
-  }
 
 
   function passArray() {
     $('#array').val(JSON.stringify(arrayToAdd));
+    $('#arrayToRemove').val(JSON.stringify(arrayToRemove));
     //console.log(JSON.stringify(array));
     $('#form').submit();
     arrayToAdd =[];
   }
 
+  function removeDiv(div, type, name, startTime, duration, colour){
+    var confirmDelete = confirm("Delete the div or nah");
+    if(confirmDelete){
+      div.remove();
+      arrayToRemove.push([type, name, startTime, duration, colour]);
+
+    }
+  }
 
 
   $(document).ready(function() {
