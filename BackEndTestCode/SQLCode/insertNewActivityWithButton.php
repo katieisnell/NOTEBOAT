@@ -1,6 +1,5 @@
 <html>
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
 <!--
 A program which stores an activity to the table studentActivities
 It will only insert one activity at a time (for simplicty), so this php
@@ -8,23 +7,23 @@ file will have to be called multiple times if the user adds multiple
 new activities (after they press save)
 Using userID 'mbaxaks2' for testing; in the real product this userID will be
 determined before
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
+
 -->
 
 <body>
 
-<!-- javascript array below -->
-
-
 <?php
 
-    //function insertToTable() {
+
 
 
 if (isset($_POST['array'])) {
-  echo "hello?";
-echo "---".$_POST['array']."---";
+ echo "---".$_POST['array']."---";
+ echo "<br>";
  $array = json_decode($_POST['array']);
-    print_r($array); //for debugging purposes only
+ print_r($array); //for debugging purposes only
 }
 
 
@@ -114,7 +113,7 @@ echo "<script type='text/javascript'>alert('$errorMessage');</script>";
   ?>
 
 
-<form id="form" action="insertNewActivityWithButton.php" method="post">
+<!-- <form id="form" action="insertNewActivityWithButton.php" method="post">
   <input type="hidden" name="array" id="array">
 </form>
   <button id="button">Click to pass array to php</button>
@@ -140,10 +139,6 @@ console.log(JSON.stringify(array));
   $('#form').submit();
 }
 
-function test1()
-{
-  alert("yo mama");
-}
 
 
 $(document).ready(function() {
@@ -151,7 +146,7 @@ $(document).ready(function() {
   $('#button').click(submit);
 });
 
-</script>
+</script> -->
 
 </body>
 
