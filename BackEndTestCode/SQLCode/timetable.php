@@ -85,17 +85,13 @@ div.grid{
   padding-right:10px;
 }</style>
 
-<?php
-  if (!empty($_GET['insert'])) {
-    echo "ASS";
-  }
-  ?>
+
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
     <script src="insertNewActivityWithButton.php"></script>
-    <?php require_once 'insertNewActivityWithButton.php'; ?>
+
 
 <div id="timetableHolder">
   <div id="timetableHeader"style="left:0px; top:0px;">
@@ -225,7 +221,7 @@ div.grid{
   <input type="hidden" name="array" id="array">
 </form>
 <button id="saveChanges">Save Changes</button>
-<button id="x" onclick='location.href="?insert"'>Save Changes</button>
+
 
 </div>
 
