@@ -419,7 +419,7 @@ var m=0;
   $(document).ready(function() {
 
     $('#saveChanges').click(passArray);
-  }
+  };
   </script>
 
 
