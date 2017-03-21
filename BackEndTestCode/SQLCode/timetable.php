@@ -432,7 +432,7 @@ var m=0;
    var startTime = parseInt(document.forms["makeActivity"]["startDay"].value * 288) + parseInt(document.forms["makeActivity"]["startHour"].value*12) +parseInt(document.forms["makeActivity"]["startMin"].value);
    var activityType = document.forms["makeActivity"]["activityType"].value;
    var colour = document.forms["makeActivity"]["activityColour"].value;
-   arrayToAdd.push([type, name, startTime, duration, colour]);
+   arrayToAdd.push([activityType, name, startTime, duration, colour]);
    if(duration>0)
      placeActivity(name, startTime, duration, activityType, colour);
 
