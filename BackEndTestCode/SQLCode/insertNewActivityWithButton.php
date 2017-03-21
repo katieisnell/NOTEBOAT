@@ -23,7 +23,6 @@ if (isset($_POST['array'])) {
 // echo "---".$_POST['array']."---";
 // echo "<br>";
  $studentActivitiesToAddArray = json_decode($_POST['array']);
- $studentActivitiesToDeleteArray = json_decode($_POST['arrayToRemove']);
 // print_r($studentActivitiesToAddArray); //for debugging purposes only
 // Will use in future -> $userID = $_SESSION['userID'];
 $userID = 'mbaxaks2';
@@ -93,30 +92,6 @@ for ($row = 0; $row < count($studentActivitiesToAddArray); $row++)
     echo "<script type='text/javascript'>alert('$errorMessage');</script>";
   }
 }
-
-for ($row = 0; $row < count($studentActivitiesToDeleteArray); $row++)
-{
-  //$activityType tudentActivitiesToDeleteArray[$row][2];
-  //$duration = $studentActivitiesToDeleteArray[$row][3];
-  //$colour = $studentActivitiesToDeleteArray[$row][4];
-
-  // SQL statement which deletes the record from the activities table
-  $sqlDeleteActivity = "DELETE FROM studentActivities
-                        WHERE userID='" . $userID . "' AND startTime=" . $startTime;
-
-  $resultDeleteActivity = $conn->query($sqlDeleteActivity);
-
-  // if (mysqli_query($conn, $sqlDeleteActivity)) {
-  //   echo "<script type='text/javascript'>alert('Records deleted successfully.');</script>";
- //   // echo "Records deleted successfully.";
- // } else {
- //   $errorMessage = "ERROR: Could not able to execute $sqlDeleteActivity. " . mysqli_error($conn);
-  //   echo "<script type='text/javascript'>alert('$errorMessage');</script>";
-  // }
-
-}
-
-
 $conn->close();
 }
 

@@ -93,5 +93,3 @@ determined before
 
 
   ?>
-
-  <script> window.location="timetable.php" </script>
