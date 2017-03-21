@@ -1,7 +1,7 @@
 
 
 <!--
-A program which stores an activity to the table studentActivities
+A program which stores an activity to the table student activities
 It will only insert one activity at a time (for simplicty), so this php
 file will have to be called multiple times if the user adds multiple
 new activities (after they press save)
@@ -101,39 +101,3 @@ $conn->close();
   ?>
 
   <script> window.location="timetable.php" </script>
-
-
-<!-- <form id="form" action="insertNewActivityWithButton.php" method="post">
-  <input type="hidden" name="array" id="array">
-</form>
-  <button id="button">Click to pass array to php</button>
-
-<script type="text/javascript" >
-
-console.log("hello");
-function submit() {
-
-    var array = [
-      [1, "COMP16212 homework", 12, 12, "orange"],
-      [2, "Orchestra", 1104, 24, "purple"]
-    ];
-
-  $('#array').val(JSON.stringify(array));
-console.log(JSON.stringify(array));
-  $('#form').submit();
-}
-
-function passArray(array) {
-  $('#array').val(JSON.stringify(array));
-console.log(JSON.stringify(array));
-  $('#form').submit();
-}
-
-
-
-$(document).ready(function() {
-
-  $('#button').click(submit);
-});
-
-</script> -->
