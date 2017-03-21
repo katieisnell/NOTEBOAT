@@ -86,7 +86,6 @@ determined before
     $sqlDeleteActivity = "DELETE FROM studentActivities
                           WHERE userID='" . $userID . "' AND startTime=" . $startTime;
 
-    echo $sqlDeleteActivity;
     $resultDeleteActivity = $conn->query($sqlDeleteActivity);
 
     if (mysqli_query($conn, $sqlDeleteActivity)) {
