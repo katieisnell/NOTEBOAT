@@ -88,7 +88,7 @@ div.grid{
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-    <script src "scriptToAddArray.js"></script>
+    <script src="scriptToAddArray.js"></script>
 
 <div id="timetableHolder">
   <div id="timetableHeader"style="left:0px; top:0px;">
