@@ -410,7 +410,7 @@ var m=0;
 
   function extractActivities(activArray){
     var shizInArray = activArray.length;
-    for (index = 0; index < activArray.length; index++)arrayToAdd = [],
+    for (index = 0; index < activArray.length; index++)
     {
       var name = activArray[index][1]  ,
       start = activArray[index][2],
@@ -440,14 +440,10 @@ var m=0;
 
   });
 
-  function saveChanges(){
-    //arrayToAdd
-  }
-
 
   function passArray() {
     $('#array').val(JSON.stringify(arrayToAdd));
-    //$('#arrayRemoving').val(JSON.stringify(arrayToAdd));
+    $('#arrayRemoving').val(JSON.stringify(arrayToAdd));
     //console.log(JSON.stringify(array));
     $('#form').submit();
     arrayToAdd =[];
