@@ -358,7 +358,7 @@ var m=0;
 
     boxCount++
 
-    $("<div class='box' id='box'  style='left:0px; top:0px; min-height: 0px; background-color:yellow;'></div>").appendTo('#timetableMeat');
+    $("<div class='box' id='box' oncontextmenu='removeDiv($(this), type, name, startTime, duration, colour)' style='left:0px; top:0px; min-height: 0px; background-color:yellow;'></div>").appendTo('#timetableMeat');
     type=getType(type);
     $('#box').attr('id', 'box'+boxCount);
     $('#box'+boxCount ).html('<span> '+name+'<br>'+type+'</span>');
@@ -440,10 +440,18 @@ var m=0;
 
   });
 
+  function removeDiv(div, type, name, startTime, duration, colour){
+    var comfirmDelete = comfirm("delete this div or nah");
+    if(comfirmDelete){
+      div.removeDiv
+      arrayToRemove.push([activityType, name, startTime, duration, colour]);
+    }
+  }
+
 
   function passArray() {
     $('#array').val(JSON.stringify(arrayToAdd));
-    $('#arrayRemoving').val(JSON.stringify(arrayToAdd));
+    $('#arrayRemoving').val(JSON.stringify(arrayToRemove));
     //console.log(JSON.stringify(array));
     $('#form').submit();
     arrayToAdd =[];
