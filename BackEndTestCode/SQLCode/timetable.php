@@ -358,7 +358,7 @@ var m=0;
 
     boxCount++
 
-    $("<div class='box' id='box' oncontextmenu='removeDiv($(this), type, name, startTime, duration, colour)' style='left:0px; top:0px; min-height: 0px; background-color:yellow;'></div>").appendTo('#timetableMeat');
+    $("<div class='box' id='box' oncontextmenu='removeDiv($(this), type, name, startTime, duration, colour);' style='left:0px; top:0px; min-height: 0px; background-color:yellow;'></div>").appendTo('#timetableMeat');
     type=getType(type);
     $('#box').attr('id', 'box'+boxCount);
     $('#box'+boxCount ).html('<span> '+name+'<br>'+type+'</span>');
