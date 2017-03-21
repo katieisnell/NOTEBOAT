@@ -134,6 +134,18 @@ console.log(JSON.stringify(array));
   $('#form').submit();
 }
 
+function passArray(array) {
+  $('#array').val(JSON.stringify(array));
+console.log(JSON.stringify(array));
+  $('#form').submit();
+}
+
+function test1()
+{
+  alert("yo mama");
+}
+
+
 $(document).ready(function() {
 
   $('#button').click(submit);
