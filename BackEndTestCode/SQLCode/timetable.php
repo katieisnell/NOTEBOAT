@@ -445,7 +445,7 @@ var m=0;
     var confirmDelete = confirm("delete this div or nah");
     if(confirmDelete){
       div.removeDiv
-      arrayToRemove.push([activityType, name, startTime, duration, colour]);
+      arrayToRemove.push([type, name, startTime, duration, colour]);
     }
   }
 
