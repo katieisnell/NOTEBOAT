@@ -219,7 +219,11 @@ div.grid{
   <input type="color" name="activityColour"><br>
   <input type="submit">
 </form>
-<button id="SaveChanges" onclick="saveChanges()">Save Changes</button>
+
+<form id="form" action="insertNewActivityWithButton.php" method="post">
+  <input type="hidden" name="array" id="array">
+</form>
+<button id="SaveChanges">Save Changes</button>
 
 </div>
 
@@ -439,6 +443,21 @@ var m=0;
   }
 
   test1();
+
+
+  function passArray() {
+    $('#array').val(JSON.stringify(arrayToAdd));
+    //console.log(JSON.stringify(array));
+    $('#form').submit();
+    arrayToAdd =[];
+  }
+
+
+
+  $(document).ready(function() {
+
+    $('#saveChanges').click(passArray);
+  });
   </script>
 
 
