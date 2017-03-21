@@ -447,7 +447,7 @@ var m=0;
 
   function passArray() {
     $('#array').val(JSON.stringify(arrayToAdd));
-    $('#arrayRemoving').val(JSON.stringify(arrayToAdd));
+    //$('#arrayRemoving').val(JSON.stringify(arrayToAdd));
     //console.log(JSON.stringify(array));
     $('#form').submit();
     arrayToAdd =[];
