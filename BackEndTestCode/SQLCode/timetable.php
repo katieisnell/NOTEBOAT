@@ -358,8 +358,8 @@ var m=0;
 
     boxCount++
 
-    $("<div class='box' id='box' oncontextmenu='removeDiv($(this));' style='left:0px; top:0px; min-height: 0px; background-color:yellow;'></div>").appendTo('#timetableMeat');
-    //, type, name, startTime, duration, colour
+    $("<div class='box' id='box' oncontextmenu='removeDiv($(this), type, name, startTime, duration, colour);' style='left:0px; top:0px; min-height: 0px; background-color:yellow;'></div>").appendTo('#timetableMeat');
+    //
     type=getType(type);
     $('#box').attr('id', 'box'+boxCount);
     $('#box'+boxCount ).html('<span> '+name+'<br>'+type+'</span>');
@@ -441,11 +441,11 @@ var m=0;
 
   });
 
-  function removeDiv(div){
-    var comfirmDelete = comfirm("delete this div or nah");
-    if(comfirmDelete){
+  function removeDiv(div, type, name, startTime, duration, colour){
+    var confirmDelete = confirm("delete this div or nah");
+    if(confirmDelete){
       div.removeDiv
-      //arrayToRemove.push([activityType, name, startTime, duration, colour]);
+      arrayToRemove.push([activityType, name, startTime, duration, colour]);
     }
   }
 
