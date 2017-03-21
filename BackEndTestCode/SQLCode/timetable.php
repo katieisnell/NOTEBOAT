@@ -241,7 +241,7 @@ timeValue=12,
 dayHalf ="am",
 secondSwitch,
 arrayOfClasses,
-arrayToAdd,
+arrayToAdd = [],
 i, x, y, day, time;
 var m=0;
 
@@ -441,8 +441,6 @@ var m=0;
   function saveChanges(){
     //arrayToAdd
   }
-
-  test1();
 
 
   function passArray() {
