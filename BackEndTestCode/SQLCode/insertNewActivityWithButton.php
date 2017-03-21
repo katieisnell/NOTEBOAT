@@ -96,15 +96,11 @@ $conn->close();
 }
 
 
-<script> window.location="timetable.php" </script>
-
-
-
-
-
 
 
   ?>
+
+  <script> window.location="timetable.php" </script>
 
 
 <!-- <form id="form" action="insertNewActivityWithButton.php" method="post">
