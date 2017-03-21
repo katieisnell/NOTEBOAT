@@ -1,14 +1,133 @@
-<!DOCTYPE html>
-<html>
-
+ <!DOCTYPE html>
+<html lang="en">
 <head>
-<link rel="stylesheet" type="text/css" href="stylesheet.css">
-<title>Note Boat Register Page</title>
-</head>
-<!-- this is a comment-->
-<body>
-<h1>Register</h1>
-<p>Register with your @student.manchester.ac.uk account. You're a CM student right?</p>
-</body>
 
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Registration </title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+  <link rel="stylesheet" href="css/website.css">
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/boat.png">
+
+</head>
+<body>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+<div class="container">
+
+  <section class="header">
+  <div class="container">
+  <div class="row">
+    <div id ="logo" class="six columns offset-by-three">
+      <a href="index.html">
+        <img class="u-full-width" src="images/logo2.png">
+      </a>
+    </div>
+  </div>
+  </div>
+  </section>
+
+  <section class="main">
+    <div class="container">
+    <div class="row"></div>
+      <div class="ten columns offset-by-one">
+        <h4>Create an account</h4>
+      </div>
+    </div>
+    
+    <form action="php/register.php" method="post">
+
+    <div class="row">
+      <div class="four columns offset-by-two">
+        <label for="firstNameInput">First Name(s)</label>
+        <input class="u-full-width" type="text" placeholder="..." id="firstNameInput" required>
+      </div>
+
+      <div class="four columns">
+        <label for="lastNameInput">Last Name</label>
+        <input class="u-full-width" type="text" placeholder="..." id="lastNameInput" required>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="four columns offset-by-two">
+        <label for="userInput">Student Username</label>
+        <input class="u-full-width" type="text" placeholder="..." id="userInput" required>
+      </div>
+
+      <div class="four columns  ">
+        <label for="persUserInput">Create NoteBoat username</label>
+        <input class="u-full-width" type="text" placeholder="..." id="persUserInput" required>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="eight columns offset-by-two">
+        <label for="emailInput">Preferred email address (student email is default)</label>
+        <input class="u-full-width" type="email" placeholder="..." id="emailInput">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="four columns offset-by-two">
+        <label for="passwordInput">Password</label>
+        <input class="u-full-width" type="password" placeholder="..." id="passwordInput" required>
+      </div>
+      <div class="four columns">
+        <label for="confirmPass">Confirm Password</label>
+        <input class="u-full-width" type="password" placeholder="..." id="confirmPass" required>
+      </div>
+    </div>
+
+    <div class="row">
+       <div class="six columns offset-by-three">
+         <button class="u-full-width" type="submit" style="margin-top:20px;">Register</button>
+       </div>
+    </div>  
+
+  </form>
+  </div>
+  </section>
+
+  <section class="footer">
+  <div class="container">
+  <div class="row">
+    <div id="navigation" class="twelve columns">
+      <nav>
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="termsAndConditions.html">Terms &amp; Conditions</a></li>
+      </ul>
+    </nav>
+    </div>
+  </div>
+  </div>
+  </section>
+
+</div>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
 </html>

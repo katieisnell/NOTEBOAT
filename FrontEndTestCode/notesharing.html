@@ -1,14 +1,141 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-<link rel="stylesheet" type="text/css" href="stylesheet.css">
-<title>Note Boat Note Sharing</title>
-</head>
-<!-- this is a comment-->
-<body>
-<h1> Note Sharing</h1>
-<p>Share your notes here! But none of that academic malpractice here! You agreed to those t&c's </p>
-</body>
 
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Note Sharing</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+  <link rel="stylesheet" href="css/website.css">
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/boat.png">
+
+</head>
+<body>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+<div class="container">
+
+  <section class="header">
+  <div class="container">
+  <div class="row">
+
+    <div id ="logo" class="three columns">
+      <a href="dashboard.html">
+        <img class="u-full-width" src="images/logo2.png">
+      </a>
+    </div>
+
+    <div class="one column offset-by-eight">
+      <div class="dropdown">
+         <button class="dropbtn">-----</button>
+         <div class="dropdown-content">
+         <a href="dashboard.html">TimeTable</a>
+         <a href="#">Note Sharing</a>
+         <a href="settings.html">Settings</a>
+         <a href="index.html">Logout</a>
+         </div>
+      </div>
+    </div>
+
+  </div>
+  </div>
+  </section>
+
+  <section class="main">
+    <div class="container">
+    <form action="php/notes.php" method="post">
+
+    <div class="row">
+      <div class="five columns offset-by-one">
+      <label>Choose a module</label>
+      <select class="u-full-width" name="modules" id="modules">
+        <option value="#">Pick a module</option>
+        <option value="#">COMP10120 - First Year Project</option>
+        <option value="#">COMP16121 - Java Semester 1</option>
+        <option value="#">COMP16212 - Java Semester 2</option>
+        <option value="#">COMP14112 - AI</option>
+        <option value="#">COMP11212 - Computation</option>
+        <option value="#">COMP18112 - Distributed Systems</option>
+        <option value="#">MATH10111 - Foundation in Pure Mathematics</option>
+        <option value="#">MATH10131 - Calc and Vectors</option>
+        <option value="#">MATH10212 - Linear Algebra</option>
+        <option value="#">MATH10232 - Calc and Applictions</option>
+      </select>
+      </div>
+
+      <div class="four columns offset-by-one">
+        <label>Search for keywords</label>
+        <input class="u-full-width" type="text" placeholder="Search " name="search">
+      </div>
+    </div>
+
+      <div class="row">  
+        <div class="six columns offset-by-three ">
+          <button class="u-full-width" type="submit">Browse Notes</button>
+        </div>
+      </div>
+
+      <div class="row">  
+        <div class="six columns offset-by-three ">
+          <button class="u-full-width button-primary" type="button">Upload Notes</button>
+        </div>
+      </div>
+
+  </form>
+  </div>
+  </section>
+    
+  <section class="notes">
+    <div class="container">
+        
+        <div class="row">
+            
+        Notes pisplayed here.
+        
+        </div>
+        
+    </div>  
+  </section>
+
+  <section class="footer">
+  <div class="container">
+  <div class="row">
+    <div id="navigation" class="twelve columns">
+      <nav>
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="termsAndConditions.html">Terms &amp; Conditions</a></li>
+      </ul>
+    </nav>
+    </div>
+  </div>
+  </div>
+  </section>
+
+</div>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
 </html>

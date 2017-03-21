@@ -1,13 +1,13 @@
 /*footer navigation bar css*/
 
-ul {
+section.footer ul {
   height: 45px;
   list-style-type: none;
   margin-top:15px;
   background-color: white;
 }
 
-li {
+section.footer li {
   background-color: white;
   height: 45px;
   display: inline-block;
@@ -18,23 +18,26 @@ li {
   padding-right: 10px;
 }
 
-a{
+section.footer a{
   display:block;
 
   text-decoration: none;
 }
 
-li :hover {
+section.footer li :hover {
   background-color:;
   text-decoration: underline;
 }
 
-li a{
+section.footer li a{
   height: 45px;
   line-height: 45px;
   text-align: center;
 }
 
+
+
+/*padding between sections*/
 section.header div.container {
   padding-top: 30px;
 }
@@ -43,9 +46,25 @@ section.login div.container {
   padding-top: 50px;
 }
 
-section.login div.container {
+section.main div.container {
   padding-top: 50px;
 }
+
+section.footer div.container {
+  padding-top: 50px;
+}
+
+section.notes div.container {
+  padding-top: 50px;
+}
+
+
+
+section.footer{
+    text-align: center;
+}
+
+
 
 /* The container <div> - needed to position the dropdown content */
 .dropdown {
@@ -57,7 +76,7 @@ section.login div.container {
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f9f9f;
+    background-color: #f4f8ff;
     min-width: 160px;
     z-index: 1;
 }
@@ -76,3 +95,5 @@ section.login div.container {
 .dropdown:hover .dropdown-content {
     display: block;
 }
+
+

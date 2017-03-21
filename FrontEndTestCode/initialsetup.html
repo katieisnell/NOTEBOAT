@@ -1,14 +1,282 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-<link rel="stylesheet" type="text/css" href="stylesheet.css">
-<title>Note Boat Initial Setup</title>
-</head>
-<!-- this is a comment-->
-<body>
-<h1> Please answer the questions below.</h1>
-<p>This will give us an idea of what kind of time table to give you. Not to worry you can customize the timetable later ;P</p>
-</body>
 
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Setup</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+  <link rel="stylesheet" href="css/website.css">
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/boat.png">
+
+</head>
+<body>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+<div class="container">
+
+  <section class="header">
+  <div class="container">
+  <div class="row">
+    <div id ="logo" class="six columns offset-by-three">
+      <a href="index.html">
+        <img class="u-full-width" src="images/logo2.png">
+      </a>
+    </div>
+  </div>
+  </div>
+  </section>
+
+  <section class="main">
+    <div class="container">
+    <form action="php/setupContinued.php" method="post">
+
+    <div class="row">
+      <div class="eight columns offset-by-two">
+      <label>During a weekday, what is the time range you are willing to work?</label>
+      Start Time: <select name="wkdayStartHr">
+                    <option>00</option> 
+                    <option>01</option> 
+                    <option>02</option> 
+                    <option>03</option> 
+                    <option>04</option> 
+                    <option>05</option> 
+                    <option>06</option> 
+                    <option>07</option> 
+                    <option>08</option> 
+                    <option>09</option> 
+                    <option>10</option> 
+                    <option>11</option> 
+                    <option>12</option> 
+                    <option>13</option> 
+                    <option>14</option> 
+                    <option>15</option> 
+                    <option>16</option> 
+                    <option>17</option> 
+                    <option>18</option> 
+                    <option>19</option> 
+                    <option>20</option> 
+                    <option>21</option> 
+                    <option>22</option> 
+                    <option>23</option> 
+                  </select>
+                  <select name="wkdayStartMin">
+                    <option>00</option> 
+                    <option>05</option> 
+                    <option>10</option> 
+                    <option>15</option> 
+                    <option>20</option> 
+                    <option>25</option> 
+                    <option>30</option> 
+                    <option>35</option> 
+                    <option>40</option> 
+                    <option>45</option> 
+                    <option>50</option> 
+                    <option>55</option>  
+                  </select>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="eight columns offset-by-two">
+      End Time: <select name="wkdayEndHr">
+                    <option>00</option> 
+                    <option>01</option> 
+                    <option>02</option> 
+                    <option>03</option> 
+                    <option>04</option> 
+                    <option>05</option> 
+                    <option>06</option> 
+                    <option>07</option> 
+                    <option>08</option> 
+                    <option>09</option> 
+                    <option>10</option> 
+                    <option>11</option> 
+                    <option>12</option> 
+                    <option>13</option> 
+                    <option>14</option> 
+                    <option>15</option> 
+                    <option>16</option> 
+                    <option>17</option> 
+                    <option>18</option> 
+                    <option>19</option> 
+                    <option>20</option> 
+                    <option>21</option> 
+                    <option>22</option> 
+                    <option>23</option> 
+                  </select>
+                  <select name="wkdayEndMin">
+                    <option>00</option> 
+                    <option>05</option> 
+                    <option>10</option> 
+                    <option>15</option> 
+                    <option>20</option> 
+                    <option>25</option> 
+                    <option>30</option> 
+                    <option>35</option> 
+                    <option>40</option> 
+                    <option>45</option> 
+                    <option>50</option> 
+                    <option>55</option>  
+                  </select>
+      </div>
+    </div>
+        
+    <div class="row">
+      <div class="eight columns offset-by-two">
+      <label>During the weekend, what is the time range you are willing to work?</label>
+      Start Time: <select name="wkendStartHr">
+                    <option>00</option> 
+                    <option>01</option> 
+                    <option>02</option> 
+                    <option>03</option> 
+                    <option>04</option> 
+                    <option>05</option> 
+                    <option>06</option> 
+                    <option>07</option> 
+                    <option>08</option> 
+                    <option>09</option> 
+                    <option>10</option> 
+                    <option>11</option> 
+                    <option>12</option> 
+                    <option>13</option> 
+                    <option>14</option> 
+                    <option>15</option> 
+                    <option>16</option> 
+                    <option>17</option> 
+                    <option>18</option> 
+                    <option>19</option> 
+                    <option>20</option> 
+                    <option>21</option> 
+                    <option>22</option> 
+                    <option>23</option> 
+                  </select>
+                  <select name="wkendStartMin">
+                    <option>00</option> 
+                    <option>05</option> 
+                    <option>10</option> 
+                    <option>15</option> 
+                    <option>20</option> 
+                    <option>25</option> 
+                    <option>30</option> 
+                    <option>35</option> 
+                    <option>40</option> 
+                    <option>45</option> 
+                    <option>50</option> 
+                    <option>55</option>  
+                  </select>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="eight columns offset-by-two">
+      End Time: <select name="wkendEndHr">
+                    <option>00</option> 
+                    <option>01</option> 
+                    <option>02</option> 
+                    <option>03</option> 
+                    <option>04</option> 
+                    <option>05</option> 
+                    <option>06</option> 
+                    <option>07</option> 
+                    <option>08</option> 
+                    <option>09</option> 
+                    <option>10</option> 
+                    <option>11</option> 
+                    <option>12</option> 
+                    <option>13</option> 
+                    <option>14</option> 
+                    <option>15</option> 
+                    <option>16</option> 
+                    <option>17</option> 
+                    <option>18</option> 
+                    <option>19</option> 
+                    <option>20</option> 
+                    <option>21</option> 
+                    <option>22</option> 
+                    <option>23</option> 
+                  </select>
+                  <select name="wkendEndMin">
+                    <option>00</option> 
+                    <option>05</option> 
+                    <option>10</option> 
+                    <option>15</option> 
+                    <option>20</option> 
+                    <option>25</option> 
+                    <option>30</option> 
+                    <option>35</option> 
+                    <option>40</option> 
+                    <option>45</option> 
+                    <option>50</option> 
+                    <option>55</option>  
+                  </select>
+      </div>
+    </div>
+    
+<!--questions depending on semester after here--->
+
+    <div class="row">
+      <div class="eight columns offset-by-two">
+      <label>What semester are are you currently in?</label>
+      <select class="u-full-width" name="semester" >
+        <option disabled="true" selected="true">Please select</option>
+        <option value="sem1">Semester 1</option>
+        <option value="sem2">Semester 2</option>
+      </select>      
+      </div>
+    </div>
+        
+    
+
+    <div class="row">
+       <div class="six columns offset-by-three">
+         <button class="u-full-width" type="submit" style="margin-top:20px;">Continue</button>
+       </div>
+    </div>
+
+  </form>
+  </div>
+  </section>
+
+  <section class="footer">
+  <div class="container">
+  <div class="row">
+    <div id="navigation" class="twelve columns">
+      <nav>
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="termsAndConditions.html">Terms &amp; Conditions</a></li>
+      </ul>
+    </nav>
+    </div>
+  </div>
+  </div>
+  </section>
+    
+</div>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
 </html>
