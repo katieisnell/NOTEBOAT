@@ -84,12 +84,12 @@ determined before
 
     // SQL statement which deletes the record from the activities table
     $sqlDeleteActivity = "DELETE FROM studentActivities
-                          WHERE userID='" . $userID . "' AND startTime=" . $startTime . ";
+                          WHERE userID='" . $userID . "' AND startTime=" . $startTime;
 
 
     $resultDeleteActivity = $conn->query($sqlDeleteActivity);
 
-    if(mysqli_query($conn, $sqlDeleteActivity)) {
+    if (mysqli_query($conn, $sqlDeleteActivity)) {
       echo "<script type='text/javascript'>alert('Records inserted successfully.');</script>";
 	    // echo "Records deleted successfully.";
 	  } else {
