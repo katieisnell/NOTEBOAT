@@ -76,11 +76,11 @@ if (isset($_POST['array'])) {
 
 for ($row = 0; $row < count($studentActivitiesToAddArray); $row++)
 {
- $activityType = $array[$row][0];
-$activityName = $array[$row][1];
-  $startTime = $array[$row][2];
-$duration = $array[$row][3];
-$colour = $array[$row][4];
+ $activityType = $studentActivitiesToAddArray[$row][0];
+$activityName = $studentActivitiesToAddArray[$row][1];
+  $startTime = $studentActivitiesToAddArray[$row][2];
+$duration = $studentActivitiesToAddArray[$row][3];
+$colour = $studentActivitiesToAddArray[$row][4];
 
   // SQL statement which gets the student's course
         $sqlInsertNewActivity = "INSERT INTO studentActivities (userID, activityType, activityName, startTime, duration, colour)
