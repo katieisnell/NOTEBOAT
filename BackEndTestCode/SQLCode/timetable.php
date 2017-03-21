@@ -86,17 +86,16 @@ div.grid{
 }</style>
 
 
-
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
     <script src="insertNewActivityWithButton.php"></script>
-
 
 <div id="timetableHolder">
   <div id="timetableHeader"style="left:0px; top:0px;">
 
   </div>
+
+  <div id="timetableMeat">
 
   </div>
 </div>
@@ -113,8 +112,11 @@ div.grid{
   <option value="1">1</option>
   <option value="2">2</option>
   <option value="3">3</option>
-  <option value="4">4</option><?php require_once 'insertNewActivityWithButton.php'; ?>
-
+  <option value="4">4</option>
+  <option value="5">5</option>
+  <option value="6">6</option>
+  <option value="7">7</option>
+  <option value="8">8</option>
   <option value="9">9</option>
   <option value="10">10</option>
   <option value="11">11</option>
@@ -161,8 +163,9 @@ div.grid{
 
   > Start Time*:<br>
   <select name="startHour", form="makeActivity">
-  <option value="0">12am</option><?php require_once 'insertNewActivityWithButton.php'; ?>
-
+  <option value="0">12am</option>
+  <option value="1">1am</option>
+  <option value="2">2am</option>
   <option value="3">3am</option>
   <option value="4">4am</option>
   <option value="5">5am</option>
@@ -221,7 +224,6 @@ div.grid{
   <input type="hidden" name="array" id="array">
 </form>
 <button id="saveChanges">Save Changes</button>
-
 
 </div>
 

@@ -1,4 +1,4 @@
-<html>
+
 
 <!--
 A program which stores an activity to the table studentActivities
@@ -12,59 +12,49 @@ determined before
 
 -->
 
-<body>
+
 
 <?php
-  // if (isset($_POST['array'])) {
-  // // echo "---".$_POST['array']."---";
-  // // echo "<br>";
-  // $studentActivitiesToDeleteArray = json_decode($_POST['array']);
-  // // print_r($studentActivitiesToAddArray); //for debugging purposes only
-  // }
-
-  // for testing create an array to delete 2 student activities
-  $studentActivitiesToDeleteArray = [
-    [1, "IT MIGHJT WORK", 0, 12, "#000000"],
-    [3, "test2", 1152, 12, "#000000"]
-  ];
-
-
+  if (isset($_POST['array'])) {
+  // echo "---".$_POST['array']."---";
+  // echo "<br>";
+  $studentActivitiesToDeleteArray = json_decode($_POST['array']);
+  // print_r($studentActivitiesToAddArray); //for debugging purposes only
 
   // Will use in future: $userID = $_SESSION['userID'];
   $userID = 'mbaxaks2';
 
-
-    for ($row = 0; $row < count($studentActivitiesToDeleteArray); $row++) {
-      echo "<p><b>" . $userID . "'s activity shit to do $row</b></p>";
-      echo "<ul>";
-      for ($col = 0; $col < 5; $col++) {
-        switch ($col) {
-          case 0:
-            echo "<li>Activity type: ".$studentActivitiesToDeleteArray[$row][$col]."</li>";
-            $activityType = $studentActivitiesToDeleteArray[$row][$col];
-            break;
-          case 1:
-            echo "<li>Activity name: ".$studentActivitiesToDeleteArray[$row][$col]."</li>";
-            $activityName = $studentActivitiesToDeleteArray[$row][$col];
-            break;
-          case 2:
-            echo "<li>Start time: ".$studentActivitiesToDeleteArray[$row][$col]."</li>";
-            $activityName = $studentActivitiesToDeleteArray[$row][$col];
-            break;
-          case 3:
-            echo "<li>Duration: ".$studentActivitiesToDeleteArray[$row][$col]."</li>";
-            $duration = $studentActivitiesToDeleteArray[$row][$col];
-            break;
-          case 4:
-            echo "<li>Colour: ".$studentActivitiesToDeleteArray[$row][$col]."</li>";
-            $colour = $studentActivitiesToDeleteArray[$row][$col];
-            break;
-          default:
-          echo "<li>".$studentActivitiesToDeleteArray[$row][$col]."</li>";
-          }
-      }
-      echo "</ul>";
-    }
+    // for ($row = 0; $row < count($studentActivitiesToDeleteArray); $row++) {
+    //   echo "<p><b>" . $userID . "'s activity shit to do $row</b></p>";
+    //   echo "<ul>";
+    //   for ($col = 0; $col < 5; $col++) {
+    //     switch ($col) {
+    //       case 0:
+    //         echo "<li>Activity type: ".$studentActivitiesToDeleteArray[$row][$col]."</li>";
+    //         $activityType = $studentActivitiesToDeleteArray[$row][$col];
+    //         break;
+    //       case 1:
+    //         echo "<li>Activity name: ".$studentActivitiesToDeleteArray[$row][$col]."</li>";
+    //         $activityName = $studentActivitiesToDeleteArray[$row][$col];
+    //         break;
+    //       case 2:
+    //         echo "<li>Start time: ".$studentActivitiesToDeleteArray[$row][$col]."</li>";
+    //         $activityName = $studentActivitiesToDeleteArray[$row][$col];
+    //         break;
+    //       case 3:
+    //         echo "<li>Duration: ".$studentActivitiesToDeleteArray[$row][$col]."</li>";
+    //         $duration = $studentActivitiesToDeleteArray[$row][$col];
+    //         break;
+    //       case 4:
+    //         echo "<li>Colour: ".$studentActivitiesToDeleteArray[$row][$col]."</li>";
+    //         $colour = $studentActivitiesToDeleteArray[$row][$col];
+    //         break;
+    //       default:
+    //       echo "<li>".$studentActivitiesToDeleteArray[$row][$col]."</li>";
+    //       }
+    //   }
+    //   echo "</ul>";
+    // }
 
 
   require_once('config.inc.php');
@@ -76,11 +66,9 @@ determined before
 
   for ($row = 0; $row < count($studentActivitiesToDeleteArray); $row++)
   {
-    $activityType = $studentActivitiesToDeleteArray[$row][0];
-    $activityName = $studentActivitiesToDeleteArray[$row][1];
-    $startTime = $studentActivitiesToDeleteArray[$row][2];
-    $duration = $studentActivitiesToDeleteArray[$row][3];
-    $colour = $studentActivitiesToDeleteArray[$row][4];
+    //$activityType tudentActivitiesToDeleteArray[$row][2];
+    //$duration = $studentActivitiesToDeleteArray[$row][3];
+    //$colour = $studentActivitiesToDeleteArray[$row][4];
 
     // SQL statement which deletes the record from the activities table
     $sqlDeleteActivity = "DELETE FROM studentActivities
@@ -88,20 +76,20 @@ determined before
 
     $resultDeleteActivity = $conn->query($sqlDeleteActivity);
 
-    if (mysqli_query($conn, $sqlDeleteActivity)) {
-      echo "<script type='text/javascript'>alert('Records deleted successfully.');</script>";
-	    // echo "Records deleted successfully.";
-	  } else {
-	    $errorMessage = "ERROR: Could not able to execute $sqlDeleteActivity. " . mysqli_error($conn);
-      echo "<script type='text/javascript'>alert('$errorMessage');</script>";
-    }
+    // if (mysqli_query($conn, $sqlDeleteActivity)) {
+    //   echo "<script type='text/javascript'>alert('Records deleted successfully.');</script>";
+   //   // echo "Records deleted successfully.";
+   // } else {
+   //   $errorMessage = "ERROR: Could not able to execute $sqlDeleteActivity. " . mysqli_error($conn);
+    //   echo "<script type='text/javascript'>alert('$errorMessage');</script>";
+    // }
 
   }
 
   $conn->close();
 
 
-  ?>
+  }
 
-</body>
-</html>
+
+  ?>

@@ -17,14 +17,13 @@ determined before
 <?php
 
 
-function addStudentActivities() {
+
 
 if (isset($_POST['array'])) {
 // echo "---".$_POST['array']."---";
 // echo "<br>";
  $studentActivitiesToAddArray = json_decode($_POST['array']);
 // print_r($studentActivitiesToAddArray); //for debugging purposes only
-
 // Will use in future -> $userID = $_SESSION['userID'];
 $userID = 'mbaxaks2';
 
@@ -51,7 +50,9 @@ $userID = 'mbaxaks2';
 //         echo "<li>Duration: ".$array[$row][$col]."</li>";
 //         $duration = $array[$row][$col];
 //         break;
-//       case 4$studentActivitiesToour = $array[$row][$col];
+//       case 4:
+//         echo "<li>Colour: ".$array[$row][$col]."</li>";
+//         $colour = $array[$row][$col];
 //         break;
 //       default:
 //       echo "<li>".$array[$row][$col]."</li>";
@@ -92,15 +93,16 @@ for ($row = 0; $row < count($studentActivitiesToAddArray); $row++)
   }
 }
 $conn->close();
-
 }
 
 
+<script> window.location="timetable.php" </script>
 
 
 
 
-}
+
+
 
   ?>
 
