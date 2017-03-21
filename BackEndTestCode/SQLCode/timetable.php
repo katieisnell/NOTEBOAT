@@ -443,9 +443,10 @@ var m=0;
 
   function removeDiv(div, type, name, startTime, duration, colour){
     var confirmDelete = confirm("delete this div or nah");
-    if(confirmDelete){
+    /*if(confirmDelete){
       div.removeDiv
       arrayToRemove.push([type, name, startTime, duration, colour]);
+      */
     }
   }
 
