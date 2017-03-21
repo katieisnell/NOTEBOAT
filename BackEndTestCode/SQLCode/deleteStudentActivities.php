@@ -84,7 +84,7 @@ determined before
 
     // SQL statement which deletes the record from the activities table
     $sqlDeleteActivity = "DELETE FROM studentActivities
-                          WHERE userID='" . $userID . "' AND startTime=" . $startTime";
+                          WHERE userID='" . $userID . "' AND startTime=" . $startTime . ";
 
 
     $resultDeleteActivity = $conn->query($sqlDeleteActivity);
