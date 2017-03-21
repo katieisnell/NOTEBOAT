@@ -86,7 +86,7 @@ div.grid{
 }</style>
 
 <?php
-  if (!empty($_GET['insert']) {
+  if (!empty($_GET['insert'])) {
     echo "ASS";
   }
   ?>
