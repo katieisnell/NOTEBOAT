@@ -20,66 +20,51 @@ determined before
 
 
 if (isset($_POST['array'])) {
- echo "---".$_POST['array']."---";
- echo "<br>";
- $array = json_decode($_POST['array']);
- print_r($array); //for debugging purposes only
+// echo "---".$_POST['array']."---";
+// echo "<br>";
+ $studentActivitiesToAddArray = json_decode($_POST['array']);
+// print_r($studentActivitiesToAddArray); //for debugging purposes only
 }
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-
-       // Will use in future -> $userID = $_SESSION['userID'];
+    // Will use in future -> $userID = $_SESSION['userID'];
     $userID = 'mbaxaks2';
 
 
 
-    for ($row = 0; $row < count($array); $row++) {
-      echo "<p><b>" . $userID . "'s activity shit to do $row</b></p>";
-      echo "<ul>";
-      for ($col = 0; $col < 5; $col++) {
-        switch ($col) {
-          case 0:
-            echo "<li>Activity type: ".$array[$row][$col]."</li>";
-            $activityType = $array[$row][$col];
-            break;
-          case 1:
-            echo "<li>Activity name: ".$array[$row][$col]."</li>";
-            $activityName = $array[$row][$col];
-            break;
-          case 2:
-            echo "<li>Start time: ".$array[$row][$col]."</li>";
-            $startTime = $array[$row][$col];
-            break;
-          case 3:
-            echo "<li>Duration: ".$array[$row][$col]."</li>";
-            $duration = $array[$row][$col];
-            break;
-          case 4:
-            echo "<li>Colour: ".$array[$row][$col]."</li>";
-            $colour = $array[$row][$col];
-            break;
-          default:
-          echo "<li>".$array[$row][$col]."</li>";
-          }
-      }
-      echo "</ul>";
-    }
+    // for ($row = 0; $row < count($array); $row++) {
+    //   echo "<p><b>" . $userID . "'s activity shit to do $row</b></p>";
+    //   echo "<ul>";
+    //   for ($col = 0; $col < 5; $col++) {
+    //     switch ($col) {
+    //       case 0:
+    //         echo "<li>Activity type: ".$array[$row][$col]."</li>";
+    //         $activityType = $array[$row][$col];
+    //         break;
+    //       case 1:
+    //         echo "<li>Activity name: ".$array[$row][$col]."</li>";
+    //         $activityName = $array[$row][$col];
+    //         break;
+    //       case 2:
+    //         echo "<li>Start time: ".$array[$row][$col]."</li>";
+    //         $startTime = $array[$row][$col];
+    //         break;
+    //       case 3:
+    //         echo "<li>Duration: ".$array[$row][$col]."</li>";
+    //         $duration = $array[$row][$col];
+    //         break;
+    //       case 4:
+    //         echo "<li>Colour: ".$array[$row][$col]."</li>";
+    //         $colour = $array[$row][$col];
+    //         break;
+    //       default:
+    //       echo "<li>".$array[$row][$col]."</li>";
+    //       }
+    //   }
+    //   echo "</ul>";
+    // }
 
 
     require_once('config.inc.php');
@@ -89,10 +74,15 @@ if (isset($_POST['array'])) {
       die("Connection failed: " . $conn->connect_error);
     }
 
+for ($row = 0; $row < count($studentActivitiesToAddArray); $row++)
+{
+ $activityType = $array[$row][0];
+$activityName = $array[$row][1];
+  $startTime = $array[$row][2];
+$duration = $array[$row][3];
+$colour = $array[$row][4];
 
-
-
-	// SQL statement which gets the student's course
+  // SQL statement which gets the student's course
         $sqlInsertNewActivity = "INSERT INTO studentActivities (userID, activityType, activityName, startTime, duration, colour)
                              VALUES('" . $userID . "', " . $activityType . ", '" . $activityName . "', " . $startTime . ", " . $duration . ", '" . $colour . "')";
 
@@ -107,8 +97,15 @@ echo "<script type='text/javascript'>alert('Records inserted successfully.');</s
 echo "<script type='text/javascript'>alert('$errorMessage');</script>";
         }
 
+
+
+}
+
+
+
+
         $conn->close();
-    */
+
 
   ?>
 
