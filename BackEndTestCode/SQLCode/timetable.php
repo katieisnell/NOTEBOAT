@@ -172,10 +172,7 @@ div.grid{
   <option value="6">6am</option>
   <option value="7">7am</option>
   <option value="8">8am</option>
-  <option value="9">9am</option>    $('#array').val(JSON.stringify(arrayToAdd));
-    //console.log(JSON.stringify(array));
-    $('#form').submit();
-    arrayToAdd =[];
+  <option value="9">9am</option>
   <option value="10">10am</option>
   <option value="11">11am</option>
   <option value="12">12pm</option>
@@ -225,7 +222,7 @@ div.grid{
 
 <form id="form" action="insertNewActivityWithButton.php" method="post">
   <input type="hidden" name="array" id="array">
-  <input type="hidden" name="arrayToRemove" id="arrayToRemove">
+ <!-- <input type="hidden" name="arrayToRemove" id="arrayToRemove"> -->
 </form>
 <button id="saveChanges">Save Changes</button>
 
@@ -405,6 +402,7 @@ var m=0;
     $('#form').submit();
     arrayToAdd =[];
   }
+
 /*
   function removeDiv(div, type, name, startTime, duration, colour){
     var confirmDelete = confirm("Delete the div or nah");
