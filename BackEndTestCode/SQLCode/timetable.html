@@ -88,6 +88,7 @@ div.grid{
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 
+
 <div id="timetableHolder">
   <div id="timetableHeader"style="left:0px; top:0px;">
 
@@ -352,13 +353,13 @@ document.getElementById('box1').style.minWidth=((gridWidth-2)+'px');
 
     // Now we have the modules they can do, we have to find out more specific details about each module
     // Basically have to figure out what is mandatory, what semster the modules happen in
-    $sqlFindMandatoryModules = "SELECT courseTimetable.moduleID, moduleInfo.isMandatory, 
-                                                             moduleInfo.semesterNo,  moduleClasses.startTime, moduleClasses.duration, 
+    $sqlFindMandatoryModules = "SELECT courseTimetable.moduleID, moduleInfo.isMandatory,
+                                                             moduleInfo.semesterNo,  moduleClasses.startTime, moduleClasses.duration,
                                                              moduleClasses.weekNo, moduleClasses.location, moduleClasses.className
                                                              FROM courseTimetable
                                                              LEFT JOIN moduleInfo ON courseTimetable.moduleID=moduleInfo.moduleID
                                                              LEFT JOIN moduleClasses on courseTimetable.moduleID=moduleClasses.moduleID
-                                                             WHERE courseTimetable.courseID='" . $courseID . "' AND courseTimetable.schoolYear='" 
+                                                             WHERE courseTimetable.courseID='" . $courseID . "' AND courseTimetable.schoolYear='"
                                                                                                                                                                  . $schoolYear . "'";
 
 
@@ -373,12 +374,12 @@ document.getElementById('box1').style.minWidth=((gridWidth-2)+'px');
 
     if (mysqli_num_rows($resultFindMandatoryModules) > 0) {
       while($row = $resultFindMandatoryModules->fetch_assoc()) {
-        
+
         if ($row['isMandatory'] == 1) {
-          array_push($mandatoryModulesArray, array($row['moduleID'], $row['semesterNo'], $row['startTime'], 
+          array_push($mandatoryModulesArray, array($row['moduleID'], $row['semesterNo'], $row['startTime'],
                                                                                               $row['duration'], $row['weekNo'], $row['location'], $row['className']));
         } else {
-          array_push($optionalModulesArray, array($row['moduleID'], $row['semesterNo'], $row['startTime'], 
+          array_push($optionalModulesArray, array($row['moduleID'], $row['semesterNo'], $row['startTime'],
                                                                                               $row['duration'], $row['weekNo'], $row['location'], $row['className']));
         }
 
@@ -403,6 +404,3 @@ echo '<script type="text/javascript">extractClasses(\'' . $mandatoryModulesArray
 
     $conn->close();
   ?>
-
-
-
