@@ -348,7 +348,7 @@ var m=0;
 
 
 
-$("#timetableMeat").attr("scrollTop",200);
+
 
   function updateStart(id, top, left){
     for( index = 0; index<allActivities.length; index++){
@@ -647,4 +647,5 @@ $("#timetableMeat").attr("scrollTop",200);
    extractClasses(jArray);
    var jArray2 =<?php echo json_encode($userActivitiesArray); ?>;
    extractActivities(jArray2);
+   $("#timetableMeat").attr("scrollTop",500);
   </script>
