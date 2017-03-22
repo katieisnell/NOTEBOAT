@@ -492,7 +492,7 @@ var m=0;
   function movedActivities(){
     for( index = 0; index<allActivities.length; index++){
       for(index2 = 0; index2<divsToRemove.length; index2++)
-        if(allActivities[index][0]==divsToRemove[indx2])
+        if(allActivities[index][0]==divsToRemove[index2])
           allActivities.splice(index, 1)
     }
 
