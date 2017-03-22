@@ -349,7 +349,9 @@ var m=0;
   function updateStart(id, top, left){
     alert(id);
     for( index = 0; index<allActivities.length; index++){
+      alert(allActivities[index][0]);
         if(allActivities[index][0]==id){
+          alert("in da loop");
           var dayX = (left -1)/ (gridWidth);
           var dayY = (top -1)/ (gridHeight/12);
 
