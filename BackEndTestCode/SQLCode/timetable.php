@@ -374,9 +374,7 @@ var m=0;
         var confirmDelete = confirm("delete this div or nah");
         if(confirmDelete){
           $(this).remove();
-          alert(type);
-        //arrayToRemove.push([type, name, startTime, duration, colour]);
-
+          arrayToRemove.push([type, name, startTime, duration, colour]);
         }
       }
     );
