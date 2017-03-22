@@ -356,8 +356,6 @@ var m=0;
           var newStart = parseInt(288*(dayX-1)) + parseInt(dayY);
           newStart = Math.floor(newStart);
           allActivities[index][6]= newStart;
-          alert(allActivities[index][3]);
-          alert(allActivities[index][6]);
         }
       }
     }
@@ -500,6 +498,7 @@ var m=0;
 
     for( index = 0; index<allActivities.length; index++){
       if(allActivities[index][3]!=allActivities[index][6]){
+        alert("yo mama");
         var name =allActivities[index][2],
         type = allActivities[index][2],
         startTime=allActivities[index][3],
