@@ -367,7 +367,7 @@ var m=0;
     var typeString=getType(type);
     $('#box').attr('id', 'box'+boxCount);
     $('#box'+boxCount ).html('<span> '+name+'<br>'+typeString+'</span>');
-    $('#box'+boxCount ).attr('oncontextmenu', ''+remove);
+    $('#box'+boxCount ).attr('oncontextmenu', remove);
 
     document.getElementById('box'+boxCount).style.top=(((gridHeight/12) *dayY +1 )+'px');
     document.getElementById('box'+boxCount).style.left=((gridWidth*dayX +1)+'px');
