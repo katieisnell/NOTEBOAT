@@ -1,12 +1,19 @@
 <?php
 session_start();
-echo $_SESSION['login_user'];
 if($_SERVER["REQUEST_METHOD"] == "POST")
 {
 $file_result = "";
 $loggedInUser = $_SESSION['login_user'];
 $fileModule = $_POST['modules'];
-$isFilePublic = 1;
+if (isset($_POST['public']))
+{
+	$isFilePublic = '1';
+}
+else
+{
+	$isFilePublic = '0';
+}
+
 $newFileID = rand();
 $currentDateTime = date('d/m/Y h:i:s', time());
 
@@ -14,17 +21,12 @@ if ($_FILES["file"]["error"] > 0)
 {
   $file_result .= "No file uploaded or invalid file";
   $file_result .= "Error Code: " .$_FILES["file"]["error"] . "<br>";
-  echo "FILE ERROR";
 }//if
 else
 {
   if (!file_exists("uploads/$loggedInUser/"))
   {
     mkdir("uploads/" . $loggedInUser, 0777);
-    echo "NEW DIRECT MADE!";
-  }
-  else {
-  echo "DIRECTORY EXISTS!";
   }
   
   if (file_exists("uploads/$loggedInUser/" . $_FILES["file"]["name"]))
@@ -61,7 +63,7 @@ else
     $fileName = $_FILES["file"]["name"];
 	  $newName = explode(".", $fileName);
 	  $newFileName = $newName[0];
-    echo shell_exec("java -jar /home/pi/NOTEBOAT/NotesSharing/img2pdf.jar " . $fileName . " " . $newFileName . ".pdf 2>&1");
+   	echo shell_exec("java -jar /home/pi/NOTEBOAT/NotesSharing/img2pdf.jar " . $fileName . " " . $newFileName . ".pdf 2>&1");
 	  echo shell_exec("rm " . $fileName);
 
     require_once('/home/pi/NOTEBOAT/config.inc.php');
@@ -77,15 +79,14 @@ else
     $query = "INSERT INTO `Notes` (`fileID`, `userID`, `fileName`, `fileModuleCode`, `uploadDate`, `filePublic`) VALUES ('$newFileID','$loggedInUser','$fileName','$fileModule', '$currentDateTime' , '$isFilePublic')";
 
     $added = $conn -> query($query);
-
+	$file_result .= "File converted to pdf and uploaded!";
   }
   else
   {
     $file_result .= "Please upload a pdf or an image file";
   }
 }
-echo '<script type="text/javascript"> alert(\''. $file_result . '\'); </script>';
-///header("location:/NOTEBOAT/NotesSharing/notesShare.php");
+echo '<script type="text/javascript"> alert(\''. $file_result . '\'); window.location.href="notesShare.php"; </script>';
 }
 ?>
 
