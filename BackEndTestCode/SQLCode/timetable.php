@@ -496,7 +496,7 @@ var m=0;
 
     for( index = 0; index<allActivities.length; index++){
       if(allActivities[index][3]!=allActivities[index][6]){
-        alert("yo mama");
+
         var name =allActivities[index][2],
         type = allActivities[index][1],
         startTime=allActivities[index][3],
@@ -518,11 +518,12 @@ var m=0;
   function passArray() {
 
     movedActivities();
+    alert(arrayToAdd);
+    alert(arrayToRemove);
     $('#array').val(JSON.stringify(arrayToAdd));
     $('#arrayRemoving').val(JSON.stringify(arrayToRemove));
     //console.log(JSON.stringify(array));
     $('#form').submit();
-    arrayToAdd =[];
   }
 
 
