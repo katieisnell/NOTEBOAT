@@ -349,8 +349,8 @@ var m=0;
   function updateStart(id, top, left){
     for( index = 0; index<allActivities.length; index++){
         if(allActivities[index][0]==id){
-          var dayX = (left -1)/ (gridWidth);
-          var dayY = (top -1)/ (gridHeight/12);
+          var dayX = Math.round((left -1)/ (gridWidth));
+          var dayY = Math.round((top -1)/ (gridHeight/12));
 
           alert(dayX);
           alert(dayY);
