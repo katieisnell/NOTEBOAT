@@ -506,8 +506,8 @@ var m=0;
 
 
 
-        arrayToRemove.push(type, name, startTime, duration, colour);
-        arrayToAdd.push(type, name, newStartTime, duration, colour);
+        arrayToRemove.push([type, name, startTime, duration, colour]);
+        arrayToAdd.push([type, name, newStartTime, duration, colour]);
       }
 
     }
@@ -518,8 +518,6 @@ var m=0;
   function passArray() {
 
     movedActivities();
-    alert(arrayToAdd);
-    alert(arrayToRemove);
     $('#array').val(JSON.stringify(arrayToAdd));
     $('#arrayRemoving').val(JSON.stringify(arrayToRemove));
     //console.log(JSON.stringify(array));
