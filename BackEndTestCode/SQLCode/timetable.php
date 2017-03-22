@@ -249,6 +249,7 @@ divsToRemove = [],
 i, x, y, day, time;
 var m=0;
 
+alert( (new Date()).getWeek());
 
   //header of timetable
 
@@ -352,8 +353,7 @@ var m=0;
           var dayX = Math.round((left -1)/ (gridWidth));
           var dayY = Math.round((top -1)/ (gridHeight/12));
 
-          alert(dayX);
-          alert(dayY);
+
 
           var newStart = parseInt(288*(dayX-1)) + parseInt(dayY);
           newStart = Math.floor(newStart);
@@ -381,8 +381,6 @@ var m=0;
     dayX = Math.floor(startTime/288)+1;
     dayY = startTime % 288;
 
-    alert(dayX);
-    alert(dayY);
     boxCount++
 
 
@@ -415,7 +413,7 @@ var m=0;
 
   }
 
-  function placeClass(name, startTime, duration, type) {
+  function placeClass(name, startTime, duration, type, weekNo, sem) {
 
 
     dayX = Math.floor(startTime/288)+1;
@@ -446,7 +444,7 @@ var m=0;
       location = activArray[index][5],
       className = activArray[index][6];
 
-      placeClass(name, start, duration, className);
+      placeClass(name, start, duration, className, weekNo, sem);
 
     }
   }
