@@ -244,6 +244,8 @@ secondSwitch,
 arrayOfClasses,
 arrayToAdd = [],
 arrayToRemove = [],
+allActivities = [],
+divsToRemove = [],
 i, x, y, day, time;
 var m=0;
 
@@ -351,6 +353,9 @@ var m=0;
           $( "#box"+i ).draggable(  {
             stop: function(){
                 var id = $(this).attr('id');
+                var top = $(this).position().top;
+                var left = $(this).position().left;
+                updateStart(id, top, left);
                 alert(id);
               }, grid: [gridWidth,gridHeight/12], containment: "#container",opacity: 0.7} );
     }
@@ -361,14 +366,7 @@ var m=0;
 
     dayX = Math.floor(startTime/288)+1;
     dayY = startTime % 288;
-    var suvi =10;
     boxCount++
-    var remove = 'removeDiv($(this),'+type+','+name+','+startTime+','+duration+','+colour+');';
-    //remove = "alert();";
-    remove ='"'+remove+'"';
-    //alert(remove);
-    //var removefunc = removeDiv($(this),type,name,startTime,duration,colour);
-    //alert(remove);
 
 
     $("<div class='box' id='box' style='left:0px; top:0px; min-height: 0px; background-color:yellow;'></div>").appendTo('#timetableMeat');
@@ -379,6 +377,8 @@ var m=0;
     $('#box'+boxCount ).contextmenu(function(){
         var confirmDelete = confirm("delete this div or nah");
         if(confirmDelete){
+          var id = $(this).attr('id');
+          divsToRemove.push(id)
           $(this).remove();
           arrayToRemove.push([type, name, startTime, duration, colour]);
         }
@@ -392,7 +392,8 @@ var m=0;
 
     updateDraggables();
 
-
+     var id = ($(this)).attr('id');
+     allActivities.push([id,type, name, startTime, duration, colour, startTime]);
 
   }
 
@@ -474,13 +475,52 @@ var m=0;
   }
 
 
+  function movedActivities(){
+    for( index = 0; index<allActivities.length; index++){
+      for(index2 = 0; index2<divsToRemove.length; index2++)
+        if(allActivities[index][0]==divsToRemove[indx2])
+          allActivities.splice(index, 1)
+    }
+
+    for( index = 0; index<allActivities.length; index++){
+      if(allActivities[index][3]!=allActivities[index][6]){
+        var name =allActivities[index][2],
+        type = allActivities[index][2],
+        startTime=allActivities[index][3],
+        duration = allActivities[index][4],
+        colour = allActivities[index][5],
+        newStartTime = allActivities[index][6];
+
+        arrayToRemove.push(type, name, startTime, duration);
+        arrayToAdd.push(type, name, newStartTime, duration);
+      }
+
+    }
+  }
+
+  function updateStart(id, top, left){
+    for( index = 0; index<allActivities.length; index++){
+        if(allActivities[index][0]==id){
+          var dayX = (left -1)/ (gridWidth);
+          var dayY = (top -1)/ (gridHeight/12);
+
+          var newStart = parseInt(288*(dayX-1)) + parseInt(dayY);
+          newStart = Math.floor(newStart);
+          allActivities[index][6];
+
+        }
+
+  }
   function passArray() {
+
+    movedActivities();
     $('#array').val(JSON.stringify(arrayToAdd));
     $('#arrayRemoving').val(JSON.stringify(arrayToRemove));
     //console.log(JSON.stringify(array));
     $('#form').submit();
     arrayToAdd =[];
   }
+
 
 
 
