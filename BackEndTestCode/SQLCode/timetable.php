@@ -408,8 +408,8 @@ var m=0;
 
     updateDraggables();
 
-     var id2 = $(this).attr('id');
-     alert(id2)
+     var id2 = 'box'+boxCount;
+     alert(id2);
 
      allActivities.push([id2,type, name, startTime, duration, colour, startTime]);
 
