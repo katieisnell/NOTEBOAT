@@ -375,6 +375,8 @@ var m=0;
 
     updateDraggables();
 
+
+    removeDiv($(this),type,name,startTime,duration,colour);
   }
 
   function placeClass(name, startTime, duration, type) {
