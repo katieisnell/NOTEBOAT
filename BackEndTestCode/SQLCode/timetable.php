@@ -359,7 +359,7 @@ var m=0;
     boxCount++
     var remove = 'removeDiv($(this),'+type+','+name+','+startTime+','+duration+','+colour+');';
     //remove = "alert();";
-    remove ="''"+remove+"''";
+    remove ='"'+remove+'"';
     alert(remove);
     //var removefunc = removeDiv($(this),type,name,startTime,duration,colour);
     //alert(remove);
