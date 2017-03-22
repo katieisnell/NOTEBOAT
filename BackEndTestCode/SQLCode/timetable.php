@@ -504,8 +504,10 @@ var m=0;
         colour = allActivities[index][5],
         newStartTime = allActivities[index][6];
 
-        arrayToRemove.push(type, name, startTime, duration);
-        arrayToAdd.push(type, name, newStartTime, duration);
+
+
+        arrayToRemove.push(type, name, startTime, duration, colour);
+        arrayToAdd.push(type, name, newStartTime, duration, Colour);
       }
 
     }
