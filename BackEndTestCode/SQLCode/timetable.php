@@ -349,7 +349,6 @@ var m=0;
   function updateStart(id, top, left){
     for( index = 0; index<allActivities.length; index++){
         if(allActivities[index][0]==id){
-          alert("in da loop");
           var dayX = (left -1)/ (gridWidth);
           var dayY = (top -1)/ (gridHeight/12);
 
@@ -405,7 +404,6 @@ var m=0;
     updateDraggables();
 
      var id2 = 'box'+boxCount;
-     alert(id2);
 
      allActivities.push([id2,type, name, startTime, duration, colour, startTime]);
 
@@ -500,7 +498,7 @@ var m=0;
       if(allActivities[index][3]!=allActivities[index][6]){
         alert("yo mama");
         var name =allActivities[index][2],
-        type = allActivities[index][2],
+        type = allActivities[index][1],
         startTime=allActivities[index][3],
         duration = allActivities[index][4],
         colour = allActivities[index][5],
