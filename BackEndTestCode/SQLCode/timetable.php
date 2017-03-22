@@ -357,7 +357,8 @@ var m=0;
           allActivities[index][6];
 
         }
-
+      }
+    }      
 
 
   function updateDraggables(){
