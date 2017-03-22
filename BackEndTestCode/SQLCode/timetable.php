@@ -348,7 +348,8 @@ var m=0;
 
 
 
-$("#timetableMeat").attr("scrollTop",8*gridHeight);
+$("#timetableMeat").attr("scrollTop",200);
+
   function updateStart(id, top, left){
     for( index = 0; index<allActivities.length; index++){
         if(allActivities[index][0]==id){
