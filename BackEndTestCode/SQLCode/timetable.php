@@ -346,7 +346,17 @@ var m=0;
   }
 
 
+  function updateStart(id, top, left){
+    for( index = 0; index<allActivities.length; index++){
+        if(allActivities[index][0]==id){
+          var dayX = (left -1)/ (gridWidth);
+          var dayY = (top -1)/ (gridHeight/12);
 
+          var newStart = parseInt(288*(dayX-1)) + parseInt(dayY);
+          newStart = Math.floor(newStart);
+          allActivities[index][6];
+
+        }
 
   function updateDraggables(){
     for(i=1; i<=boxCount; i++)
@@ -498,17 +508,7 @@ var m=0;
     }
   }
 
-  function updateStart(id, top, left){
-    for( index = 0; index<allActivities.length; index++){
-        if(allActivities[index][0]==id){
-          var dayX = (left -1)/ (gridWidth);
-          var dayY = (top -1)/ (gridHeight/12);
 
-          var newStart = parseInt(288*(dayX-1)) + parseInt(dayY);
-          newStart = Math.floor(newStart);
-          allActivities[index][6];
-
-        }
 
   }
   function passArray() {
