@@ -361,12 +361,12 @@ var m=0;
     //alert(remove);
 
 
-    $("<div class='box' id='box' oncontextmenu=''+remove style='left:0px; top:0px; min-height: 0px; background-color:yellow;'></div>").appendTo('#timetableMeat');
+    $("<div class='box' id='box' oncontextmenu='alert('yo mama')' style='left:0px; top:0px; min-height: 0px; background-color:yellow;'></div>").appendTo('#timetableMeat');
     //
     var typeString=getType(type);
     $('#box').attr('id', 'box'+boxCount);
     $('#box'+boxCount ).html('<span> '+name+'<br>'+typeString+'</span>');
-    $('#box'+boxCount ).attr('oncontextmenu', alert("yo mama"));
+    //$('#box'+boxCount ).attr('oncontextmenu', alert("yo mama"));
 
     document.getElementById('box'+boxCount).style.top=(((gridHeight/12) *dayY +1 )+'px');
     document.getElementById('box'+boxCount).style.left=((gridWidth*dayX +1)+'px');
