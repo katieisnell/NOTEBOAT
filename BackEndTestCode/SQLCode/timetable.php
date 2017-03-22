@@ -358,7 +358,7 @@ var m=0;
     var suvi =10;
     boxCount++
     var remove = 'removeDiv($(this),'+type+','+name+','+startTime+','+duration+','+colour+');';
-    remove = "'alert();'";
+    remove = "alert();";
     //var removefunc = removeDiv($(this),type,name,startTime,duration,colour);
     //alert(remove);
 
