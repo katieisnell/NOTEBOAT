@@ -81,6 +81,7 @@ for ($row = 0; $row < count($studentActivitiesToDeleteArray); $row++)
   //$activityType tudentActivitiesToDeleteArray[$row][2];
   //$duration = $studentActivitiesToDeleteArray[$row][3];
   //$colour = $studentActivitiesToDeleteArray[$row][4];
+  $startTime = $studentActivitiesToDeleteArray[$row][2];
 
   // SQL statement which deletes the record from the activities table
   $sqlDeleteActivity = "DELETE FROM studentActivities
