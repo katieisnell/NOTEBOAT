@@ -344,12 +344,15 @@ var m=0;
   }
 
 
+  var stop = function{
+      var id = $(this).attr('id');
+      alert(id);
+    };
+
+
   function updateDraggables(){
     for(i=1; i<=boxCount; i++)
-          $( "#box"+i ).draggable(  {stop:function(){
-              var id = $(this).attr('id');
-              alert(id);
-            }, grid: [gridWidth,gridHeight/12], containment: "#container",opacity: 0.7} );
+          $( "#box"+i ).draggable(  {stop: stop();, grid: [gridWidth,gridHeight/12], containment: "#container",opacity: 0.7} );
     }
 
   updateDraggables();
