@@ -361,7 +361,7 @@ var m=0;
     //alert(remove);
 
 
-    $("<div class='box' id='box' oncontextmenu='alert('yo mama')' style='left:0px; top:0px; min-height: 0px; background-color:yellow;'></div>").appendTo('#timetableMeat');
+    $("<div class='box' id='box' oncontextmenu='alert('yo mama');' style='left:0px; top:0px; min-height: 0px; background-color:yellow;'></div>").appendTo('#timetableMeat');
     //
     var typeString=getType(type);
     $('#box').attr('id', 'box'+boxCount);
