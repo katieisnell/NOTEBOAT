@@ -281,7 +281,7 @@ var m=0;
   	$("<div/>").text(time).attr('class', "grid").css({ width:gridWidth-1, height:gridHeight-1, top:y, left:x}).prependTo($tableMeat);
   }
 
-  	$("<div/>").attr('arrayRemovingid', 'container').css({position:"absolute", width: ((gridWidth)*(gridColumns-1)+1), height:( (gridHeight)*(gridRows)), top:gridHeight, left:gridWidth }).prependTo($table);
+  	$("<div/>").attr('id', 'container').css({position:"absolute", width: ((gridWidth)*(gridColumns-1)+1), height:( (gridHeight)*(gridRows)), top:gridHeight, left:gridWidth }).prependTo($table);
 
   function getType(type){
     var typeName;
@@ -352,6 +352,9 @@ var m=0;
           var dayX = (left -1)/ (gridWidth);
           var dayY = (top -1)/ (gridHeight/12);
 
+          alert(dayX);
+          alert(dayY);
+
           var newStart = parseInt(288*(dayX-1)) + parseInt(dayY);
           newStart = Math.floor(newStart);
           allActivities[index][6]= newStart;
@@ -377,6 +380,9 @@ var m=0;
 
     dayX = Math.floor(startTime/288)+1;
     dayY = startTime % 288;
+
+    alert(dayX);
+    alert(dayY);
     boxCount++
 
 
