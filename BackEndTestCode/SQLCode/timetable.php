@@ -345,7 +345,7 @@ var m=0;
   	$("<div/>").text(day).attr('class','grid').css({ width:gridWidth-1, height:gridHeight-1, top:0, left:x,  "text-align":"center"}).prependTo($table);
   }
 
-/*
+
   function updateStart(id, top, left){
     for( index = 0; index<allActivities.length; index++){
         if(allActivities[index][0]==id){
@@ -357,7 +357,7 @@ var m=0;
           allActivities[index][6];
 
         }
-*/
+
 
 
   function updateDraggables(){
