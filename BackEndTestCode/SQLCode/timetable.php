@@ -647,5 +647,5 @@ var m=0;
    extractClasses(jArray);
    var jArray2 =<?php echo json_encode($userActivitiesArray); ?>;
    extractActivities(jArray2);
-   $("timetableMeat").scrollTop(100);
+   $("#timetableMeat").scrollTop(100);
   </script>
