@@ -92,6 +92,7 @@ for ($row = 0; $row < count($studentActivitiesToDeleteArray); $row++)
   // }
 
 }
+}
 
 
 
