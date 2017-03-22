@@ -357,14 +357,10 @@ var m=0;
     dayY = startTime % 288;
     var suvi =10;
     boxCount++
-    var remove = 'removeDiv($(this)'+');';
+    var remove = 'removeDiv($(this),'+type+');';
     //var remove = 'removeDiv($(this),'+type+','+name+','+startTime+','+ duration+','+',' colour+');';
     alert(remove);
-    alert(type);
-    alert(name);
-    alert(startTime);
-    alert(duration);
-    alert(colour);
+
 
     $("<div class='box' id='box' style='left:0px; top:0px; min-height: 0px; background-color:yellow;'></div>").appendTo('#timetableMeat');
     //
