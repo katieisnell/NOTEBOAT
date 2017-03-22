@@ -370,11 +370,12 @@ var m=0;
     var typeString=getType(type);
     $('#box').attr('id', 'box'+boxCount);
     $('#box'+boxCount ).html('<span> '+name+'<br>'+typeString+'</span>');
-    $('#box'+boxCount ).contextmenu(function(($(this),type,name,startTime,duration,colour)){
+    $('#box'+boxCount ).contextmenu(function(){
         var confirmDelete = confirm("delete this div or nah");
         if(confirmDelete){
-          div.remove()
-        arrayToRemove.push([type, name, startTime, duration, colour]);
+          $(this).remove();
+          alert(type);
+        //arrayToRemove.push([type, name, startTime, duration, colour]);
 
         }
       }
