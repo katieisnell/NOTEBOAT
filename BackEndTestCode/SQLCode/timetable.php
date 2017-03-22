@@ -358,6 +358,8 @@ var m=0;
 
         }
 
+
+
   function updateDraggables(){
     for(i=1; i<=boxCount; i++)
           $( "#box"+i ).draggable(  {
@@ -509,8 +511,6 @@ var m=0;
   }
 
 
-
-  }
   function passArray() {
 
     movedActivities();
