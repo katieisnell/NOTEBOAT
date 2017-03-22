@@ -359,10 +359,11 @@ var m=0;
     boxCount++
     var remove = 'removeDiv($(this),'+type+','+name+','+startTime+','+duration+','+colour+');';
     remove = "alert('yo mama')";
+    var removefunc = removeDiv($(this),type,name,startTime,duration,colour);
     //alert(remove);
 
 
-    $("<div class='box' id='box' oncontextmenu='removeDiv($(this),'+type+','+name+','+startTime+','+duration+','+colour+');' style='left:0px; top:0px; min-height: 0px; background-color:yellow;'></div>").appendTo('#timetableMeat');
+    $("<div class='box' id='box' oncontextmenu='alert()' style='left:0px; top:0px; min-height: 0px; background-color:yellow;'></div>").appendTo('#timetableMeat');
     //
     var typeString=getType(type);
     $('#box').attr('id', 'box'+boxCount);
