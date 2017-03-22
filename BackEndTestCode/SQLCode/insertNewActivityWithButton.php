@@ -63,7 +63,7 @@ for ($row = 0; $row < count($studentActivitiesToAddArray); $row++)
 if (isset($_POST['arrayRemoving'])) {
 // echo "---".$_POST['array']."---";
 // echo "<br>";
-$studentActivitiesToDeleteArray = json_decode($_POST['array']);
+$studentActivitiesToDeleteArray = json_decode($_POST['arrayRemoving']);
 // print_r($studentActivitiesToAddArray); //for debugging purposes only
 
 // Will use in future: $userID = $_SESSION['userID'];
@@ -92,10 +92,10 @@ for ($row = 0; $row < count($studentActivitiesToDeleteArray); $row++)
   // }
 
 }
+
+
+
 }
-
-
-
 
 
 $conn->close();
