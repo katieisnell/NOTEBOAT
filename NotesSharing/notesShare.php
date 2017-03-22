@@ -48,7 +48,7 @@
   <div class="row">
 
     <div id ="logo" class="three columns">
-      <a href="dashboard.html">
+      <a href="/NOTEBOAT/dashboard.html">
         <img class="u-full-width" src="images/logo2.png">
       </a>
     </div>
@@ -59,6 +59,7 @@
          <div class="dropdown-content">
          <a href="/NOTEBOAT/dashboard.html">TimeTable</a>
          <a href="#">Note Sharing</a>
+     	<a href="/NOTEBOAT/NotesSharing/following.php">Following</a>
          <a href="/NOTEBOAT/settings.html">Settings</a>
          <a href="/NOTEBOAT/logout.php">Logout</a>
          </div>
@@ -89,7 +90,9 @@
         <option value="COMP18112">COMP18112</option>
       </select>
     <input type="file" name="file" id="button">
+   <label> <input type= "checkbox" name="public" value="yes" >Public?</label>
     <input class="button" type="submit" value="Upload" id="button">
+
     </form>
    </div>
   </div>
@@ -158,9 +161,9 @@
     <div id="navigation" class="twelve columns">
       <nav>
       <ul>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact Us</a></li>
-        <li><a href="termsAndConditions.html">Terms &amp; Conditions</a></li>
+        <li><a href="http://10.2.238.64/NOTEBOAT/about.html">About</a></li>
+        <li><a href="http://10.2.238.64/NOTEBOAT/contact.html">Contact Us</a></li>
+        <li><a href="http://10.2.238.64/NOTEBOAT/termsAndConditions.html">Terms &amp; Conditions</a></li>
       </ul>
     </nav>
     </div>
@@ -196,6 +199,8 @@
     cell2.innerHTML = "Module";
     cell3.innerHTML = "Owner";
   }
+
+
 </script>
 <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -203,11 +208,15 @@
 </html>
 
 <?php
+session_start();
 
 if($_SERVER["REQUEST_METHOD"] == "POST")
 {
-
+$loggedInUser = $_SESSION['login_user'];
 $chosenModule = $_POST['modules'];
+$searchTerms =  $_POST['search'];
+
+$numberRows = 0;    
 
 require("/home/pi/NOTEBOAT/config.inc.php");
 $conn = new mysqli($database_host, $database_user, $database_pass, $database_name);
@@ -230,20 +239,74 @@ if ($foundFiles -> num_rows > 0)
     $fileOwner = $row["userID"];
     $name = $row["fileName"];
     $module = $row["fileModuleCode"];
+    $isPublic = $row["filePublic"];
+    $nameArray = explode('<', $name);
 
     $nameQuery = "SELECT * FROM registeredUsers WHERE userID = '$fileOwner'";
     $foundUser = $conn -> query($nameQuery);
     $r = $foundUser->fetch_assoc();
 
     $ownerName = $r["prefFirstName"] . " " . $r["prefLastName"];
+    $ownerFollowingString = $r["followingUsers"];
 
-		echo '<script type="text/javascript"> createRow(\'' . $name . '\' , \'' . $module . '\' , \'' . $fileOwner . '\' , \'' . $ownerName . '\'); </script>';
-  }
-    echo '<script type="text/javascript"> addTableHeader(); </script>';
+    $thisUserQuery = "SELECT followingUsers FROM registeredUsers where userID = '$loggedInUser'";
+    $foundThisUser = $conn -> query($thisUserQuery);
+    $thisUser = $foundThisUser->fetch_assoc();
+    $currentUserFollowingString = $thisUser["followingUsers"];
+
+    $userArray = explode('-', $currentUserFollowingString);
+    $viewUserArray = explode('-', $ownerFollowingString);
+
+    $followingEachOther = FALSE;
+    $secondFollowFirst = FALSE;
+    $firstFollowSecond = FALSE;
+    for($index = 0; $index < count($userArray); $index++)
+    {
+        if($userArray[$index] == $fileOwner)
+          $firstFollowSecond = TRUE;
+    }
+   for($index = 0; $index < count($viewUserArray); $index++)
+   {
+        if($viewUserArray[$index] == $loggedInUser)
+            $secondFollowFirst = TRUE;
+   }
+   if($secondFollowFirst && $firstFollowSecond)
+     $followingEachOther = TRUE;
+
+if($searchTerms !== "")
+{
+  $searchTermsArray = explode(' ', $searchTerms);
+  $searchMatch = TRUE;
+  for($index = 0; $index < count($searchTermsArray); $index++)
+  {
+    if($searchMatch)
+    {
+       if(($searchTermsArray[$index] == $fileOwner) || ($searchTermsArray[$index] == $nameArray[0]) || ($searchTermsArray[$index] == $r["prefFirstName"] ) || ( $searchTermsArray[$index] == $r["prefLastName"])) 
+         $searchMatch = TRUE;
+       else if($searchMatch)
+          $searchMatch = FALSE;
+    }
+  }   
 }
 else
+  $searchMatch = TRUE;
+if($searchMatch)
 {
-  echo "No files found!";
+    if(($isPublic == 1) || $followingEachOther || ($fileOwner == $loggedInUser))
+    {
+		echo '<script type="text/javascript"> createRow(\'' . $name . '\' , \'' . $module . '\' , \'' . $fileOwner . '\' , \'' . $ownerName . '\'); </script>';
+        $numberRows = $numberRows + 1;
+   }
+}   
+  }
+   if($numberRows > 0)
+   {
+        echo '<script type="text/javascript"> addTableHeader(); </script>'; 
+   }
+}
+if($numberRows < 1)
+{
+  echo "No notes match your search!\n";
 }
 
 }

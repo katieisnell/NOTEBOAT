@@ -41,7 +41,14 @@ else
 {
 $array = explode('-', $following);
 $count = count($array);
-
+$isFollowing = FALSE;
+for($index = 0; $index < $count; $index++)
+{
+if($array[$index] == $gonnaFollow)
+  $isFollowing = TRUE;
+}
+if($isFollowing)
+{
 for($index = 0; $index < $count; $index++)
 {
 if($array[$index] == $gonnaFollow)
@@ -58,6 +65,9 @@ for($index = 0; $index <= $count; $index++)
 $query = "UPDATE registeredUsers SET followingUsers = '$following' WHERE userID = '$loggedUser'";
     $added = $conn -> query($query);
 echo '<script type=text/javascript > alert("You just unfollowed '. $gonnaFollow .  '. Your friendSHIP has SAILED away!"); window.location.href="following.php";</script>';
+}
+else
+echo '<script type=text/javascript > alert("You were never following '. $gonnaFollow .  '! Why not follow them and start a friendSHIP?"); window.location.href="following.php";</script>';
 }
 
 ?>

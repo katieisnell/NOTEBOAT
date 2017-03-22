@@ -42,7 +42,6 @@
       </a>
     </div>
 
-
     <div class="one column offset-by-eight">
       <div class="dropdown">
          <button class="dropbtn">-----</button>
@@ -56,7 +55,6 @@
       </div>
     </div>
 </section>
-
 
 <section class="table">
     <div class="container">
@@ -124,7 +122,8 @@
   
 
 <?php
-
+$searchTerms = $_POST['search'];
+$searchTermsArray = explode(' ', $searchTerms); 
 session_start();
 require("/home/pi/NOTEBOAT/config.inc.php");
 $conn = new mysqli($database_host, $database_user, $database_pass, $database_name);
@@ -149,9 +148,27 @@ while($row = $foundUsers->fetch_assoc())
     $fileOwner = $row["userID"];
     $name = $row["prefFirstName"] . " " . $row["prefLastName"];
 
+if($searchTerms !== "")
+{
+  $searchMatch = TRUE;
+  for($index = 0; $index < count($searchTermsArray); $index++)
+  {
+    if($searchMatch)
+    {
+       if(($searchTermsArray[$index] == $fileOwner) || ($searchTermsArray[$index] == $row["prefFirstName"] ) || ( $searchTermsArray[$index] == $row["prefLastName"])) 
+         $searchMatch = TRUE;
+       else if($searchMatch)
+          $searchMatch = FALSE;
+    }
+   }
+}
+else
+  $searchMatch = TRUE;
+if($searchMatch)
+{
   $numberRows = $numberRows + 1;
   echo '<script type="text/javascript"> createRow(\'' . $name . '\' , \'' . $fileOwner . '\'  , \''.  $following .'\'  , \''.  $thisUserID .'\');</script>';
-
+}
 
 }
 if($numberRows > 0)
@@ -159,7 +176,7 @@ if($numberRows > 0)
     echo '<script type="text/javascript"> addTableHeader(); </script>';
 }
 else
-  echo 'No users!  ';
+  echo 'No users match your search!  ';
 echo 'To filter through users, search for usernames, first names and surnames here:';
 ?>
 
@@ -171,7 +188,6 @@ echo 'To filter through users, search for usernames, first names and surnames he
       </div>
 </form>
 </section>
-
 
  <section class="footer">
   <div class="container">
@@ -191,5 +207,4 @@ echo 'To filter through users, search for usernames, first names and surnames he
 
 </body>
 </html>
-
 
