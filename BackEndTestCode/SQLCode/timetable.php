@@ -249,9 +249,7 @@ divsToRemove = [],
 i, x, y, day, time;
 var m=0;
 
-var today = new Date();
-var week = today.getWeek();
-alert(week);
+
 
   //header of timetable
 
