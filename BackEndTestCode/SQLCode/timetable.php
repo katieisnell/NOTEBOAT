@@ -354,8 +354,9 @@ var m=0;
 
           var newStart = parseInt(288*(dayX-1)) + parseInt(dayY);
           newStart = Math.floor(newStart);
-          allActivities[index][6];
-
+          allActivities[index][6]= newStart;
+          alert(allActivities[index][3]);
+          alert(allActivities[index][6]);
         }
       }
     }
@@ -369,7 +370,6 @@ var m=0;
                 var top = $(this).position().top;
                 var left = $(this).position().left;
                 updateStart(id, top, left);
-                alert(id);
               }, grid: [gridWidth,gridHeight/12], containment: "#container",opacity: 0.7} );
     }
 
