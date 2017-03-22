@@ -250,7 +250,7 @@ i, x, y, day, time;
 var m=0;
 
 var today = new Date();
-alert(date);
+alert(today);
 
   //header of timetable
 
