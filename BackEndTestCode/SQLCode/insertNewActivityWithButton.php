@@ -24,8 +24,6 @@ if (isset($_POST['array'])) {
  $studentActivitiesToAddArray = json_decode($_POST['array']);
 // print_r($studentActivitiesToAddArray); //for debugging purposes only
 
-print_r($studentActivitiesToDeleteArray);
-
 // Will use in future -> $userID = $_SESSION['userID'];
 $userID = 'mbaxaks2';
 
@@ -69,7 +67,7 @@ if (isset($_POST['arrayRemoving'])) {
 $studentActivitiesToDeleteArray = json_decode($_POST['arrayRemoving']);
 // print_r($studentActivitiesToAddArray); //for debugging purposes only
 
-print_r($studentActivitiesToDeleteArray);
+
 
 // Will use in future: $userID = $_SESSION['userID'];
 $userID = 'mbaxaks2';
@@ -107,4 +105,4 @@ for ($row = 0; $row < count($studentActivitiesToDeleteArray); $row++)
 $conn->close();
   ?>
 
-  <!-- <script> window.location="timetable.php" </script> -->
+  <script> window.location="timetable.php" </script> 
