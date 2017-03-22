@@ -358,7 +358,7 @@ var m=0;
 
         }
       }
-    }      
+    }
 
 
   function updateDraggables(){
@@ -368,7 +368,7 @@ var m=0;
                 var id = $(this).attr('id');
                 var top = $(this).position().top;
                 var left = $(this).position().left;
-                //updateStart(id, top, left);
+                updateStart(id, top, left);
                 alert(id);
               }, grid: [gridWidth,gridHeight/12], containment: "#container",opacity: 0.7} );
     }
@@ -487,7 +487,7 @@ var m=0;
     }
   }
 
-/*
+
   function movedActivities(){
     for( index = 0; index<allActivities.length; index++){
       for(index2 = 0; index2<divsToRemove.length; index2++)
@@ -511,7 +511,7 @@ var m=0;
     }
   }
 
-*/
+
 
   function passArray() {
 
