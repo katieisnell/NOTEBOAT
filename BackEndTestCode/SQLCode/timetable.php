@@ -507,7 +507,7 @@ var m=0;
 
 
         arrayToRemove.push(type, name, startTime, duration, colour);
-        arrayToAdd.push(type, name, newStartTime, duration, Colour);
+        arrayToAdd.push(type, name, newStartTime, duration, colour);
       }
 
     }
