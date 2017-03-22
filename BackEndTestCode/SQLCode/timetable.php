@@ -346,13 +346,16 @@ var m=0;
 
   function updateDraggables(){
     for(i=1; i<=boxCount; i++)
-          $( "#box"+i ).draggable(  {stop: updateDiv($(this));, grid: [gridWidth,gridHeight/12], containment: "#container",opacity: 0.7} );
+          $( "#box"+i ).draggable(  {stop:function(){
+              var id = $(this).attr('id');
+              alert(id);
+            }, grid: [gridWidth,gridHeight/12], containment: "#container",opacity: 0.7} );
     }
 
   updateDraggables();
 
-  function updateDiv(div){
-    var id = div.attr('id');
+  function(){
+    var id = $(this).attr('id');
     alert(id);
   }
 
