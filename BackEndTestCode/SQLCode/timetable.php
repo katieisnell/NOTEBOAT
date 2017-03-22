@@ -357,7 +357,7 @@ var m=0;
     dayY = startTime % 288;
     var suvi =10;
     boxCount++
-    var remove = 'removeDiv($(this),'+type+');';
+    var remove = 'removeDiv($(this),'+type+','+name+');';
     //var remove = 'removeDiv($(this),'+type+','+name+','+startTime+','+ duration+','+',' colour+');';
     alert(remove);
 
