@@ -354,11 +354,6 @@ var m=0;
 
   updateDraggables();
 
-  function(){
-    var id = $(this).attr('id');
-    alert(id);
-  }
-
   function placeActivity(name, startTime, duration, type, colour) {
 
     dayX = Math.floor(startTime/288)+1;
