@@ -250,7 +250,8 @@ i, x, y, day, time;
 var m=0;
 
 var today = new Date();
-alert(today);
+var week = today.getWeek();
+alert(week);
 
   //header of timetable
 
@@ -348,6 +349,8 @@ alert(today);
   }
 
 
+
+$("#timetableMeat").attr("scrollTop",8*gridHeight);
   function updateStart(id, top, left){
     for( index = 0; index<allActivities.length; index++){
         if(allActivities[index][0]==id){
