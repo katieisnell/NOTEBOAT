@@ -1,10 +1,11 @@
-<!DOCTYPE html>
 <?php
   session_start();
   if (!isset($_SESSION['login_user']))
   {
     header("location: login.php");
+	die();
   }
+  
 ?>
 <html lang="en">
 <head>
@@ -36,6 +37,7 @@
 
 </head>
 <body>
+
 
   <!-- Primary Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->

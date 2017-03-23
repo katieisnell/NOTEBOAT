@@ -166,8 +166,8 @@
         var cell4 = row.insertCell(3);
         cell1.innerHTML = "<a href=\"/NOTEBOAT/NotesSharing/uploads/" + fileOwner + "/" + fileName + "\"> " + fileName + "</a>";
         cell2.innerHTML = module;
-        cell3.innerHTML = ownerName;
-        cell4.innerHTML = '<form action="" method="post"><input type="hidden" name="userID" value="' + fileOwner + '"><input type="hidden" name="fileID" value="' + fileID + '"> <input type="hidden" name="fileName" value="' + fileName + '"><input type="submit" value="Delete" onclick="return confirm(\'Are you sure you want to delete this file?\')">';
+        cell3.innerHTML = fileID;
+        cell4.innerHTML = '<form action="" method="post"><ichmnput type="hidden" name="userID" value="' + fileOwner + '"><input type="hidden" name="fileID" value="' + fileID + '"> <input type="hidden" name="fileName" value="' + fileName + '"><input type="submit" value="Delete" onclick="return confirm(\'Are you sure you want to delete this file?\')">';
     }
 
     function addTableHeader()
@@ -179,7 +179,8 @@
       var cell3 = row.insertCell(2);
       cell1.innerHTML = "File Name";
       cell2.innerHTML = "Module";
-      cell3.innerHTML = "Owner";
+      cell3.innerHTML = "File ID";
+      cell4.innerHTML = "Delete File";
     }
 
   </script>
@@ -250,9 +251,12 @@
 </script>
 
 <?php
-echo '<script type="text/javascript"> createRow(\'Filename\' , \'COMP10120\', \'mbaxask3\', \'Suvi\'); </script>';
-
 session_start();
+  if (!isset($_SESSION['login_user']))
+  {
+    header("location: login.php");
+	die();
+  }
 
 $userID = $_SESSION['login_user'];
 
@@ -269,7 +273,7 @@ $queryResult = $conn -> query($query);
 
 $notesQuery = "SELECT * FROM Notes WHERE userID = '$userID'";
 $foundFiles = $conn -> query($notesQuery);
-$numOfFiles = mysqli_num_rows($notesResult);
+$numOfFiles = mysqli_num_rows($foundFiles);
 
 //-------------------------------------------------------------------------
 if ($foundFiles -> num_rows > 0)
@@ -280,7 +284,7 @@ if ($foundFiles -> num_rows > 0)
     $fileOwner = $row["userID"];
     $name = $row["fileName"];
     $module = $row["fileModuleCode"];
-    $isPublic = $row["isPublic"];
+    $isPublic = $row["filePublic"];
     $fileID = $row["fileID"];
 
 		echo '<script type="text/javascript"> createRow(\'' . $name . '\' , \'' . $module . '\' , \'' . $fileOwner . '\' , \'' . $fileID . '\' , \'' . $rowNum . '\'); </script>';
@@ -346,7 +350,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
   }
   if (isset($_POST["fileID"]))
   {
-    deleteFile($_POST['fileID'], $_POST['fileName'], $_POST['userID']);
+    deleteFile($_POST['fileID'], $_POST['fileName'], $userID);
   }
 }
 
@@ -384,12 +388,13 @@ function deleteFile($fileID, $fileName, $userID)
 
   $query = "DELETE FROM Notes WHERE `fileID` = '$fileID' AND `userID` = '$userID'";
   $result = $conn -> query($query);
-window.location.href="following.php"
+
   chdir('/home/pi/NOTEBOAT/NotesSharing/uploads/' . $userID);
-  $fileName .= "<" . $fileID;
+  echo '<script type=text/javascript /> alert("' . $fileName . '"); </script>';
   echo shell_exec("rm " . $fileName);
 
   echo '<script type="text/javascript"> alert("File Deleted"); window.location.href="settingTEST.php"</script>';
 }
 
 ?>
+
