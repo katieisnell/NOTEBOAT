@@ -42,7 +42,11 @@
       </a>
     </div>
 
-    <div class="one column offset-by-eight">
+<div class="eight columns" style="text-align:center">
+<h1>Note Sharing</h1>
+</div>
+
+    <div class="one column">
       <div class="dropdown">
          <button class="dropbtn">-----</button>
          <div class="dropdown-content">
@@ -60,7 +64,7 @@
     <div class="container">
 
         <div class="row">
-        <div class="ten columns offset-by-two">
+        <div class="ten columns offset-by-three">
         <style>
           table, td
           {

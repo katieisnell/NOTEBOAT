@@ -134,6 +134,53 @@
     confirm_password.onkeyup = validatePassword;
     </script>
 
+  <section class="notes">
+    <div class="container">
+
+        <div class="row">
+        <style>
+          table, td
+          {
+            border: 1px solid black;
+          }
+        </style>
+          <table id="filesTable">
+          </table>
+
+        </div>
+
+    </div>
+  </section>
+
+
+  <script>
+    function createRow(name, module, fileOwner, ownerName)
+    {
+        var nameArray = name.split("<");
+        var fileName = nameArray[0];
+        var table = document.getElementById("filesTable")
+        var row = table.insertRow(0);
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        var cell3 = row.insertCell(2);
+        cell1.innerHTML = "<a href=\"/NOTEBOAT/NotesSharing/uploads/" + fileOwner + "/" + fileName + "\"> " + fileName + "</a>";
+        cell2.innerHTML = module;
+        cell3.innerHTML = ownerName;
+    }
+
+    function addTableHeader()
+    {
+      var table = document.getElementById("filesTable")
+      var row = table.insertRow(0);
+      var cell1 = row.insertCell(0);
+      var cell2 = row.insertCell(1);
+      var cell3 = row.insertCell(2);
+      cell1.innerHTML = "File Name";
+      cell2.innerHTML = "Module";
+      cell3.innerHTML = "Owner";
+    }
+
+  </script>
 </body>
 </html>
 
@@ -213,6 +260,93 @@ if($conn -> connect_error)
 $query = "SELECT * FROM registeredUsers WHERE userID = '$userID'";
 $queryResult = $conn -> query($query);
 
+$notesQuery = "SELECT * FROM Notes WHERE userID = '$userID'";
+$foundFiles = $conn -> query($notesQuery);
+$numOfFiles = mysqli_num_rows($notesResult);
+
+//-------------------------------------------------------------------------
+if ($foundFiles -> num_rows > 0)
+{
+  while($row = $foundFiles->fetch_assoc())
+	{
+    $name = $row["fileName"];
+    $module = $row["fileModuleCode"];
+    $isPublic = $row["filePublic"];
+    $nameArray = explode('<', $name);
+
+    //$nameQuery = "SELECT * FROM registeredUsers WHERE userID = '$fileOwner'";
+    //$foundUser = $conn -> query($nameQuery);
+    //$r = $foundUser->fetch_assoc();
+
+    //$ownerName = $r["prefFirstName"] . " " . $r["prefLastName"];
+    //$ownerFollowingString = $r["followingUsers"];
+
+    //$thisUserQuery = "SELECT followingUsers FROM registeredUsers where userID = '$loggedInUser'";
+    //$foundThisUser = $conn -> query($thisUserQuery);
+    //$thisUser = $foundThisUser->fetch_assoc();
+    //$currentUserFollowingString = $thisUser["followingUsers"];
+
+    //$userArray = explode('-', $currentUserFollowingString);
+    //$viewUserArray = explode('-', $ownerFollowingString);
+
+    //$followingEachOther = FALSE;
+    //$secondFollowFirst = FALSE;
+    //$firstFollowSecond = FALSE;
+    // for($index = 0; $index < count($userArray); $index++)
+    // {
+    //     if($userArray[$index] == $fileOwner)
+    //       $firstFollowSecond = TRUE;
+    // }
+    // for($index = 0; $index < count($viewUserArray); $index++)
+    // {
+    //     if($viewUserArray[$index] == $loggedInUser)
+    //         $secondFollowFirst = TRUE;
+    // }
+    // if($secondFollowFirst && $firstFollowSecond)
+    //   $followingEachOther = TRUE;
+
+    // if($searchTerms !== "")
+    // {
+    //   $searchTermsArray = explode(' ', $searchTerms);
+    //   $searchMatch = TRUE;
+    //   for($index = 0; $index < count($searchTermsArray); $index++)
+    //   {
+    //     if($searchMatch)
+    //     {
+    //        if(($searchTermsArray[$index] == $fileOwner) || ($searchTermsArray[$index] == $nameArray[0]) || ($searchTermsArray[$index] == $r["prefFirstName"] ) || ( $searchTermsArray[$index] == $r["prefLastName"]))
+    //          $searchMatch = TRUE;
+    //        else if($searchMatch)
+    //           $searchMatch = FALSE;
+    //     }
+    //   }
+    // }
+    // else
+    //   $searchMatch = TRUE;
+    // if($searchMatch)
+    // {
+    //   if(($isPublic == 1) || $followingEachOther || ($fileOwner == $loggedInUser))
+    //   {
+  	// 	echo '<script type="text/javascript"> createRow(\'' . $name . '\' , \'' . $module . '\' , \'' . $fileOwner . '\' , \'' . $ownerName . '\'); </script>';
+    //       $numberRows = $numberRows + 1;
+    //   }
+    // }
+  }
+
+  if($numberRows > 0)
+  {
+    echo '<script type="text/javascript"> addTableHeader(); </script>';
+  }
+}
+
+
+
+
+
+
+
+
+//-------------------------------------------------------------------------
+
 if ($queryResult -> num_rows == 1)
 {
   $row = $queryResult->fetch_assoc();
@@ -225,7 +359,6 @@ if ($queryResult -> num_rows == 1)
 
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
-  $loggedInUser = $_SESSION['login_user'];
   if (isset($_POST["fname"]))
   {
 
@@ -236,7 +369,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
   }
   else if (isset($_POST['newPword']))
   {
-    $pwordQuery = "SELECT * FROM registeredUsers WHERE `userID` = '$loggedInUser'";
+    $pwordQuery = "SELECT * FROM registeredUsers WHERE `userID` = '$userID'";
     $pwordResult = $conn -> query($pwordQuery);
 
     $row = mysqli_fetch_array($pwordResult);
@@ -247,11 +380,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
       $dbPassword = $row["password"];
       $dbSalt = $row["salt"];
       $hashPassword = hash('sha512', $_POST["currPword"] . $dbSalt);
-
       if ($hashPassword == $dbPassword)
+
       {
         $currentTime = time();
-        $newSalt = hash('sha512', $loggedInUser . $currentTime);
+        $newSalt = hash('sha512', $userID . $currentTime);
 
         // Then create a hashed password with the unique salt, we will have to compare hashed password and salt
         // each time the user logs in

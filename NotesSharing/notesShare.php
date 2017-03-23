@@ -53,7 +53,11 @@
       </a>
     </div>
 
-    <div class="one column offset-by-eight">
+<div class="eight columns" style="text-align:center">
+<h1>Note Sharing</h1>
+</div>
+
+    <div class="one column">
       <div class="dropdown">
          <button class="dropbtn">-----</button>
          <div class="dropdown-content">
@@ -70,13 +74,19 @@
   </div>
   </section>
 
-  <div class="container">
+
+
+  <section class="main">
+    <div class="container">
+
+
     <div class="module-selector">
 
-
     <form action="upload.php" method="post" enctype="multipart/form-data">
+    <div class="row">
 
-      <select name="modules" id="modules">
+      <div class="five columns offset-by-one">
+      <select class="u-full-width"name="modules" id="modules">
         <option value="">Pick a module</option>
         <option value="COMP10120">COMP10120</option>
         <option value="COMP16121">COMP16121</option>
@@ -89,16 +99,23 @@
         <option value="COMP11212">COMP11212</option>
         <option value="COMP18112">COMP18112</option>
       </select>
-    <input type="file" name="file" id="button">
-   <label> <input type= "checkbox" name="public" value="yes" >Public?</label>
-    <input class="button" type="submit" value="Upload" id="button">
+    </div>
 
+<div class="five columns">
+    <input type="file" name="file" id="button">
+</div>
+</div>
+
+<div class="row">
+<div class="two columns offset-by-one">
+   <label> <input type= "checkbox" name="public" value="yes" >Public?</label>
+</div>
+<div class="six columns">
+    <input class="button u-full-width" type="submit" value="Upload" id="button">
+</div>
     </form>
    </div>
-  </div>
 
-  <section class="main">
-    <div class="container">
     <form action="" method="post">
 
     <div class="row">

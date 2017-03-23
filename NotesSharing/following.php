@@ -42,8 +42,11 @@
       </a>
     </div>
 
+<div class="eight columns" style="text-align:center">
+<h1>Note Sharing</h1>
+</div>
 
-    <div class="one column offset-by-eight">
+    <div class="one column">
       <div class="dropdown">
          <button class="dropbtn">-----</button>
          <div class="dropdown-content">
