@@ -449,12 +449,13 @@ var m=0;
       weekNo = activArray[index][4],
       location = activArray[index][5],
       className = activArray[index][6],
-      colour = 'blue';
+      colour="blue";
 
-      for(index=0; index<moduleArray.length; index++){
-        if(moduleArray[index][0]==name)
-          colour = moduleArray[index][3];
+      for(index2=0; index2<moduleArray.length; index2++){
+        if(moduleArray[index2][0]==name)
+          colour = moduleArray[index2][3];
       }
+
       placeClass(name, start, duration, className, weekNo, sem, colour);
 
     }
@@ -551,6 +552,7 @@ var m=0;
     switch(colourIndex){
       default: colourToReturn = "pink";
     }
+    return colourToReturn
   }
 
 
@@ -702,8 +704,9 @@ var m=0;
 
 
 <script type="text/javascript">
-   moduleArray = [["MATH10111", 1, 10]];
-   setModuleColours();
+
+  moduleArray = [["MATH10111", 1, 10]];
+  setModuleColours();
    var jArray =<?php echo json_encode($mandatoryModulesArray); ?>;
    extractClasses(jArray);
    var jArray2 =<?php echo json_encode($userActivitiesArray); ?>;
