@@ -61,8 +61,8 @@ determined before
 
         if ($row['isMandatory'] == 1) {
           array_push($mandatoryModulesArray, array($row['moduleID'], $row['semesterNo'],
-                                                                                          $row['classSemesterNo'], $row['startTime'],
-                                                                                          $row['duration'], $row['weekNo'], $row['location'], $row['className']));
+                                $row['startTime'],
+                                  $row['duration'], $row['weekNo'], $row['location'], $row['className'], $row['classSemesterNo']));
         }
 
       }
@@ -103,11 +103,13 @@ determined before
                                                              WHERE moduleInfo.moduleID='" . $moduleID . "'";
       $resultOptionalDetailsModules = mysqli_query($conn, $sqlOptionalDetailsModules);
 
+      
+
       if (mysqli_num_rows($resultOptionalDetailsModules) > 0) {
         while($row = $resultOptionalDetailsModules->fetch_assoc()) {
 
-          array_push($mandatoryModulesArray, array($moduleID, $row['semesterNo'], $row['classSemesterNo'], $row['startTime'],
-                                                                                          $row['duration'], $row['weekNo'], $row['location'], $row['className']));
+          array_push($mandatoryModulesArray, array($moduleID, $row['semesterNo'], $row['startTime'],
+                                              $row['duration'], $row['weekNo'], $row['location'], $row['className'], $row['classSemesterNo']));
 
         }
       } else {

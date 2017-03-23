@@ -25,7 +25,6 @@
   echo "0 results from find course";
   }
 
-
   $sqlFindMandatoryModules =  "SELECT DISTINCT algorithm1Results.moduleID, moduleInfo.isMandatory,
                                moduleInfo.semesterNo, moduleClasses.classSemesterNo, algorithm1Results.hoursToStudy
                                FROM algorithm1Results
@@ -34,7 +33,6 @@
                                LEFT JOIN courseTimetable on algorithm1Results.moduleID=courseTimetable.moduleID
                                WHERE courseTimetable.courseID='" . $courseID . "' AND courseTimetable.schoolYear='"
                                                                              . $schoolYear . "'";
-
 
   $resultFindMandatoryModules = mysqli_query($conn, $sqlFindMandatoryModules);
 
@@ -54,10 +52,6 @@
   } else {
   echo "0 results from find mandatory modules";
   }
-
-  echo "module study hours array <br>";
-  print_r($moduleStudyHoursArray);
-  echo "<br>";
 
   // Need to find what optional modules the user take by using INNER JOIN
   $sqlUserOptionalModules = "SELECT DISTINCT algorithm1Results.moduleID, moduleInfo.semesterNo,
@@ -79,6 +73,5 @@
   } else {
     echo "0 results from find optional modules";
   }
-
 
 ?>
