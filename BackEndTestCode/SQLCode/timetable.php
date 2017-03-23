@@ -638,7 +638,7 @@ var m=0;
                                                              WHERE moduleInfo.moduleID='" . $moduleID . "'";
       $resultOptionalDetailsModules = mysqli_query($conn, $sqlOptionalDetailsModules);
 
-      
+
 
       if (mysqli_num_rows($resultOptionalDetailsModules) > 0) {
         while($row = $resultOptionalDetailsModules->fetch_assoc()) {
@@ -664,7 +664,7 @@ var m=0;
     if (mysqli_num_rows($resultGetActivities) > 0) {
       while($row = $resultGetActivities->fetch_assoc()) {
 
-          array_push($userActivitiesArray, array($row['activityName'], $row['activityType'],
+          array_push($userActivitiesArray, array($row['activityType'], $row['activityName'],
                                                  $row['startTime'], $row['duration'], $row['colour']));
 
       }
