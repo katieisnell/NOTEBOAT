@@ -54,7 +54,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     else
     {
-     header("location: login.php");
+     header("location: dashboard.html");
     }
   }
   else
@@ -106,7 +106,7 @@ echo '<script type="text/javascript"> alert(\'' . $error . '\'); </script>';
   <div class="row">
 
     <div id ="logo" class="six columns offset-by-three">
-      <a href="login.php">
+      <a href="dashboard.html">
         <img class="u-full-width" src="images/logo2.png">
       </a>
     </div>
@@ -117,7 +117,7 @@ echo '<script type="text/javascript"> alert(\'' . $error . '\'); </script>';
 
   <section class="login">
     <div class="container">
-    <form action="dashboard.html" method="post">
+    <form action="login.php" method="post">
 
     <div class="row">
       <div class="six columns offset-by-three">

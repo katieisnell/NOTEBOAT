@@ -16,10 +16,10 @@ $weekdayEndMin = $_SESSION['wkdayEndMin'];
 $weekendEndHr = $_SESSION['wkendEndHr'];
 $weekendEndMin = $_SESSION['wkendEndMin'];
         
-$weekdayStart = $weekdayStartHr * 60 + $weekdayStartMin;
-$weekdayEnd = $weekdayEndHr * 60 + $weekdayEndMin;
-$weekendStart = $weekendStartHr * 60 + $weekendStartMin;
-$weekendEnd = $weekdayStartHr * 60 + $weekendStartMin;
+$weekdayStart = ($weekdayStartHr * 60 + $weekdayStartMin) /5;
+$weekdayEnd = ($weekdayEndHr * 60 + $weekdayEndMin) / 5;
+$weekendStart = ($weekendStartHr * 60 + $weekendStartMin) / 5;
+$weekendEnd = ($weekdayStartHr * 60 + $weekendStartMin) / 5;
 
       // Query to input hours
       $queryTimes = "UPDATE `registeredUsers` SET `startTimeWeekDay` = '$weekdayStart', `endTimeWeekDay` = '$weekdayEnd', `startTimeWeekEnd` = '$weekendStart',  `endTimeWeekEnd` = '$weekendEnd' WHERE `userID` =  '$userID'";

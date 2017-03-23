@@ -87,7 +87,7 @@
 
   function createRow(name, userID, following, thisUser)
   {
-      var table = document.getElementById("usersTable")
+      var table = document.getElementById("usersTable");
       var row = table.insertRow(0);
       var cell1 = row.insertCell(0);
       var cell2 = row.insertCell(1);
@@ -110,7 +110,7 @@
 
   function addTableHeader()
   {
-  var table = document.getElementById("usersTable")
+  var table = document.getElementById("usersTable");
   var row = table.insertRow(0);
   var cell1 = row.insertCell(0);
   var cell2 = row.insertCell(1);
@@ -171,21 +171,31 @@ if($searchMatch)
 }
 
 }
+ echo "<div class=\"container\">";
+ echo "<div class=\"row\">";
 if($numberRows > 0)
 {
     echo '<script type="text/javascript"> addTableHeader(); </script>';
 }
 else
-  echo '&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; No users match your search! <br> ';
-echo '&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; To filter through users, search for usernames, first names and surnames here:';
+{
+echo 'No users found. <br>';
+}
+echo 'To filter through users, search for usernames, first names and surnames here:';
+echo "</div>";
+echo "</div>";
 ?>
 
 <section class="search">
 <form action='followingSearch.php' method='post'>
+ <div class="container">
+    <div class="row">
       <div class="four columns offset-by-one">
         <input class="u-full-width" type="text" placeholder="Search " name="search">
         <input class="button" type="submit" value="Go" id="button">
       </div>
+   </div>
+  </div>
 </form>
 </section>
 

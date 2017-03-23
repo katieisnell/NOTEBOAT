@@ -165,7 +165,7 @@ if($numberRows > 0)
 }
 else
   echo 'No users!  ';
-echo '&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; To filter through users, search for usernames, first names and surnames here:';
+echo 'To filter through users, search for usernames, first names and surnames here:';
 ?>
 
 </div>

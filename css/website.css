@@ -1,14 +1,17 @@
 /*footer navigation bar css*/
+body{
+  background-color: #f4f9f9;
+}
 
 section.footer ul {
   height: 45px;
   list-style-type: none;
   margin-top:15px;
-  background-color: white;
+
 }
 
 section.footer li {
-  background-color: white;
+
   height: 45px;
   display: inline-block;
   text-align: center;
@@ -24,6 +27,7 @@ section.footer a{
 
 section.footer li:hover {
   text-decoration: underline;
+  color:#1eaedb;
 }
 
 section.footer li a{
