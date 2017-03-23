@@ -3,8 +3,8 @@
 	session_start();
  	if (!isset($_SESSION['login_user']))
  	{
-		die();
-    		header("location: login.php");
+    	header("location: login.php");
+		die(
  	}
         require_once('/home/pi/NOTEBOAT/config.inc.php');
        
