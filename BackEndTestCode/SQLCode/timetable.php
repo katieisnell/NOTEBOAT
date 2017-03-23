@@ -246,7 +246,9 @@ arrayToAdd = [],
 arrayToRemove = [],
 allActivities = [],
 divsToRemove = [],
-i, x, y, day, time;
+moduleArray = [],
+i, x, y, day, time,
+doneQuestionnaire = true;
 var m=0;
 
 
@@ -416,7 +418,7 @@ var m=0;
 
   }
 
-  function placeClass(name, startTime, duration, type, weekNo, sem) {
+  function placeClass(name, startTime, duration, type, weekNo, sem, colour) {
 
 
     dayX = Math.floor(startTime/288)+1;
@@ -432,6 +434,7 @@ var m=0;
     document.getElementById('unmovableBox'+m).style.left=((gridWidth*dayX +1)+'px');
     document.getElementById('unmovableBox'+m).style.minHeight=(((gridHeight)/12) *duration -2 +'px');
     document.getElementById('unmovableBox'+m).style.minWidth=((gridWidth-2)+'px');
+    $('#unmovableBox'+m ).css('background-color', colour);
 
     m++;
   }
@@ -445,9 +448,14 @@ var m=0;
       duration = activArray[index][3],
       weekNo = activArray[index][4],
       location = activArray[index][5],
-      className = activArray[index][6];
+      className = activArray[index][6],
+      colour = 'blue';
 
-      placeClass(name, start, duration, className, weekNo, sem);
+      for(index=0; index<moduleArray.length; index++){
+        if(moduleArray[index][0]==name)
+          colour = moduleArray[index][3];
+      }
+      placeClass(name, start, duration, className, weekNo, sem, colour);
 
     }
   }
@@ -521,7 +529,6 @@ var m=0;
   }
 
 
-
   function passArray() {
 
     movedActivities();
@@ -531,7 +538,20 @@ var m=0;
     $('#form').submit();
   }
 
+  function setModuleColours(){
+    var colourIndex = 0;
+    for(index=0; index<moduleArray.length; index++){
+      moduleArray[index].push(getColour(colourIndex));
+      colourIndex = (colourIndex+1)%9;
+    }
+  }
 
+  function getColour(colourIndex){
+    var colourToReturn;
+    switch(colourIndex){
+      default: colourToReturn = "pink";
+    }
+  }
 
 
   $(document).ready(function() {
@@ -682,9 +702,13 @@ var m=0;
 
 
 <script type="text/javascript">
+   moduleArray = [["MATH10111", 1, 10]];
+   setModuleColours();
    var jArray =<?php echo json_encode($mandatoryModulesArray); ?>;
    extractClasses(jArray);
    var jArray2 =<?php echo json_encode($userActivitiesArray); ?>;
    extractActivities(jArray2);
    $("#timetableMeat").scrollTop(8*gridHeight);
+   //shit to see if they have the quesstionaire done
+
   </script>
