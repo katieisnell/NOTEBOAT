@@ -19,9 +19,9 @@
 
   <!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/skeleton.css">
-  <link rel="stylesheet" href="css/website.css">
+  <link rel="stylesheet" href="../css/normalize.css">
+  <link rel="stylesheet" href="../css/skeleton.css">
+  <link rel="stylesheet" href="../css/website.css">
 
   <!-- Favicon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -62,30 +62,25 @@
     <div class="container">
 
         <div class="row">
-        <div class="ten columns offset-by-three">
+        <div class="ten columns offset-by-two">
         <style>
           table, td
           {
             border: 1px solid black;
           }
         </style>
-         </div>
-        </div>
-        </section>
-
-
-
           <table id="usersTable">
 </table>
   </div>
   </div>
+</div>
   </section>
 
 
 <section class="idk">
 <div class = "container">
 <div class="row">
-<div class="twelve columns">
+<div class="nine columns offset-by-two">
 <script>
   function followingArray(followingString)
   {
@@ -174,16 +169,19 @@ echo 'To filter through users, search for usernames, first names and surnames he
 </section>
 
 <section class="search">
-<form action='followingSearch.php' method='post'>
     <div class="container">
+<form action='followingSearch.php' method='post'>
+
 <div class="row">
-      <div class="four columns offset-by-one">
-        <input class="u-full-width" type="text" placeholder="Search " name="search">
-        <input class="button" type="submit" value="Go" id="button">
+      <div class="nine columns offset-by-two" style="text-align:center">
+        <input class="u-full-width" type="text" placeholder="Search " name="search"> 
+
+        <input class="button" type="submit" value="Go" id="button" >
       </div>
 </div>
-</div>
+
 </form>
+</div>
 </section>
 
 
