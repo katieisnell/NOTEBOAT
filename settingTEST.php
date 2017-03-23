@@ -42,13 +42,13 @@
 </style>
 
 <body>
-  <div> Personal Information 
+  <div> Personal Information
     <form id="editButt" name="editButton" method="post" action="">
         <div class="four columns offset-by-one">
           <label>User ID:</label>
           <input id="userID" class="u-full-width" type="text" name="userID" readonly>
         </div>
-        
+
         <div class="four columns offset-by-one">
           <label>First Name:</label>
           <input id="fname" class="u-full-width" type="text" name="fname" readonly>
@@ -56,7 +56,7 @@
 
         <div class="four columns offset-by-one">
           <label>Last Name:</label>
-          <input id="lname" class="u-full-width" type="label" name="lname" readonly>
+          <input id="lname" class="u-full-width" type="text" name="lname" readonly>
         </div>
 
         <div class="four columns offset-by-one">
@@ -64,64 +64,90 @@
           <input id="email" class="u-full-width" type="text" name="email" readonly>
         </div>
 
-        <div class="four columns offset-by-one">
-          <label>Travel Time</label>
-          <input id="travelTime" class="u-full-width" type="text" placeholder="N/A" name="travelTime" readonly>
-        </div>
-
         <div class="row">
           <div class="six columns offset-by-three" data-role="main">
-          <a href="#myPopup" data-rel="popup" class="u-full-width">EDITPOP</a>
           <button id="editButton"  class="u-full-width" type="submit" style="margin-top:20px;">Edit Details</button>
           </div>
-        </div>  
+        </div>
     </form>
 
+    <button id="changePword">CHANGE PASSWORD</button>
 
-    
+    <div id="passwordPopup" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h3>CHANGE PASSWORD</h3>
+        <form name="changePassword" method="post" action="">
+          <label for="oldPword" class="ui-hidden-accessible">Current Password:</label>
+          <input type="password" name="currPword" id="cpwd" placeholder="Password" required>
+          <label for="newPword" class="ui-hidden-accessible">New Password:</label>
+          <input type="password" name="newPword" id="npwd" placeholder="New password" required>
+          <label for="newCPword" class="ui-hidden-accessible">Confirm New Password:</label>
+          <input type="password" name="newCPword" id="nCpwd" placeholder="Confirm New password" required>
+        </form>
+      </div>
+    </div>
+
     <div id="myModal" class="modal">
       <!-- Modal content -->
       <div class="modal-content">
         <span class="close">&times;</span>
-        <p>Some text in the Modal..</p>
-        <form name="saveChanges" method="get" action="">
-          <div class="pop-up-content">
-            <h3>EDIT DETAILS</h3>
-            <span class="close">&times;</span>
+        <h3>EDIT DETAILS</h3>
+        <form name="saveChanges" method="post" action="">
             <label for="usrnm" class="ui-hidden-accessible">First Name:</label>
-            <input type="text" name="ufname" id="usrnm" placeholder="First Name">
+            <input type="text" name="ufname" id="newfname" placeholder="First Name" required>
             <label for="ln" class="ui-hidden-accessible">Last Name:</label>
-            <input type="text" name="ulname" id="pswd" placeholder="Last Name">
-          
+            <input type="text" name="ulname" id="newlname" placeholder="Last Name" required>
+            <label for="ln" class="ui-hidden-accessible">Email:</label>
+            <input type="text" name="uemail" id="newemail" placeholder="" required>
             <input type="submit" data-inline="true" value="SAVE">
-          </div>
-        </form> 
+        </form>
       </div>
-    
+
     </div>
 
     <button id="mybtn">OPEN POP UP</button>
-    <script> 
+
+    <script>
+
     var popup = document.getElementById('myModal');
 
     var btn = document.getElementById('mybtn');
 
     var span = document.getElementsByClassName("close")[0];
+
+    var popup1 = document.getElementById('passwordPopup');
+
+    var btn1 = document.getElementById('changePword');
+
+    var span1 = document.getElementsByClassName("close")[0];
+    alert("YO");
+    // var password = document.getElementById("npwd")
+    //   , confirm_password = document.getElementById("nCpwd");
+    //
+    // function validatePassword(){
+    //   if(password.value != confirm_password.value) {
+    //     confirm_password.setCustomValidity("Passwords Don't Match");
+    //   } else {
+    //     confirm_password.setCustomValidity('');
+    //   }
+    // }
+    //
+    // password.onchange = validatePassword;
+    // confirm_password.onkeyup = validatePassword;
+
     </script>
-      <!-- <div class="row">
-        <div class="six columns offset-by-three">
-        <input name="save" type="hidden">
-        <button id="saveButton" class="u-full-width" type="submit" style="margin-top:20px;" disabled="disabled" form="editButt">Save Changes</button>
-        </div>
-      </div>  -->
-  
+
 </body>
 </html>
 
  <script>
 
-
-  btn.onclick = function() {
+  btn.onclick = function(){
+    var fname = document.getElementById('fname').value;
+    var lname = document.getElementById('lname').value;
+    var email = document.getElementById('email').value;
+    //fillPersonalDetailsPopup(userID, fname, lname, email, travelTime);
     popup.style.display = "block";
   }
 
@@ -134,27 +160,35 @@
       popup.style.display = "none";
     }
   }
-    
+
+
+  function fillPersonalDetailsPopup(fname, lname, email, travelTime)
+  {
+    //alert("in pop up");
+    document.getElementById("ufname").value = fname;
+    document.getElementById("ulname").value = lname;
+    document.getElementById("uemail").value = email;
+  }
+
   function fillPersonalDetails(userID, fname, lname, email, travelTime)
   {
     document.getElementById("userID").value = userID;
     document.getElementById("fname").value = fname;
     document.getElementById("lname").value = lname;
     document.getElementById("email").value = email;
-    document.getElementById("travelTime").value = travelTime;
   }
 
-  function toggleEnable()
-  {
-    document.getElementById("fname").readOnly = true ? false : true;
-    document.getElementById("lname").readOnly = true ? false : true;
-    document.getElementById("email").readOnly = true ? false : true;
-    document.getElementById("travelTime").readOnly = true ? false : true;
-    document.getElementById("editButton").disabled = true ? false : true;
-    document.getElementById("saveButton").disabled = true ? false: true;
-  }
-  
-</script> 
+  // function toggleEnable()
+  // {
+  //   document.getElementById("fname").readOnly = true ? false : true;
+  //   document.getElementById("lname").readOnly = true ? false : true;
+  //   document.getElementById("email").readOnly = true ? false : true;
+  //   document.getElementById("travelTime").readOnly = true ? false : true;
+  //   document.getElementById("editButton").disabled = true ? false : true;
+  //   document.getElementById("saveButton").disabled = true ? false: true;
+  // }
+
+</script>
 
 <?php
 session_start();
@@ -178,54 +212,54 @@ if ($queryResult -> num_rows == 1)
   $firstName = $row["prefFirstName"];
   $lastName = $row["prefLastName"];
   $email = $row["prefEmailAddress"];
-  $travelTime = $row["travelTime"];
 
-  echo '<script type="text/javascript"> fillPersonalDetails(\'' . $userID . '\' , \'' . $firstName . '\' , \'' . $lastName . '\' , \'' . $email . '\' , \'' . $travelTime . '\');</script>';
+  echo '<script type="text/javascript"> fillPersonalDetails(\'' . $userID . '\' , \'' . $firstName . '\' , \'' . $lastName . '\' , \'' . $email . '\');</script>';
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
   if (isset($_POST["fname"]))
   {
-    echo "POSR";
-    editDetails();
-  
+
   }
-  else if (isset($_POST["save"]))
+  else if (isset($_POST["ufname"]))
   {
-    echo "IN SAVE!";
-    saveChanges();
+    echo "UPDATE SHIZ MOFO!";
+    echo  $_SESSION['login_user'];
+    echo  $_POST["ufname"];
+    echo  $_POST["ulname"];
+    echo  $_POST["uemail"];
+    saveChanges($_POST["ufname"], $_POST["ulname"], $_POST["uemail"]);
+
   }
+
 }
+// function editDetails()
+// {
+//   //echo '<script type="text/javascript"> toggleEnable();</script>';
+// }
 
-function editDetails()
+function saveChanges($fname, $lname, $email)
 {
-  echo '<script type="text/javascript"> toggleEnable();</script>';
-}
-
-function saveChanges()
-{
-  echo '<script type="text/javascript"> toggleEnable(); </script>';
-  $userID = $_POST["userID"];
-  $newfName = $_POST["fname"];
-  $newlName = $_POST["lname"];
-  $newEmail = $_POST["email"];
-  $newTravelTime = $_POST["travelTime"];
-
+  //echo '<script type="text/javascript"> toggleEnable(); </script>';
+  $userID = $_SESSION['login_user'];
+  $newfName = $_POST["ufname"];
+  $newlName = $_POST["ulname"];
+  $newEmail = $_POST["uemail"];
 
   require("/home/pi/NOTEBOAT/config.inc.php");
   $conn = new mysqli($database_host, $database_user, $database_pass, $database_name);
-  
+
   if($conn -> connect_error)
   {
      die('Connect Error ('.$conn -> connect_errno.')'.$conn -> connect_error);
   }
-  
-  $insertQuery = "UPDATE registeredUsers SET `prefFirstName`='$newfName', `prefLastName`='$newlName' , `prefEmailAddress`='$newEmail' , `travelTime`='$newTravelTime' WHERE userID = '$userID'";
+
+  $insertQuery = "UPDATE registeredUsers SET `prefFirstName`='$newfName', `prefLastName`='$newlName' , `prefEmailAddress`='$newEmail' WHERE userID = '$userID'";
   $result = $conn -> query($insertQuery);
-  
+
   echo '<script type=text/javascript /> alert("UPDATED INFO!"); </script>';
 }
 
-
 ?>
+

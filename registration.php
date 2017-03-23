@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 
 <?php 
+function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+  }
   if ($_SERVER["REQUEST_METHOD"] == "POST")
   {
     require("/home/pi/NOTEBOAT/config.inc.php");
@@ -52,6 +58,11 @@
       // Then create a hashed password with the unique salt, we will have to compare hashed password and salt
       // each time the user logs in
       $hashPassword = hash('sha512', $password . $salt);
+
+$username = test_input($username);
+$fname = test_input($fname);
+$lname = test_input($lname);
+$email = test_input($email);
 
       $insertQuery = "INSERT INTO registeredUsers (`userID`, `prefFirstName`, `prefLastName`, `prefEmailAddress`, `courseID` , `schoolYear` , `password`, `salt`, `isVerified`) VALUES ('$username', '$fname', '$lname', '$email', 'cm', '1' , '$hashPassword', '$salt', '1')";
 	  $insertAllStud = "UPDATE allStudents SET `registered` =  '1' WHERE `userID` = '$username'";
@@ -114,7 +125,7 @@ echo '<script type=text/javascript > alert("You have now boarded the NoteBoat! C
   <div class="row">
 
     <div id ="logo" class="six columns offset-by-three">
-      <a href="dashboard.html">
+      <a href="login.php">
         <img class="u-full-width" src="images/logo2.png">
       </a>
     </div>
@@ -123,10 +134,13 @@ echo '<script type=text/javascript > alert("You have now boarded the NoteBoat! C
   </div>
   </section>
 
-  <h1>Create an account</h1>
+ 
 <section class="login">
+ 
   <div class="container">
-
+<div class="row">
+<h1 style="text-align: center">Create an account</h1>
+</div>
   <form action="" method="post">
 
   <div class="row">

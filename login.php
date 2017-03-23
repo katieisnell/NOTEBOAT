@@ -32,8 +32,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $dbSalt = $row["salt"];
     
     $hashPassword = hash('sha512', $inputPassword . $dbSalt);
-
-    echo "Input: ". $inputPassword . "<br> dbPassword: " . $dbPassword .  "<br> hashPwords: $hashPassword"; 
      
     if ($hashPassword == $dbPassword)
     {
@@ -45,15 +43,26 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   {
      //session_register("myusername");
      $_SESSION['login_user'] = $inputUsername;
-     
+
+    $setUpQuery = "SELECT userID FROM modulesEnrolled WHERE userID = '$inputUsername'";
+    $foundUsers = $conn -> query($setUpQuery);
+    $thisUser = $foundUsers -> fetch_assoc();
+
+    if($thisUser['userID'] == "")
+    {  
+      header("location: startSetUp.php");
+    }
+    else
+    {
      header("location: dashboard.html");
+    }
   }
   else
   {
     $error = "Your Login Name or Password is invalid";
   }
+echo '<script type="text/javascript"> alert(\'' . $error . '\'); </script>';
 }
-echo $error;
 ?>
 <html>
 <html lang="en">
