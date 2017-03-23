@@ -97,7 +97,7 @@ echo $error;
   <div class="row">
 
     <div id ="logo" class="six columns offset-by-three">
-      <a href="index.html">
+      <a href="dashboard.html">
         <img class="u-full-width" src="images/logo2.png">
       </a>
     </div>
@@ -147,9 +147,9 @@ echo $error;
     <div id="navigation" class="twelve columns">
       <nav>
       <ul>
-        <li><a href="#about">About</a></li>
-        <li><a href="#login">Contact Us</a></li>
-        <li><a href="#register">Terms &amp; Conditions</a></li>
+        <li><a href="/NOTEBOAT/about.html">About</a></li>
+        <li><a href="/NOTEBOAT/contact.html">Contact Us</a></li>
+        <li><a href="/NOTEBOAT/termsAndConditions.html">Terms &amp; Conditions</a></li>
       </ul>
     </nav>
     </div>

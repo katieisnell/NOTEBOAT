@@ -47,83 +47,86 @@
     {
       // Use the current time for our unique salt for each user
       $currentTime = time();
-echo "time mofo: " . $currentTime . "<br>";
       $salt = hash('sha512', $username . $currentTime);
-	  echo $salt . "<br>";
      
       // Then create a hashed password with the unique salt, we will have to compare hashed password and salt
       // each time the user logs in
       $hashPassword = hash('sha512', $password . $salt);
 
       $insertQuery = "INSERT INTO registeredUsers (`userID`, `prefFirstName`, `prefLastName`, `prefEmailAddress`, `courseID` , `schoolYear` , `password`, `salt`, `isVerified`) VALUES ('$username', '$fname', '$lname', '$email', 'cm', '1' , '$hashPassword', '$salt', '1')";
-
+	  $insertAllStud = "UPDATE allStudents SET `registered` =  '1' WHERE `userID` = '$username'";
+	  $addReg = $conn -> query($insertAllStud); 
       $insertSuccess = $conn -> query($insertQuery);
-      echo $insertSuccess;
-      echo "You have now boarded the NoteBoat!";
+echo '<script type=text/javascript > alert("You have now boarded the NoteBoat! Click OK to log in and set up your account."); window.location.href="login.php";</script>';
     }
     else if ($countFound == 1 && $countReg == 1)
     {
-      echo "Bruh you already registered!";
+      echo '<script type=text/javascript > alert("You already have an account! Click OK to log in."); window.location.href="login.php";</script>';
     }
     else if ($countFound == 0)
     {
-      echo "You in the wrong territory bruh!";
+      echo '<script type=text/javascript > alert("You are not registered as a student! Click OK for more information on how to contact us about this."); window.location.href="contact.html";</script>';
+
+
     }
   }
   
 ?>
-
+<html>
 <html lang="en">
 <head>
 
-<!-- Basic Page Needs
-–––––––––––––––––––––––––––––––––––––––––––––––––– -->
-<meta charset="utf-8">
-<title>Registration </title>
-<meta name="description" content="">
-<meta name="author" content="">
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Note Boat</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-<!-- Mobile Specific Metas
-–––––––––––––––––––––––––––––––––––––––––––––––––– -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- FONT
-–––––––––––––––––––––––––––––––––––––––––––––––––– -->
-<link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
 
-<!-- CSS
-–––––––––––––––––––––––––––––––––––––––––––––––––– -->
-<link rel="stylesheet" href="css/normalize.css">
-<link rel="stylesheet" href="css/skeleton.css">
-<link rel="stylesheet" href="css/website.css">
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+  <link rel="stylesheet" href="css/website.css">
 
-<!-- Favicon
-–––––––––––––––––––––––––––––––––––––––––––––––––– -->
-<link rel="icon" type="image/png" href="images/boat.png">
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/boat.png">
 
 </head>
 <body>
 
-<!-- Primary Page Layout
-–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 
 <div class="container">
 
-<section class="navigation">
-<div class="container">
-<div class="row">
-  <div id ="logo" class="three columns">
-    <a href="index.html">
-      <img class="u-full-width" src="images/logo2.png">
-    </a>
+  <section class="header">
+  <div class="container">
+  <div class="row">
+
+    <div id ="logo" class="six columns offset-by-three">
+      <a href="dashboard.html">
+        <img class="u-full-width" src="images/logo2.png">
+      </a>
+    </div>
+
   </div>
-</div>
-</div>
-</section>
+  </div>
+  </section>
 
+  <h1>Create an account</h1>
 <section class="login">
   <div class="container">
-  <h4>Create an account</h4>
+
   <form action="" method="post">
 
   <div class="row">
@@ -176,26 +179,28 @@ echo "time mofo: " . $currentTime . "<br>";
 </div>
 </section>
 
-<section class="footer">
-<div class="container">
-<div class="row">
-  <div class="one column">One1</div>
-  <div class="one column">One2</div>
-  <div class="one column">One3</div>
-  <div class="one column">One4</div>
-  <div class="one column">One5</div>
-  <div class="one column">One6</div>
-  <div class="one column">One7</div>
-  <div class="one column">One8</div>
-  <div class="one column">One9</div>
-  <div class="one column">One10</div>
-  <div class="one column">One11</div>
-  <div class="one column">One12</div>
-</div>
-</div>
-</section>
+  <section class="footer">
+  <div class="container">
+  <div class="row">
+    <div id="navigation" class="twelve columns">
+      <nav>
+      <ul>
+        <li><a href="/NOTEBOAT/about.html">About</a></li>
+        <li><a href="/NOTEBOAT/contact.html">Contact Us</a></li>
+        <li><a href="/NOTEBOAT/termsAndConditions.html">Terms &amp; Conditions</a></li>
+      </ul>
+    </nav>
+    </div>
+  </div>
+  </div>
+  </section>
 
 </div>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>
 
 <script type="text/javascript">
    function EnableDisableTextBox(chkEmail) {

@@ -1,3 +1,5 @@
+
+
 <?php
 session_start();
 if($_SERVER["REQUEST_METHOD"] == "POST")
@@ -29,9 +31,13 @@ else
     mkdir("uploads/" . $loggedInUser, 0777);
   }
   
-  if (file_exists("uploads/$loggedInUser/" . $_FILES["file"]["name"]))
+$nameStoredArray = explode(".",  $_FILES["file"]["name"]);
+$nameStored = $nameStoredArray[0];
+file_exists("uploads/$loggedInUser/" . $nameStored . ".pdf");
+  if (file_exists("uploads/$loggedInUser/" . $nameStored . ".pdf"))
   {
     $file_result .= "A file with the same name exists. Please choose a new name";
+
   }//if
   else if ($_FILES["file"]["type"] === 'application/pdf')
   {
@@ -89,4 +95,6 @@ else
 echo '<script type="text/javascript"> alert(\''. $file_result . '\'); window.location.href="notesShare.php"; </script>';
 }
 ?>
+
+
 
