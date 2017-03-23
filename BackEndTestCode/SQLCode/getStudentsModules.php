@@ -1,3 +1,4 @@
+<html>
 <?php
 
   require_once('config.inc.php');
@@ -25,46 +26,48 @@
   echo "0 results from find course";
   }
 
-  $sqlFindMandatoryModules =  "SELECT DISTINCT algorithm1Results.moduleID, moduleInfo.isMandatory,
-                               moduleInfo.semesterNo, moduleClasses.classSemesterNo, algorithm1Results.hoursToStudy
-                               FROM algorithm1Results
-                               LEFT JOIN moduleInfo ON algorithm1Results.moduleID=moduleInfo.moduleID
-                               LEFT JOIN moduleClasses on algorithm1Results.moduleID=moduleClasses.moduleID
-                               LEFT JOIN courseTimetable on algorithm1Results.moduleID=courseTimetable.moduleID
-                               WHERE courseTimetable.courseID='" . $courseID . "' AND courseTimetable.schoolYear='"
-                                                                             . $schoolYear . "'";
-
-  $resultFindMandatoryModules = mysqli_query($conn, $sqlFindMandatoryModules);
-
-  // 2D arrays which store: (moduleID, semesterNo, start time of lec, duration of it, what weekno the lec is on, the location,
-  // and the class name which will be the output to the user of what it is)
+  // $sqlFindMandatoryModulesStudyHours =  "SELECT DISTINCT algorithm1Results.moduleID, moduleInfo.isMandatory,
+  //                              moduleInfo.semesterNo, moduleClasses.classSemesterNo, algorithm1Results.hoursToStudy
+  //                              FROM courseTimetable
+  //                              LEFT JOIN moduleInfo ON courseTimetable.moduleID=moduleInfo.moduleID
+  //                              LEFT JOIN moduleClasses on courseTimetable.moduleID=moduleClasses.moduleID
+  //                              LEFT JOIN algorithm1Results on courseTimetable.moduleID=algorithm1Results.moduleID
+  //                              WHERE courseTimetable.courseID='" . $courseID . "' AND courseTimetable.schoolYear='"
+  //                                                                            . $schoolYear . "'";
+  //
+  // $resultFindMandatoryModulesStudyHours = mysqli_query($conn, $sqlFindMandatoryModulesStudyHours);
+  //
+  // // 2D arrays which store: (moduleID, semesterNo, start time of lec, duration of it, what weekno the lec is on, the location,
+  // // and the class name which will be the output to the user of what it is)
   $moduleStudyHoursArray  = array();
-
-  if (mysqli_num_rows($resultFindMandatoryModules) > 0) {
-    while($row = $resultFindMandatoryModules->fetch_assoc()) {
-
-      if ($row['isMandatory'] == 1) {
-        array_push($moduleStudyHoursArray, array($row['moduleID'], $row['semesterNo'],
-                              $row['hoursToStudy']));
-      }
-
-    }
-  } else {
-  echo "0 results from find mandatory modules";
-  }
+  //
+  // if (mysqli_num_rows($resultFindMandatoryModulesStudyHours) > 0) {
+  //   while($row = $resultFindMandatoryModulesStudyHours->fetch_assoc()) {
+  //
+  //     if ($row['isMandatory'] == 1) {
+  //       array_push($moduleStudyHoursArray, array($row['moduleID'], $row['semesterNo'],
+  //                             $row['hoursToStudy']));
+  //     }
+  //
+  //   }
+  // } else {
+  // echo "0 results from find mandatory modules";
+  // }
 
   // Need to find what optional modules the user take by using INNER JOIN
-  $sqlUserOptionalModules = "SELECT DISTINCT algorithm1Results.moduleID, moduleInfo.semesterNo,
+  $sqlUserOptionalModulesStudyHours = "SELECT DISTINCT algorithm1Results.moduleID, moduleInfo.semesterNo,
                              algorithm1Results.hoursToStudy
-                             FROM algorithm1Results
-                             LEFT JOIN modulesEnrolled ON algorithm1Results.moduleID=modulesEnrolled.moduleID
-                             LEFT JOIN moduleInfo ON algorithm1Results.moduleID=moduleInfo.moduleID
-                             WHERE modulesEnrolled.userID='" . $userID . "' AND moduleInfo.isMandatory=0";
+                             FROM modulesEnrolled
+                             LEFT JOIN algorithm1Results ON modulesEnrolled.moduleID=modulesEnrolled.moduleID
+                             LEFT JOIN moduleInfo ON modulesEnrolled.moduleID=moduleInfo.moduleID
+                             WHERE modulesEnrolled.userID='" . $userID . "'
 
-  $resultUserOptionalModules = mysqli_query($conn, $sqlUserOptionalModules);
+                             AND moduleInfo.isMandatory=0";
 
-  if (mysqli_num_rows($resultUserOptionalModules) > 0) {
-    while($row = $resultUserOptionalModules->fetch_assoc()) {
+  $resultUserOptionalModulesStudyHours = mysqli_query($conn, $sqlUserOptionalModulesStudyHours);
+
+  if (mysqli_num_rows($resultUserOptionalModulesStudyHours) > 0) {
+    while($row = $resultUserOptionalModulesStudyHours->fetch_assoc()) {
 
         array_push($moduleStudyHoursArray,  array($row['moduleID'], $row['semesterNo'],
                               $row['hoursToStudy']));
@@ -74,4 +77,7 @@
     echo "0 results from find optional modules";
   }
 
+  print_r($moduleStudyHoursArray);
+
 ?>
+</html>

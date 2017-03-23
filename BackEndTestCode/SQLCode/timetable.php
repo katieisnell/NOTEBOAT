@@ -1,7 +1,7 @@
 <style type="text/css">
 body {
-  background-color:black;
-  color:pink;
+  background-color:lightblue;
+  color:#fde74c;
   font-family: Signika Negative, Asap, sans-serif;
 }
 
@@ -43,7 +43,7 @@ div.grid{
 .box {
 	text-align: center;
     display: table;
-    overflow:visible;
+    overflow:hidden;
 	font-family: Arial, sans-serif;
 	min-width: 136px;
 	min-height: 59px;
@@ -55,11 +55,16 @@ div.grid{
 	-moz-border-radius: 15px;
 	border-radius: 15px;
 	border:1px solid green;
+  word-wrap: break-word;
+  text-overflow: ellipsis;
 }
-  span {
+span {
   display: table-cell;
   vertical-align: middle;
   font-size: 16px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
 }
 
 
@@ -228,6 +233,10 @@ div.grid{
 
 </div>
 
+<div>
+  <button id="subtractWeek" onclick="subtractWeek()">-</button><span id="weekNo"></span>  <button id="addWeek" onclick="addWeek()">+</button>
+
+</div>
 <script>
 
 var $table = $("#timetableHolder"),
@@ -248,8 +257,14 @@ allActivities = [],
 divsToRemove = [],
 moduleArray = [],
 i, x, y, day, time,
-doneQuestionnaire = true;
-var m=0;
+doneQuestionnaire = true,
+currentWeekNo,
+currentSemester,
+currentWeek,
+classIndex=0;
+
+
+
 
 
 
@@ -356,12 +371,10 @@ var m=0;
     for( index = 0; index<allActivities.length; index++){
         if(allActivities[index][0]==id){
           var dayX = Math.round((left -1)/ (gridWidth));
-          var dayY = Math.round((top -1)/ (gridHeight/12));
-
-
-
+          top = top -1 + parseInt($("#timetableMeat").scrollTop())
+          var dayY = Math.round(top/ (gridHeight/12));
           var newStart = parseInt(288*(dayX-1)) + parseInt(dayY);
-          newStart = Math.floor(newStart);
+
           allActivities[index][6]= newStart;
         }
       }
@@ -409,6 +422,9 @@ var m=0;
     document.getElementById('box'+boxCount).style.left=((gridWidth*dayX +1)+'px');
     document.getElementById('box'+boxCount).style.minHeight=(((gridHeight)/12) *duration -2 +'px');
     document.getElementById('box'+boxCount).style.minWidth=((gridWidth-2)+'px');
+    document.getElementById('box'+boxCount).style.maxHeight=(((gridHeight)/12) *duration -2 +'px');
+    document.getElementById('box'+boxCount).style.maxWidth=((gridWidth-2)+'px');
+    $('#box'+boxCount ).css('background-color', colour);
 
     updateDraggables();
 
@@ -427,28 +443,28 @@ var m=0;
 
     $("<div class='box' id='unmovableBox'  style='left:0px; top:0px; min-height: 162.5; background-color:red;'></div>").appendTo('#timetableMeat');
 
-    $('#unmovableBox').attr('id', 'unmovableBox'+m);
-    $('#unmovableBox'+m ).html('<span> '+name+'<br>'+type+'</span>');
+    $('#unmovableBox').attr('id', 'unmovableBox'+classIndex);
+    $('#unmovableBox'+classIndex ).html('<span> '+name+'<br>'+type+'</span>');
 
-    document.getElementById('unmovableBox'+m).style.top=(((gridHeight/12) *dayY +1 )+'px');
-    document.getElementById('unmovableBox'+m).style.left=((gridWidth*dayX +1)+'px');
-    document.getElementById('unmovableBox'+m).style.minHeight=(((gridHeight)/12) *duration -2 +'px');
-    document.getElementById('unmovableBox'+m).style.minWidth=((gridWidth-2)+'px');
-    $('#unmovableBox'+m ).css('background-color', colour);
+    document.getElementById('unmovableBox'+classIndex).style.top=(((gridHeight/12) *dayY +1 )+'px');
+    document.getElementById('unmovableBox'+classIndex).style.left=((gridWidth*dayX +1)+'px');
+    document.getElementById('unmovableBox'+classIndex).style.minHeight=(((gridHeight)/12) *duration -2 +'px');
+    document.getElementById('unmovableBox'+classIndex).style.minWidth=((gridWidth-2)+'px');
+    $('#unmovableBox'+classIndex ).css('background-color', colour);
 
-    m++;
+    classIndex++;
   }
 
-  function extractClasses(activArray){
-    for (index = 0; index < activArray.length; index++)
+  function extractClasses(){
+    for (index = 0; index < jArray.length; index++)
     {
-      var name = activArray[index][0]  ,
-      sem = activArray[index][1],
-      start = activArray[index][2],
-      duration = activArray[index][3],
-      weekNo = activArray[index][4],
-      location = activArray[index][5],
-      className = activArray[index][6],
+      var name = jArray[index][0]  ,
+      sem = jArray[index][7],
+      start = jArray[index][2],
+      duration = jArray[index][3],
+      weekNo = jArray[index][4],
+      location = jArray[index][5],
+      className = jArray[index][6],
       colour="blue";
 
       for(index2=0; index2<moduleArray.length; index2++){
@@ -456,20 +472,20 @@ var m=0;
           colour = moduleArray[index2][3];
       }
 
-      placeClass(name, start, duration, className, weekNo, sem, colour);
+      if(sem == currentSemester && (weekNo == currentWeekNo || weekNo ==0))
+        placeClass(name, start, duration, className, weekNo, sem, colour);
 
     }
   }
 
-  function extractActivities(activArray){
-    var shizInArray = activArray.length;
-    for (index = 0; index < activArray.length; index++)
+  function extractActivities(){
+    for (index = 0; index < jArray2.length; index++)
     {
-      var name = activArray[index][1]  ,
-      start = activArray[index][2],
-      duration = activArray[index][3],
-      type = activArray[index][0]
-      colour = activArray[index][4];
+      var name = jArray2[index][1]  ,
+      start = jArray2[index][2],
+      duration = jArray2[index][3],
+      type = jArray2[index][0]
+      colour = jArray2[index][4];
 
 
       placeActivity(name, start, duration, type, colour);
@@ -555,6 +571,44 @@ var m=0;
     return colourToReturn
   }
 
+  function getWeekDetails(){
+
+    currentWeekNo = currentWeek%2;
+    if(currentWeekNo == 0)
+      currentWeekNo+=2;
+
+    if(currentWeek<13)
+      currentSemester=1;
+    else
+      currentSemester=2;
+
+      document.getElementById('weekNo').textContent = ""+currentWeek;
+
+  }
+
+  function addWeek(){
+    if(currentWeek!=24){
+      currentWeek++
+      getWeekDetails();
+      clearClasses();
+      extractClasses();
+    }
+  }
+
+  function subtractWeek(){
+    if(currentWeek!=1){
+      currentWeek--
+      getWeekDetails();
+      clearClasses();
+      extractClasses();
+    }
+  }
+
+  function clearClasses(){
+    for(index=0; index<=classIndex; index++)
+      $('#unmovableBox'+index ).remove();
+    classIndex=0;
+  }
 
   $(document).ready(function() {
 
@@ -629,10 +683,10 @@ var m=0;
 
     // Need to find what optional modules the user take by using INNER JOIN
     $sqlUserOptionalModules = "SELECT moduleInfo.moduleID
-                                                     FROM moduleInfo
-                                                     INNER JOIN modulesEnrolled
-                                                     ON moduleInfo.moduleID=modulesEnrolled.moduleID
-                                                     WHERE modulesEnrolled.userID='" . $userID . "' AND moduleInfo.isMandatory=0";
+                               FROM moduleInfo
+                               INNER JOIN modulesEnrolled
+                               ON moduleInfo.moduleID=modulesEnrolled.moduleID
+                               WHERE modulesEnrolled.userID='" . $userID . "' AND moduleInfo.isMandatory=0";
 
     // Store the optionals the user takes
     $userOptionalModulesArray  = array();
@@ -695,7 +749,33 @@ var m=0;
     }
 
 
+    // copied code fro get students modules php so we can get array easier
 
+    $moduleStudyHoursArray  = array();
+    // Need to find what optional modules the user take by using INNER JOIN
+    $sqlUserOptionalModulesStudyHours = "SELECT DISTINCT algorithm1Results.moduleID, moduleInfo.semesterNo,
+                               algorithm1Results.hoursToStudy
+                               FROM modulesEnrolled
+                               LEFT JOIN algorithm1Results ON modulesEnrolled.moduleID=modulesEnrolled.moduleID
+                               LEFT JOIN moduleInfo ON modulesEnrolled.moduleID=moduleInfo.moduleID
+                               WHERE modulesEnrolled.userID='" . $userID . "'
+
+                               AND moduleInfo.isMandatory=0";
+
+    $resultUserOptionalModulesStudyHours = mysqli_query($conn, $sqlUserOptionalModulesStudyHours);
+
+    if (mysqli_num_rows($resultUserOptionalModulesStudyHours) > 0) {
+      while($row = $resultUserOptionalModulesStudyHours->fetch_assoc()) {
+
+          array_push($moduleStudyHoursArray,  array($row['moduleID'], $row['semesterNo'],
+                                $row['hoursToStudy']));
+
+      }
+    } else {
+      echo "0 results from find optional modules";
+    }
+
+    print_r($moduleStudyHoursArray);
 
 
 
@@ -704,14 +784,16 @@ var m=0;
 
 
 <script type="text/javascript">
-
+  currentWeek = 11;
+  getWeekDetails();
   moduleArray = [["MATH10111", 1, 10]];
   setModuleColours();
    var jArray =<?php echo json_encode($mandatoryModulesArray); ?>;
-   extractClasses(jArray);
+   extractClasses();
    var jArray2 =<?php echo json_encode($userActivitiesArray); ?>;
-   extractActivities(jArray2);
+   extractActivities();
    $("#timetableMeat").scrollTop(8*gridHeight);
    //shit to see if they have the quesstionaire done
+   //sql shit
 
   </script>

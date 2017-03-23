@@ -105,4 +105,4 @@ for ($row = 0; $row < count($studentActivitiesToDeleteArray); $row++)
 $conn->close();
   ?>
 
-  <script> window.location="timetable.php" </script> 
+  <script> window.location="timetable.php" </script>

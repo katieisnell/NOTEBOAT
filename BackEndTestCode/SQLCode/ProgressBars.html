@@ -7,8 +7,8 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <style>
   .progressBars{
-  	padding-right:30px; 
-  	padding-left:30px; 
+  	padding-right:30px;
+  	padding-left:30px;
   	margin-left:auto;
   }
   .progress-bar-module1 {background: #1c77c3;}
@@ -126,7 +126,7 @@ function addProgress(Module, duration){
 	var newPercentage = parseInt(currentPercentage) + parseInt(percentageToAdd);
 	$('#math10111ProgressBar').attr('aria-valuenow', newPercentage);
 	$('#math10111ProgressBar').css('width', (newPercentage+"%"));
-	
+
 
 }
 
@@ -137,9 +137,8 @@ function removeProgress(Module, duration){
 	var newPercentage = parseInt(currentPercentage) - parseInt(percentageToAdd);
 	$('#math10111ProgressBar').attr('aria-valuenow', newPercentage);
 	$('#math10111ProgressBar').css('width', (newPercentage+"%"));
-	
+
 
 }
-
 
 </script>
