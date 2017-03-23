@@ -60,9 +60,8 @@
                              FROM modulesEnrolled
                              LEFT JOIN algorithm1Results ON modulesEnrolled.moduleID=modulesEnrolled.moduleID
                              LEFT JOIN moduleInfo ON modulesEnrolled.moduleID=moduleInfo.moduleID
-                             WHERE modulesEnrolled.userID='" . $userID . "'
-
-                             AND moduleInfo.isMandatory=0";
+                             WHERE moduleInfo.isMandatory=0 AND modulesEnrolled.userID='" . $userID . "'";
+                             
 
   $resultUserOptionalModulesStudyHours = mysqli_query($conn, $sqlUserOptionalModulesStudyHours);
 
