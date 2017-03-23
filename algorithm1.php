@@ -2,7 +2,6 @@
     <?php
 		session_start();
         require_once('/home/pi/NOTEBOAT/config.inc.php');
-        // $_SESSION['userID'];
        
         $conn = new mysqli($database_host, $database_user, $database_pass, $database_name);
  
@@ -73,8 +72,8 @@
         $moduleID = $row["moduleID"];
        
         if ($moduleID == "MATH10212") {
-            $willingToWorkMATH10212 = $willingToWork;
             $CL10212 = $confidenceLevel;
+            $willingToWorkMATH10212 = $willingToWork;
         }
         if ($moduleID == "MATH10111") {
             $CL10111 = $confidenceLevel;
@@ -110,7 +109,7 @@
         }
         if ($moduleID == "COMP18112") {
             $CL18112 = $confidenceLevel;
-            $winngToWorkCOMP18112 = $willingToWork;
+            $willingToWorkCOMP18112 = $willingToWork;
         }
        
       } // end of while
@@ -527,5 +526,6 @@
         } // if */
    
          $conn->close();   
+     echo '<script type="text/javascript"> alert("Your account is now set up! Welcome aboard the NoteBoat!"); window.location.href="dashboard.html"; </script>';
     ?>
 </html>

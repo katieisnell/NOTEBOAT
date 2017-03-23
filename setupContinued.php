@@ -19,13 +19,13 @@
 
   <!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="stylesheet" href="../css/normalize.css">
-  <link rel="stylesheet" href="../css/skeleton.css">
-  <link rel="stylesheet" href="../css/website.css">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+  <link rel="stylesheet" href="css/website.css">
 
   <!-- Favicon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="icon" type="image/png" href="../images/boat.png">
+  <link rel="icon" type="image/png" href="images/boat.png">
 
 </head>
     
@@ -43,8 +43,8 @@
   <div class="container">
   <div class="row">
     <div id ="logo" class="six columns offset-by-three">
-      <a href="index.html">
-        <img class="u-full-width" src="../images/logo2.png">
+      <a href="dashboard.html">
+        <img class="u-full-width" src="images/logo2.png">
       </a>
     </div>
   </div>
@@ -76,19 +76,19 @@
     
     <div class="row">
       <div class="one columns offset-by-two">
-        <input type="radio" name="math10111" value="1" checked> 1
+        <input type="radio" name="MATH10111" value="1" checked> 1
       </div>  
       <div class="one columns offset-by-one">
-        <input type="radio" name="math10111" value="2"> 2
+        <input type="radio" name="MATH10111" value="2"> 2
       </div>
       <div class="one columns offset-by-one">
-        <input type="radio" name="math10111" value="3"> 3
+        <input type="radio" name="MATH10111" value="3"> 3
       </div>
       <div class="one columns offset-by-one">
-        <input type="radio" name="math10111" value="4"> 4
+        <input type="radio" name="MATH10111" value="4"> 4
       </div>
       <div class="one columns offset-by-one">
-        <input type="radio" name="math10111" value="5"> 5
+        <input type="radio" name="MATH10111" value="5"> 5
       </div>
     </div>
     
@@ -265,19 +265,19 @@
     
     <div class="row">
       <div class="two columns offset-by-one">
-        <input type="radio" name="math10111" value="1" checked> 1 hour
+        <input type="radio" name="math10111hr" value="1" checked> 1 hour
       </div>  
       <div class="two columns">
-        <input type="radio" name="math10111" value="2"> 2 hours
+        <input type="radio" name="math10111hr" value="2"> 2 hours
       </div>
       <div class="two columns">
-        <input type="radio" name="math10111" value="3"> 3 hours
+        <input type="radio" name="math10111hr" value="3"> 3 hours
       </div>
       <div class="two columns">
-        <input type="radio" name="math10111" value="4"> 4 hours
+        <input type="radio" name="math10111hr" value="4"> 4 hours
       </div>
       <div class="three columns">
-        <input type="radio" name="math10111" value="5plus"> 5 hours or more
+        <input type="radio" name="math10111hr" value="5"> 5 hours or more
       </div>
     </div>
     
@@ -289,19 +289,19 @@
     
     <div class="row">
       <div class="two columns offset-by-one">
-        <input type="radio" name="math10131" value="1" checked> 1 hour
+        <input type="radio" name="math10131hr" value="1" checked> 1 hour
       </div>  
       <div class="two columns">
-        <input type="radio" name="math10131" value="2"> 2 hours
+        <input type="radio" name="math10131hr" value="2"> 2 hours
       </div>
       <div class="two columns">
-        <input type="radio" name="math10131" value="3"> 3 hours
+        <input type="radio" name="math10131hr" value="3"> 3 hours
       </div>
       <div class="two columns">
-        <input type="radio" name="math10131" value="4"> 4 hours
+        <input type="radio" name="math10131hr" value="4"> 4 hours
       </div>
       <div class="three columns">
-        <input type="radio" name="math10131" value="5"> 5 hours or more
+        <input type="radio" name="math10131hr" value="5"> 5 hours or more
       </div>
     </div>
     
@@ -313,19 +313,19 @@
     
     <div class="row">
       <div class="two columns offset-by-one">
-        <input type="radio" name="comp16121" value="1" checked> 1 hour
+        <input type="radio" name="comp16121hr" value="1" checked> 1 hour
       </div>  
       <div class="two columns">
-        <input type="radio" name="comp16121" value="2"> 2 hours
+        <input type="radio" name="comp16121hr" value="2"> 2 hours
       </div>
       <div class="two columns">
-        <input type="radio" name="comp16121" value="3"> 3 hours
+        <input type="radio" name="comp16121hr" value="3"> 3 hours
       </div>
       <div class="two columns">
-        <input type="radio" name="comp16121" value="4"> 4 hours
+        <input type="radio" name="comp16121hr" value="4"> 4 hours
       </div>
       <div class="three columns">
-        <input type="radio" name="comp16121" value="5"> 5 hours or more
+        <input type="radio" name="comp16121hr" value="5"> 5 hours or more
       </div>
     </div>
     
@@ -337,19 +337,19 @@
     
     <div class="row">
       <div class="two columns offset-by-one">
-        <input type="radio" name="comp10120" value="1" checked> 1 hour
+        <input type="radio" name="comp10120hr" value="1" checked> 1 hour
       </div>  
       <div class="two columns">
-        <input type="radio" name="comp10120" value="2"> 2 hours
+        <input type="radio" name="comp10120hr" value="2"> 2 hours
       </div>
       <div class="two columns">
-        <input type="radio" name="comp10120" value="3"> 3 hours
+        <input type="radio" name="comp10120hr" value="3"> 3 hours
       </div>
       <div class="two columns">
-        <input type="radio" name="comp10120" value="4"> 4 hours
+        <input type="radio" name="comp10120hr" value="4"> 4 hours
       </div>
       <div class="three columns">
-        <input type="radio" name="comp10120" value="5"> 5 hours or more
+        <input type="radio" name="comp10120hr" value="5"> 5 hours or more
       </div>
     </div>
         
@@ -485,9 +485,9 @@
       <label>Pick your optional module and your confidence in it:</label>
       <select class="u-full-width" name="semester" >
         <option disabled="true" selected="true">Please select</option>
-        <option value="comp18112">COMP18112 - Fundamentals of Distributed Systems</option>
-        <option value="comp14112">COMP14112 - Fundamentals of Artificial Intelligence</option>
-        <option value="comp11212">COMP11212 - Fundamentals of Computation</option>
+        <option value="COMP18112">COMP18112 - Fundamentals of Distributed Systems</option>
+        <option value="COMP14112">COMP14112 - Fundamentals of Artificial Intelligence</option>
+        <option value="COMP11212">COMP11212 - Fundamentals of Computation</option>
       </select> 
       </div>
     </div>
@@ -601,11 +601,11 @@
      <div class="row">
       <div class="ten columns offset-by-one">
       <label>Pick the optional module your are doing:</label>
-      <select class="u-full-width" name="semester" >
+      <select class="u-full-width" name="semesterDead" >
         <option disabled="true" selected="true">Please select</option>
-        <option value="comp18112">COMP18112 - Fundamentals of Distributed Systems</option>
-        <option value="comp14112">COMP14112 - Fundamentals of Artificial Intelligence</option>
-        <option value="comp11212">COMP11212 - Fundamentals of Computation</option>
+        <option value="COMP18112">COMP18112 - Fundamentals of Distributed Systems</option>
+        <option value="COMP14112">COMP14112 - Fundamentals of Artificial Intelligence</option>
+        <option value="COMP11212">COMP11212 - Fundamentals of Computation</option>
       </select> 
       </div>
     </div>
@@ -627,7 +627,7 @@
     
         <div class="row">
       <div class="ten columns offset-by-one">
-      <label>Please select the amount of hours you are willing to spend working on the following modules: </label>
+      <label>Please select the number of hours you are willing to spend working on the following modules per week: </label>
       </div>
     </div>
     
@@ -639,19 +639,19 @@
     
     <div class="row">
       <div class="two columns offset-by-one">
-        <input type="radio" name="math10212" value="1" checked> 1 hour
+        <input type="radio" name="math10212hr" value="1" checked> 1 hour
       </div>  
       <div class="two columns">
-        <input type="radio" name="math10212" value="2"> 2 hours
+        <input type="radio" name="math10212hr" value="2"> 2 hours
       </div>
       <div class="two columns">
-        <input type="radio" name="math10212" value="3"> 3 hours
+        <input type="radio" name="math10212hr" value="3"> 3 hours
       </div>
       <div class="two columns">
-        <input type="radio" name="math10212" value="4"> 4 hours
+        <input type="radio" name="math10212hr" value="4"> 4 hours
       </div>
       <div class="three columns">
-        <input type="radio" name="math10212" value="5plus"> 5 hours or more
+        <input type="radio" name="math10212hr" value="5"> 5 hours or more
       </div>
     </div>
     
@@ -663,19 +663,19 @@
     
     <div class="row">
       <div class="two columns offset-by-one">
-        <input type="radio" name="math10232" value="1" checked> 1 hour
+        <input type="radio" name="math10232hr" value="1" checked> 1 hour
       </div>  
       <div class="two columns">
-        <input type="radio" name="math10232" value="2"> 2 hours
+        <input type="radio" name="math10232hr" value="2"> 2 hours
       </div>
       <div class="two columns">
-        <input type="radio" name="math10232" value="3"> 3 hours
+        <input type="radio" name="math10232hr" value="3"> 3 hours
       </div>
       <div class="two columns">
-        <input type="radio" name="math10232" value="4"> 4 hours
+        <input type="radio" name="math10232hr" value="4"> 4 hours
       </div>
       <div class="three columns">
-        <input type="radio" name="math10232" value="5"> 5 hours or more
+        <input type="radio" name="math10232hr" value="5"> 5 hours or more
       </div>
     </div>
     
@@ -687,19 +687,19 @@
     
     <div class="row">
       <div class="two columns offset-by-one">
-        <input type="radio" name="comp16212" value="1" checked> 1 hour
+        <input type="radio" name="comp16212hr" value="1" checked> 1 hour
       </div>  
       <div class="two columns">
-        <input type="radio" name="comp16212" value="2"> 2 hours
+        <input type="radio" name="comp16212hr" value="2"> 2 hours
       </div>
       <div class="two columns">
-        <input type="radio" name="comp16212" value="3"> 3 hours
+        <input type="radio" name="comp16212hr" value="3"> 3 hours
       </div>
       <div class="two columns">
-        <input type="radio" name="comp16212" value="4"> 4 hours
+        <input type="radio" name="comp16212hr" value="4"> 4 hours
       </div>
       <div class="three columns">
-        <input type="radio" name="comp16212" value="5"> 5 hours or more
+        <input type="radio" name="comp16212hr" value="5"> 5 hours or more
       </div>
     </div>
     
@@ -711,27 +711,27 @@
     
     <div class="row">
       <div class="two columns offset-by-one">
-        <input type="radio" name="comp10120" value="1" checked> 1 hour
+        <input type="radio" name="comp10120hr" value="1" checked> 1 hour
       </div>  
       <div class="two columns">
-        <input type="radio" name="comp10120" value="2"> 2 hours
+        <input type="radio" name="comp10120hr" value="2"> 2 hours
       </div>
       <div class="two columns">
-        <input type="radio" name="comp10120" value="3"> 3 hours
+        <input type="radio" name="comp10120hr" value="3"> 3 hours
       </div>
       <div class="two columns">
-        <input type="radio" name="comp10120" value="4"> 4 hours
+        <input type="radio" name="comp10120hr" value="4"> 4 hours
       </div>
       <div class="three columns">
-        <input type="radio" name="comp10120" value="5"> 5 hours or more
+        <input type="radio" name="comp10120hr" value="5"> 5 hours or more
       </div>
     </div>
     
 
     <div class="row">
       <div class="ten columns offset-by-one">
-      <label>Pick your optional module and your confidence in it:</label>
-      <select class="u-full-width" name="semester" >
+      <label>Pick your optional module and specify the number of hours you are willing to spend working on it: </label>
+      <select class="u-full-width" name="semesterHR" >
         <option disabled="true" selected="true">Please select</option>
         <option value="comp18112">COMP18112 - Fundamentals of Distributed Systems</option>
         <option value="comp14112">COMP14112 - Fundamentals of Artificial Intelligence</option>
@@ -742,19 +742,19 @@
     
     <div class="row">
       <div class="two columns offset-by-one">
-        <input type="radio" name="optional" value="1" checked> 1 hour
+        <input type="radio" name="optionalhr" value="1" checked> 1 hour
       </div>  
       <div class="two columns">
-        <input type="radio" name="optional" value="2"> 2 hours
+        <input type="radio" name="optionalhr" value="2"> 2 hours
       </div>
       <div class="two columns">
-        <input type="radio" name="optional" value="3"> 3 hours
+        <input type="radio" name="optionalhr" value="3"> 3 hours
       </div> 
       <div class="two columns">
-        <input type="radio" name="optional" value="4"> 4 hours
+        <input type="radio" name="optionalhr" value="4"> 4 hours
       </div>
       <div class="three columns">
-        <input type="radio" name="optional" value="5"> 5 hours or more
+        <input type="radio" name="optionalhr" value="5"> 5 hours or more
       </div>
     </div>
     
@@ -803,7 +803,19 @@ function showDiv(toRemove)
 }
 
 </script>
-<?php 
+<?php
+  session_start();
+  
+  $_SESSION['wkdayStartHr'] = $_POST['wkdayStartHr'];
+  $_SESSION['wkdayStartMin'] = $_POST['wkdayStartMin'];
+  $_SESSION['wkendStartHr'] = $_POST['wkendStartHr'];
+  $_SESSION['wkendStartMin'] = $_POST['wkendStartMin'];
+  $_SESSION['wkdayEndHr'] = $_POST['wkdayEndHr'];
+  $_SESSION['wkdayEndMin'] = $_POST['wkdayEndMin'];
+  $_SESSION['wkendEndHr'] = $_POST['wkendEndHr'];
+  $_SESSION['wkendEndMin'] = $_POST['wkendEndMin'];
+  $_SESSION['semester'] = $_POST["semester"];
+  
   if($_SERVER["REQUEST_METHOD"] == "POST")
   {
     if($_POST["semester"] == "sem1")
@@ -816,4 +828,3 @@ function showDiv(toRemove)
    }
   }
 ?>
-

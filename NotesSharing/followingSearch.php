@@ -176,8 +176,8 @@ if($numberRows > 0)
     echo '<script type="text/javascript"> addTableHeader(); </script>';
 }
 else
-  echo 'No users match your search!  ';
-echo 'To filter through users, search for usernames, first names and surnames here:';
+  echo '&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; No users match your search! <br> ';
+echo '&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; To filter through users, search for usernames, first names and surnames here:';
 ?>
 
 <section class="search">

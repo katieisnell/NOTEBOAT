@@ -62,13 +62,16 @@
     <div class="container">
 
         <div class="row">
+        <div class="ten columns offset-by-three">
         <style>
           table, td
           {
             border: 1px solid black;
           }
         </style>
-        </div></section>
+         </div>
+        </div>
+        </section>
 
 
 
@@ -79,8 +82,10 @@
   </section>
 
 
-
-
+<section class="idk">
+<div class = "container">
+<div class="row">
+<div class="twelve columns">
 <script>
   function followingArray(followingString)
   {
@@ -160,15 +165,24 @@ if($numberRows > 0)
 }
 else
   echo 'No users!  ';
-echo 'To filter through users, search for usernames, first names and surnames here:';
+echo '&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; To filter through users, search for usernames, first names and surnames here:';
 ?>
+
+</div>
+</div>
+</div>
+</section>
 
 <section class="search">
 <form action='followingSearch.php' method='post'>
+    <div class="container">
+<div class="row">
       <div class="four columns offset-by-one">
         <input class="u-full-width" type="text" placeholder="Search " name="search">
         <input class="button" type="submit" value="Go" id="button">
       </div>
+</div>
+</div>
 </form>
 </section>
 
