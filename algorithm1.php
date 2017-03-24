@@ -119,7 +119,7 @@
       } // end of while
      
         // If the month is 6 >, it's semester 1, if it's <7 it's semester two.
-        $whatSemesterIsIt = date("m");
+        $whatSemesterIsIt =  $_SESSION['semester'];
        
         // Scale hours for each module. Already in DB.
         $recommendedMATH10111 = 8;
@@ -135,7 +135,7 @@
        
  
         // Set what semester it is - construct appropriatemodules
-        if ($whatSemesterIsIt > 6)
+        if ($whatSemesterIsIt == "sem1")
         {
             // Construct the modules in this semester 2
             $MATH10111 = new Module("MATH10111", 1, $recommendedMATH10111, $willingToWorkMATH10111);
@@ -269,7 +269,7 @@
  
  
        
-        if ($whatSemesterIsIt < 7)
+        if ($whatSemesterIsIt == "sem2")
         {
             // Construct the modules in this semester 2
             if (isset($CL10212))
