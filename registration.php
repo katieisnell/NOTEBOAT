@@ -75,7 +75,7 @@ echo '<script type=text/javascript > alert("You have now boarded the NoteBoat! C
     }
     else if ($countFound == 0)
     {
-      echo '<script type=text/javascript > alert("You are not registered as a student! Click OK for more information on how to contact us about this."); window.location.href="contact.html";</script>';
+      echo '<script type=text/javascript > alert("You are not registered as a student! Check out the Contact Us page for more information."); </script>';
 
 
     }
@@ -228,10 +228,17 @@ echo '<script type=text/javascript > alert("You have now boarded the NoteBoat! C
 <!--Script to make sure the same password is entered in confirm password fiel -->
 <script>
 var password = document.getElementById("passwordInput")
-  , confirm_password = document.getElementById("confirmPass");
+  , confirm_password = document.getElementById("confirmPass")
+  , regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
+
+
 
 function validatePassword(){
-  if(password.value != confirm_password.value) {
+    var passValue = password.value;
+    if(!regex.test(passValue)){
+      password.setCustomValidity("Password must contain at least 8 characters with 1 number, 1 upper and 1 lower case");
+    }
+    if(password.value != confirm_password.value) {
     confirm_password.setCustomValidity("Passwords Don't Match");
   } else {
     confirm_password.setCustomValidity('');
@@ -245,3 +252,4 @@ confirm_password.onkeyup = validatePassword;
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 </body>
 </html>
+

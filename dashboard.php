@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (!isset($_SESSION['login_user']))
+{
+  header("location: login.php");
+  die();
+}
+?>
 <html lang="en">
 <head>
 
@@ -18,9 +26,9 @@
 
   <!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="stylesheet" href="css/normalize.css">
+  <!-- <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/skeleton.css">
-  <link rel="stylesheet" href="css/website.css">
+  <link rel="stylesheet" href="css/website.css"> -->
 
   <!-- Favicon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -28,7 +36,7 @@
 
   <!-- TIMETABLE CSS ------------------------------------------>
 
-  <style type="text/css">
+<!--  <style type="text/css">
 
 
   #timetableHolder {
@@ -38,7 +46,6 @@
     border:1px solid #164c56;
     padding:0;
     position:relative;
-    /*background-color: #aec6cf;*/
   }
 
 #progressBars{padding:15px;}
@@ -48,8 +55,6 @@
     position: absolute;
     border:1px solid #164c56;
     overflow:visible;
-    /*min-width: 1167px;
-    min-height: 99px;*/
   }
 
 
@@ -58,10 +63,6 @@
     padding:0;
     overflow-x:hidden;
     overflow-y:scroll;
-
-
-
-
   }
   ::-webkit-scrollbar {display:none;}
 
@@ -106,7 +107,7 @@
     word-wrap: break-word;
   }
 
-</style>
+</style>-->
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
@@ -114,6 +115,9 @@
   <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel = "stylesheet">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/skeleton.css">
+    <link rel="stylesheet" href="css/website.css">
 
 
 </head>
@@ -130,7 +134,7 @@
   <div class="row">
 
     <div id ="logo" class="three columns">
-      <a href="dashboard.html">
+      <a href="dashboard.php">
         <img class="u-full-width" src="images/logo2.png">
       </a>
     </div>
@@ -146,7 +150,7 @@
          <a href="#">TimeTable</a>
          <a href="/NOTEBOAT/NotesSharing/notesShare.php">Note Sharing</a>
          <a href="/NOTEBOAT/NotesSharing/following.php">Following</a>
-         <a href="settings.html">Settings</a>
+         <a href="settings.php">Settings</a>
          <a href="logout.php">Logout</a>
          </div>
       </div>
@@ -287,11 +291,16 @@
    
     > Activity Colour*:<br>
               <select name="activityColour" form="makeActivity" class="u-full-width">
-            <option value="#5DFDCB" style="background-color: #5DFDCB;">&nbsp     </option>
-            <option value="#AD7A99" style="background-color: #AD7A99;">    </option>
-            <option value="#558564" style="background-color: #558564;">    </option>
-            <option value="#442B48" style="background-color: #442B48;">    </option>
-            <option value="#F9B9F2" style="background-color: #F9B9F2;">    </option>
+            <option value="#BC3036" style="background-color: #BC3036;">&nbsp     </option>
+            <option value="#DE7275" style="background-color: #DE7275;">    </option>
+            <option value="#C96947" style="background-color: #C96947;">    </option>
+            <option value="#B08D3D" style="background-color: #B08D3D;">    </option>
+            <option value="#789E8A" style="background-color: #789E8A;">    </option>
+            <option value="#7CA066" style="background-color: #7CA066;">    </option>
+            <option value="#517291" style="background-color: #517291;">    </option>
+            <option value="#4290BA" style="background-color: #4290BA;">    </option>
+            <option value="#863A8F" style="background-color: #863A8F;">    </option>
+            <option value="#512A62" style="background-color: #512A62;">    </option>
             </select>
     <input type="submit">
   </form>
@@ -315,196 +324,6 @@
 </div>
 </section>
 
-  <!-- <section class="main">
-    <div class="container">
-    <div class="row">
-      <div class="twelve columns ">
-        <div class="timetable">
-          <div id="timetableHolder">
-            <div id="timetableHeader"style="left:0px; top:0px;">  </div>
-            <div id="timetableMeat"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <div class="row">
-      Week No: 
-      <div class="one column offset-by-eight">
-        <button id="subtractWeek" onclick="subtractWeek()">-</button>
-      </div>
-      <div class="one column offset-by-one">
-        <span id="weekNo"></span> 
-      </div>
-      <div class="one column">
-        <button id="addWeek" onclick="addWeek()">+</button>
-      </div>
-    </div>
-
-      <div id="input">
-        <h3 style="text-align: center">Make Activity</h3>
-        <form id="makeActivity" >
-          <div class="row">
-            <div class="six columns offset-by-three" >
-              Name*:  <input type="text" name="activityName" class="u-full-width">
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="six columns offset-by-three" >
-              Type*:
-              <select name="activityType" form="makeActivity" class="u-full-width">
-              <option value="1">Revision</option>
-              <option value="2">Extra curricular</option>
-              <option value="3">Job</option>
-              <option value="4">Misc</option>
-              </select>
-            </div>
-          </div>
-          
-
-          <div class="row">
-            <div class="six columns offset-by-three">
-              Start day*:
-              <select name="startDay" form="makeActivity" class="u-full-width">
-              <option value="0">Saturday</option>
-              <option value="1">Sunday</option>
-              <option value="2">Monday</option>
-              <option value="3">Tuesday</option>
-              <option value="4">Wednesday</option>
-              <option value="5">Thursday</option>
-              <option value="6">Friday</option>
-              </select>
-            </div>
-          </div>
-          
-          <div class="row">
-            <div class="six columns offset-by-three">
-              Start time*:
-              <select name="startHour", form="makeActivity" >
-              <option value="0">00</option>
-              <option value="1">01</option>
-              <option value="2">02</option>
-              <option value="3">03</option>
-              <option value="4">04</option>
-              <option value="5">05</option>
-              <option value="6">06</option>
-              <option value="7">07</option>
-              <option value="8">08</option>
-              <option value="9">09</option>
-              <option value="10">10</option>
-              <option value="11">11</option>
-              <option value="12">12</option>
-              <option value="13">13</option>
-              <option value="14">14</option>
-              <option value="15">15</option>
-              <option value="16">16</option>
-              <option value="17">17</option>
-              <option value="18">18</option>
-              <option value="19">19</option>
-              <option value="20">20</option>
-              <option value="21">21</option>
-              <option value="22">22</option>
-              <option value="23">23</option>
-              </select> :
-
-              <select name="startMin" form="makeActivity" >
-              <option value="0">00</option>
-              <option value="1">05</option>
-              <option value="2">10</option>
-              <option value="3">15</option>
-              <option value="4">20</option>
-              <option value="5">25</option>
-              <option value="6">30</option>
-              <option value="7">35</option>
-              <option value="8">40</option>
-              <option value="9">45</option>
-              <option value="10">50</option>
-              <option value="11">55</option>
-              </select>
-
-              Length*:
-              <select name="activityLengthHrs" form="makeActivity" >
-              <option value="0">0</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-              <option value="11">11</option>
-              <option value="12">12</option>
-              <option value="13">13</option>
-              <option value="14">14</option>
-              <option value="15">15</option>
-              <option value="16">16</option>
-              <option value="17">17</option>
-              <option value="18">18</option>
-              <option value="19">19</option>
-              <option value="20">20</option>
-              <option value="21">21</option>
-              <option value="22">22</option>
-              <option value="23">23</option>
-              <option value="24">24</option>
-            </select> hours
-
-              <select name="activityLengthMins" form="makeActivity" >
-              <option value="0">0</option>
-              <option value="1">5</option>
-              <option value="2">10</option>
-              <option value="3">15</option>
-              <option value="4">20</option>
-              <option value="5">25</option>
-              <option value="6">30</option>
-              <option value="7">35</option>
-              <option value="8">40</option>
-              <option value="9">45</option>
-              <option value="10">50</option>
-              <option value="11">55</option>
-            </select> minutes
-        </div>
-      </div>
-
-        <div class="row">
-          <div class="six columns offset-by-three">
-            Colour*:
-            <select name="activityColour" form="makeActivity" class="u-full-width">
-            <option value="#5DFDCB" style="background-color: #5DFDCB;">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp    </option>
-            <option value="#AD7A99" style="background-color: #AD7A99;">    </option>
-            <option value="#558564" style="background-color: #558564;">    </option>
-            <option value="#442B48" style="background-color: #442B48;">    </option>
-            <option value="#F9B9F2" style="background-color: #F9B9F2;">    </option>
-            </select>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="six columns offset-by-three">
-            <input type="submit" class="u-full-width">
-          </div>
-        </div>
-          
-      </form>
-      
-      <div class="row">
-      <div class="six columns offset-by-three">
-        <form id="form" action="insertNewActivityWithButton.php" method="post">
-        <input type="hidden" name="array" id="array">
-        <input type="hidden" name="arrayRemoving" id="arrayRemoving">
-        </form>
-        <button id="saveChanges" style="display:none;" class="u-full-width">Save Changes</button>
-      </div>
-    </div>
-  </div>
-
-  </div >
-  </div>
-  </section> -->
-
   <section class="footer">
   <div class="container">
   <div class="row">
@@ -522,7 +341,6 @@
   </section>
 
 </div>
-
 
 <script>
 
@@ -906,11 +724,11 @@ classIndex=0;
   function getColour(colourIndex){
     var colourToReturn;
     switch(colourIndex){
-      case 1 : colourToReturn = "#8783D1"; break;
-      case 2 : colourToReturn = "#92B9BD"; break;
-      case 3 : colourToReturn = "#942911"; break;
-      case 4 : colourToReturn = "#9D8420"; break;
-      case 5 : colourToReturn = "#593837"; break;
+      case 1 : colourToReturn = "#F0686D"; break;
+      case 2 : colourToReturn = "#FFC748"; break;
+      case 3 : colourToReturn = "#ADD296"; break;
+      case 4 : colourToReturn = "#7CB8DA"; break;
+      case 5 : colourToReturn = "#BDAEC6"; break;
       default: colourToReturn = "#8783D1";
     }
     return colourToReturn
@@ -1061,12 +879,7 @@ classIndex=0;
   </script>
 
   <?php
-	session_start();
-  if (!isset($_SESSION['login_user']))
-  {
-    header("location: login.php");
-	die();
-  }
+	
     require_once('config.inc.php');
     $conn = mysqli_connect($database_host, $database_user, $database_pass, $database_name);
     // Check connection

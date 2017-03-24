@@ -91,3 +91,71 @@ section.notes div.container {
 section.footer{
     text-align: center;
 }
+
+  #timetableHolder {
+    height:700px;
+    width:100%;
+    overflow:visible;
+    border:1px solid  #d7d7d7;
+    padding:0;
+    position:relative;
+  }
+
+#progressBars{padding:15px;}
+
+
+  #timetableHeader {
+    position: absolute;
+    border:1px solid #d7d7d7;
+    overflow:visible;
+  }
+
+
+  #timetableMeat {
+    position: absolute;
+    padding:0;
+    overflow-x:hidden;
+    overflow-y:scroll;
+  }
+  ::-webkit-scrollbar {display:none;}
+
+  #makeActivity{
+    display: inline;
+  }
+
+  div.grid{
+      position: absolute;
+      border:1px solid #d7d7d7;
+  	color:#164c56;
+  	font-size: 15px;
+    font-weight: bold;
+
+    }
+
+  .box {
+  	text-align: center;
+      display: table;
+      overflow:hidden;
+    color:white;
+  	min-width: 136px;
+  	min-height: 59px;
+    background-color:green;
+
+  	position: absolute;
+  	top:0;
+  	-webkit-border-radius: 7px;
+  	-moz-border-radius: 7px;
+  	border-radius: 7px;
+  	border:2px solid lightgrey;
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+  }
+  span {
+    display: table-cell;
+    white-space: nowrap;
+    vertical-align: middle;
+    font-size: 16px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+  }
