@@ -9,16 +9,16 @@ body {
   height:901px;
   width:1489px;
   overflow:visible;
-  border:1px solid pink;
+  border:1px solid #164c56;
   padding:0;
   position:relative;
-  background-color: pink;
+  background-color: #aec6cf;
 }
 
 
 #timetableHeader {
   position: absolute;
-  border:1px solid green;
+  border:1px solid #164c56;
   overflow:visible;
   /*min-width: 1167px;
   min-height: 99px;*/
@@ -33,15 +33,22 @@ body {
 
 
 
+
+}
+::-webkit-scrollbar {display:none;}
+
+#makeActivity{
+  display: inline;
 }
 
 div.grid{
     position: absolute;
-    border:1px solid blue;
-	color:blue;
+    border:1px solid #164c56;
+	color:#164c56;
 	font-size: 20px;
 
   }
+
 .box {
 	text-align: center;
     display: table;
@@ -56,7 +63,7 @@ div.grid{
 	-webkit-border-radius: 15px;
 	-moz-border-radius: 15px;
 	border-radius: 15px;
-	border:2px solid black;
+	border:2px solid white;
   word-wrap: break-word;
   text-overflow: ellipsis;
 }
@@ -110,130 +117,127 @@ span {
 </div>
 
 <div id="input">
-<h1>Make Activity</h1>
-<form id="makeActivity" >
-  > Activity Name*:<br>
-  <input type="text" name="activityName" ><br><br>
+  <h1>Make Activity</h1>
+  <form id="makeActivity" >
+    Name*:  <input type="text" name="activityName" ><br><br>
 
-  > Activity Length*:<br>
-  <select name="activityLengthHrs" form="makeActivity">
-  <option value="0">0</option>
-  <option value="1">1</option>
-  <option value="2">2</option>
-  <option value="3">3</option>
-  <option value="4">4</option>
-  <option value="5">5</option>
-  <option value="6">6</option>
-  <option value="7">7</option>
-  <option value="8">8</option>
-  <option value="9">9</option>
-  <option value="10">10</option>
-  <option value="11">11</option>
-  <option value="12">12</option>
-  <option value="13">13</option>
-  <option value="14">14</option>
-  <option value="15">15</option>
-  <option value="16">16</option>
-  <option value="17">17</option>
-  <option value="18">18</option>
-  <option value="19">19</option>
-  <option value="20">20</option>
-  <option value="21">21</option>
-  <option value="22">22</option>
-  <option value="23">23</option>
-  <option value="24">24</option>
-  </select>Hours
+    Type*:
+    <select name="activityType" form="makeActivity">
+    <option value="1">Revision</option>
+    <option value="2">Extra curricular</option>
+    <option value="3">Job</option>
+    <option value="4">Misc</option>
+    </select><br><br>
 
-  <select name="activityLengthMins" form="makeActivity">
-  <option value="0">0</option>
-  <option value="1">5</option>
-  <option value="2">10</option>
-  <option value="3">15</option>
-  <option value="4">20</option>
-  <option value="5">25</option>
-  <option value="6">30</option>
-  <option value="7">35</option>
-  <option value="8">40</option>
-  <option value="9">45</option>
-  <option value="10">50</option>
-  <option value="11">55</option>
-  </select>Mins<br><br>
+    Start day*:
+    <select name="startDay" form="makeActivity">
+    <option value="0">Saturday</option>
+    <option value="1">Sunday</option>
+    <option value="2">Monday</option>
+    <option value="3">Tuesday</option>
+    <option value="4">Wednesday</option>
+    <option value="5">Thursday</option>
+    <option value="6">Friday</option>
+    </select><br><br>
 
-  > Start Day*:<br>
-  <select name="startDay" form="makeActivity">
-  <option value="0">Saturday</option>
-  <option value="1">Sunday</option>
-  <option value="2">Monday</option>
-  <option value="3">Tuesday</option>
-  <option value="4">Wednesday</option>
-  <option value="5">Thursday</option>
-  <option value="6">Friday</option>
+    Start time*:
+    <select name="startHour", form="makeActivity">
+    <option value="0">00</option>
+    <option value="1">01</option>
+    <option value="2">02</option>
+    <option value="3">03</option>
+    <option value="4">04</option>
+    <option value="5">05</option>
+    <option value="6">06</option>
+    <option value="7">07</option>
+    <option value="8">08</option>
+    <option value="9">09</option>
+    <option value="10">10</option>
+    <option value="11">11</option>
+    <option value="12">12</option>
+    <option value="13">13</option>
+    <option value="14">14</option>
+    <option value="15">15</option>
+    <option value="16">16</option>
+    <option value="17">17</option>
+    <option value="18">18</option>
+    <option value="19">19</option>
+    <option value="20">20</option>
+    <option value="21">21</option>
+    <option value="22">22</option>
+    <option value="23">23</option>
+    </select> :
+
+    <select name="startMin" form="makeActivity">
+    <option value="0">00</option>
+    <option value="1">05</option>
+    <option value="2">10</option>
+    <option value="3">15</option>
+    <option value="4">20</option>
+    <option value="5">25</option>
+    <option value="6">30</option>
+    <option value="7">35</option>
+    <option value="8">40</option>
+    <option value="9">45</option>
+    <option value="10">50</option>
+    <option value="11">55</option>
+    </select><br><br>
+
+    Length*:
+    <select name="activityLengthHrs" form="makeActivity">
+    <option value="0">0</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+    <option value="8">8</option>
+    <option value="9">9</option>
+    <option value="10">10</option>
+    <option value="11">11</option>
+    <option value="12">12</option>
+    <option value="13">13</option>
+    <option value="14">14</option>
+    <option value="15">15</option>
+    <option value="16">16</option>
+    <option value="17">17</option>
+    <option value="18">18</option>
+    <option value="19">19</option>
+    <option value="20">20</option>
+    <option value="21">21</option>
+    <option value="22">22</option>
+    <option value="23">23</option>
+    <option value="24">24</option>
+  </select> hrs
+
+    <select name="activityLengthMins" form="makeActivity">
+    <option value="0">0</option>
+    <option value="1">5</option>
+    <option value="2">10</option>
+    <option value="3">15</option>
+    <option value="4">20</option>
+    <option value="5">25</option>
+    <option value="6">30</option>
+    <option value="7">35</option>
+    <option value="8">40</option>
+    <option value="9">45</option>
+    <option value="10">50</option>
+    <option value="11">55</option>
+  </select> mins<br><br>
+
+
+    Colour*:
+    <select name="activityColour" form="makeActivity">
+    <option value="#5DFDCB" style="background-color: #5DFDCB;">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp    </option>
+    <option value="#AD7A99" style="background-color: #AD7A99;">    </option>
+    <option value="#558564" style="background-color: #558564;">    </option>
+    <option value="#442B48" style="background-color: #442B48;">    </option>
+    <option value="#F9B9F2" style="background-color: #F9B9F2;">    </option>
   </select><br><br>
-
-  > Start Time*:<br>
-  <select name="startHour", form="makeActivity">
-  <option value="0">12am</option>
-  <option value="1">1am</option>
-  <option value="2">2am</option>
-  <option value="3">3am</option>
-  <option value="4">4am</option>
-  <option value="5">5am</option>
-  <option value="6">6am</option>
-  <option value="7">7am</option>
-  <option value="8">8am</option>
-  <option value="9">9am</option>
-  <option value="10">10am</option>
-  <option value="11">11am</option>
-  <option value="12">12pm</option>
-  <option value="13">1pm</option>
-  <option value="14">2pm</option>
-  <option value="15">3pm</option>
-  <option value="16">4pm</option>
-  <option value="17">5pm</option>
-  <option value="18">6pm</option>
-  <option value="19">7pm</option>
-  <option value="20">8pm</option>
-  <option value="21">9pm</option>
-  <option value="22">10pm</option>
-  <option value="23">11pm</option>
-  </select> :
-
-  <select name="startMin" form="makeActivity">
-  <option value="0">0</option>
-  <option value="1">5</option>
-  <option value="2">10</option>
-  <option value="3">15</option>
-  <option value="4">20</option>
-  <option value="5">25</option>
-  <option value="6">30</option>
-  <option value="7">35</option>
-  <option value="8">40</option>
-  <option value="9">45</option>
-  <option value="10">50</option>
-  <option value="11">55</option>
-  </select><br><br>
-
-
-
-  > Activity Type*:<br>
-  <select name="activityType" form="makeActivity">
-  <option value="1">Revision</option>
-  <option value="2">Extra curricular</option>
-  <option value="3">Job</option>
-  <option value="4">Misc</option>
-  </select><br><br>
-
-
-  > Activity Colour*:<br>
-  <select name="activityColour" form="makeActivity">
-  <option value="#5DFDCB" style="background-color: #5DFDCB;">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp    </option>
-  <option value="#AD7A99" style="background-color: #AD7A99;">    </option>
-  <option value="#558564" style="background-color: #558564;">    </option>
-  <option value="#442B48" style="background-color: #442B48;">    </option>
-  <option value="#F9B9F2" style="background-color: #F9B9F2;">    </option>
-  </select><br>
-  <input type="submit">
-</form>
+    <input type="submit">
+  </form>
 
 <form id="form" action="insertNewActivityWithButton.php" method="post">
   <input type="hidden" name="array" id="array">
@@ -435,16 +439,7 @@ classIndex=0;
     else
       $('#box'+boxCount ).html('<span id="boxSpan"></span>');
     $('#boxSpan' ).attr('id', 'boxSpan'+boxCount);
-    $('#box'+boxCount ).contextmenu(function(){
-        var confirmDelete = confirm("delete this div or nah");
-        if(confirmDelete){
-          var id = $(this).attr('id');
-          divsToRemove.push(id)
-          $(this).remove();
-          arrayToRemove.push([type, name, startTime, duration, colour]);
-        }
-      }
-    );
+
 
     document.getElementById('box'+boxCount).style.top=(((gridHeight/12) *dayY +1 )+'px');
     document.getElementById('box'+boxCount).style.left=((gridWidth*dayX +1)+'px');
@@ -569,10 +564,11 @@ classIndex=0;
   });
 
   function removeDiv(div, type, name, startTime, duration, colour ){
-    var confirmDelete = confirm("delete this activity or nah");
+    var confirmDelete = confirm("Click OK to confirm that you want to delete this activity");
     if(confirmDelete){
       div.remove()
     arrayToRemove.push([type, name, startTime, duration, colour]);
+    $("#saveChanges").show();
 
     }
   }
@@ -716,9 +712,8 @@ classIndex=0;
   function   addDialogClass(name, start, duration, className, weekNo, sem, weekNo, location){
     if(weekNo==0)
       weekNo ="Both";
-    $(  "#Dialog"+classIndex ).html("Name: "+ name +'<br>'+"Type: "+className+'<br>'+"Class Name: "+className
-                                      +'<br>'+"Week Number: "+weekNo+'<br>'+"Semester: "+sem
-                                      +'<br>'+"location: "+location);
+    $(  "#Dialog"+classIndex ).html("Name: "+ name +'<br>'+"Type: "+className+'<br>'+"Week Number: "+weekNo+'<br>'+"Semester: "+sem
+                                      +'<br>'+"Location: "+location);
     $(  "#Dialog"+classIndex ).dialog({
                  autoOpen: false,
                  buttons: {
