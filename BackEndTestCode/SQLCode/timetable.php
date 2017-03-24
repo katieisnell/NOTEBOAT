@@ -1,4 +1,8 @@
 <style type="text/css">
+
+
+
+
 body {
   background-color:white;
   color:black;
@@ -103,8 +107,10 @@ span {
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="insertNewActivityWithButton.php"></script>
     <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel = "stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 <div id="timetableHolder">
   <div id="timetableHeader"style="left:0px; top:0px;">
@@ -250,6 +256,11 @@ span {
 <div>
   <button id="subtractWeek" onclick="subtractWeek()">-</button><span id="weekNo"></span>  <button id="addWeek" onclick="addWeek()">+</button>
 
+</div>
+
+<div id='progressBars'>
+
+  </div>
 </div>
 <script>
 
@@ -533,7 +544,10 @@ classIndex=0;
 
 
       placeActivity(name, start, duration, type, colour);
-
+      for(index2=0; index2<moduleArray.length; index2++)
+        if(moduleArray[index2][0]==name){
+          addProgress(name, 12);
+        }
     }
   }
 
@@ -553,12 +567,16 @@ classIndex=0;
     arrayToAdd.push([activityType, name, startTime, duration, colour]);
     $("#saveChanges").show();
    }
-  if(!(duration>0) )
-  alert("Please set a length for the activity");
-  if(!(name!=""))
-  alert("Please name your activity");
-  if(!((startTime%288 +duration) < 289) )
-  alert("Please ensure your activity does not exceed day length")
+    if(!(duration>0) )
+    alert("Please set a length for the activity");
+    if(!(name!=""))
+    alert("Please name your activity");
+    if(!((startTime%288 +duration) < 289) )
+    alert("Please ensure your activity does not exceed day length")
+
+    for(index=0; index<moduleArray.length;index++)
+      if(moduleArray[index][0]==name)
+        addProgress(name, duration);
 
 
   });
@@ -568,6 +586,10 @@ classIndex=0;
     if(confirmDelete){
       div.remove()
     arrayToRemove.push([type, name, startTime, duration, colour]);
+
+    for(index=0; index<moduleArray.length;index++)
+      if(moduleArray[index][0]==name)
+        removeProgress(name, duration);
     $("#saveChanges").show();
 
     }
@@ -736,6 +758,48 @@ classIndex=0;
 
     $('#saveChanges').click(passArray);
   });
+
+  function placeBars(){
+    for(index=0; index<moduleArray.length; index++){
+      dropABar(moduleArray[index][0],moduleArray[index][2],moduleArray[index][3]);
+    }
+  }
+
+  function dropABar(moduleToStudy, hoursToStudy,colour){
+
+    var minsToStudy = hoursToStudy*12;
+    $("<h3>"+moduleToStudy+": "+ hoursToStudy+ " Hours</h3>").appendTo('#progressBars');
+    $("<div class='progress' id='progress1'></div>").appendTo('#progressBars');
+    $("#progress1").attr('id', 'progress'+moduleToStudy)
+    $("<div class='progress-bar' id='ProgressBar1' role='progressbar' aria-valuenow='0' aria-valuemin='0' aria-valuemax='0' style='width:00%'></div>").appendTo('#progress'+moduleToStudy);
+    $("#ProgressBar1").attr('id', 'ProgressBar'+moduleToStudy)
+    $('#ProgressBar'+moduleToStudy).css('background-color', colour);
+    $('#ProgressBar'+moduleToStudy).attr('aria-valuemax', minsToStudy);
+  }
+
+  function addProgress(Module, duration){
+  	//var percentageToAdd = duration/reccomendedTime *100
+    var totalTime  = $('#ProgressBar'+Module).attr('aria-valuemax');
+    var currentValue = $('#ProgressBar'+Module).attr('aria-valuenow');
+  	var newValue = parseInt(duration)+parseInt(currentValue) ;
+    var newPercentage = (newValue *100) / totalTime;
+  	$('#ProgressBar'+Module).attr('aria-valuenow', newValue);
+  	$('#ProgressBar'+Module).css('width', (newPercentage+"%"));
+
+
+  }
+
+  function removeProgress(Module, duration){
+  	//var percentageToAdd = duration/reccomendedTime *100
+    var totalTime  = $('#ProgressBar'+Module).attr('aria-valuemax');
+    var currentValue = $('#ProgressBar'+Module).attr('aria-valuenow');
+  	var newValue = parseInt(currentValue)-parseInt(duration) ;
+    var newPercentage = (newValue *100) / totalTime;
+  	$('#ProgressBar'+Module).attr('aria-valuenow', newValue);
+  	$('#ProgressBar'+Module).css('width', (newPercentage+"%"));
+
+  }
+
   </script>
 
 
@@ -919,6 +983,7 @@ classIndex=0;
   getWeekDetails();
   moduleArray = <?php echo json_encode($moduleStudyHoursArray); ?>;
   setModuleColours();
+  placeBars();
 
    var jArray =<?php echo json_encode($mandatoryModulesArray); ?>;
    extractClasses();
