@@ -1,12 +1,3 @@
-<?php
-  session_start();
-  if (!isset($_SESSION['login_user']))
-  {
-    header("location: login.php");
-	die();
-  }
-  
-?>
 <html lang="en">
 <head>
 
@@ -295,7 +286,13 @@
    
    
     > Activity Colour*:<br>
-    <input type="color" name="activityColour"><br>
+              <select name="activityColour" form="makeActivity" class="u-full-width">
+            <option value="#5DFDCB" style="background-color: #5DFDCB;">&nbsp     </option>
+            <option value="#AD7A99" style="background-color: #AD7A99;">    </option>
+            <option value="#558564" style="background-color: #558564;">    </option>
+            <option value="#442B48" style="background-color: #442B48;">    </option>
+            <option value="#F9B9F2" style="background-color: #F9B9F2;">    </option>
+            </select>
     <input type="submit">
   </form>
    
@@ -831,7 +828,7 @@ classIndex=0;
    }
   if(!(duration>0) )
   alert("Please set a length for the activity");
-  if(!(name!=""));
+  if((name==""))
   alert("Please name your activity");
   if(!((startTime%288 +duration) < 289) )
   alert("Please ensure your activity does not exceed day length");
@@ -1065,6 +1062,11 @@ classIndex=0;
 
   <?php
 	session_start();
+  if (!isset($_SESSION['login_user']))
+  {
+    header("location: login.php");
+	die();
+  }
     require_once('config.inc.php');
     $conn = mysqli_connect($database_host, $database_user, $database_pass, $database_name);
     // Check connection

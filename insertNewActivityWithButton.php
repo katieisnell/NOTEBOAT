@@ -1,5 +1,10 @@
 <?php
-
+session_start();
+  if (!isset($_SESSION['login_user']))
+  {
+    header("location: login.php");
+	die();
+  }
 
 // A program which stores an activity to the table student activities
 // It will only insert one activity at a time (for simplicty), so this php
@@ -69,10 +74,6 @@ $studentActivitiesToDeleteArray = json_decode($_POST['arrayRemoving']);
 
 
 
-// Will use in future: $userID = $_SESSION['userID'];
-$userID = 'mbaxaks2';
-
-
 
 for ($row = 0; $row < count($studentActivitiesToDeleteArray); $row++)
 {
@@ -105,5 +106,5 @@ for ($row = 0; $row < count($studentActivitiesToDeleteArray); $row++)
 $conn->close();
   ?>
 
-  <script> window.location="timetable.php" </script>
+ <script> window.location="dashboard.php" </script> 
 
