@@ -229,6 +229,7 @@ session_start();
 if (!isset($_SESSION['login_user']))
 {
   header("location: login.php");
+  die();
 }
 
 if($_SERVER["REQUEST_METHOD"] == "POST")
@@ -327,9 +328,8 @@ if($searchMatch)
 }
 if($numberRows < 1)
 {
-  echo "No notes match your search!\n";
+echo '<script type=text/javascript > alert("No notes match your search!"); </script>';
 }
 
 }
 ?>
-

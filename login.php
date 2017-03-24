@@ -106,7 +106,7 @@ echo '<script type="text/javascript"> alert(\'' . $error . '\'); </script>';
   <div class="row">
 
     <div id ="logo" class="six columns offset-by-three">
-      <a href="dashboard.html">
+      <a href="dashboard.php">
         <img class="u-full-width" src="images/logo2.png">
       </a>
     </div>

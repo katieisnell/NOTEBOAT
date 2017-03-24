@@ -12,7 +12,7 @@
  <!-- Basic Page Needs
  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
  <meta charset="utf-8">
- <title>Registration </title>
+ <title>Settings </title>
  <meta name="description" content="">
  <meta name="author" content="">
 
@@ -90,7 +90,7 @@
  <div class="row">
 
    <div id ="logo" class="three columns">
-     <a href="dashboard.html">
+     <a href="dashboard.php">
        <img class="u-full-width" src="images/logo2.png">
      </a>
    </div>
@@ -104,8 +104,9 @@
         <button class="dropbtn">-----</button>
         <div class="dropdown-content">
         <a href="dashboard.php">TimeTable</a>
-        <a href="notesShare.php">Note Sharing</a>
-        <a href="#">Settings</a>
+        <a href="/NOTEBOAT/NotesSharing/notesShare.php">Note Sharing</a>
+		 <a href="/NOTEBOAT/NotesSharing/following.php">Following</a>
+        <a href="settings.php">Settings</a>
         <a href="logout.php">Logout</a>
         </div>
      </div>

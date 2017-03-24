@@ -37,7 +37,7 @@
   <div class="row">
 
     <div id ="logo" class="three columns">
-      <a href="/NOTEBOAT/dashboard.html">
+      <a href="/NOTEBOAT/dashboard.php">
         <img class="u-full-width" src="images/logo2.png">
       </a>
     </div>
@@ -50,10 +50,10 @@
       <div class="dropdown">
          <button class="dropbtn">-----</button>
          <div class="dropdown-content">
-         <a href="/NOTEBOAT/dashboard.html">TimeTable</a>
+         <a href="/NOTEBOAT/dashboard.php">TimeTable</a>
          <a href="/NOTEBOAT/NotesSharing/notesShare.php">Note Sharing</a>
 		 <a href="/NOTEBOAT/NotesSharing/following.php">Following</a>
-         <a href="/NOTEBOAT/settings.html">Settings</a>
+         <a href="/NOTEBOAT/settings.php">Settings</a>
          <a href="/NOTEBOAT/logout.php">Logout</a>
          </div>
       </div>

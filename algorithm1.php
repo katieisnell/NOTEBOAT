@@ -4,7 +4,6 @@
  	if (!isset($_SESSION['login_user']))
  	{
     	header("location: login.php");
-		die(
  	}
         require_once('/home/pi/NOTEBOAT/config.inc.php');
        
@@ -531,6 +530,6 @@
         } // if */
    
          $conn->close();   
-     echo '<script type="text/javascript"> alert("Your account is now set up! Welcome aboard the NoteBoat!"); window.location.href="dashboard.html"; </script>';
+     echo '<script type="text/javascript"> alert("Your account is now set up! Welcome aboard the NoteBoat!"); window.location.href="dashboard.php"; </script>';
     ?>
 </html>
