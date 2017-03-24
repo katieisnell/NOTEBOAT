@@ -154,7 +154,7 @@
 
 
   <script>
-    function createRow(name, module, fileOwner, ownerName)
+    function createRow(name, module, fileOwner, fileID, rowNum)
     {
         var nameArray = name.split("<");
         var fileName = nameArray[0];
@@ -163,9 +163,11 @@
         var cell1 = row.insertCell(0);
         var cell2 = row.insertCell(1);
         var cell3 = row.insertCell(2);
+        var cell4 = row.insertCell(3);
         cell1.innerHTML = "<a href=\"/NOTEBOAT/NotesSharing/uploads/" + fileOwner + "/" + fileName + "\"> " + fileName + "</a>";
         cell2.innerHTML = module;
         cell3.innerHTML = ownerName;
+        cell4.innerHTML = '<form action="" method="post"><input type="hidden" name="userID" value="' + fileOwner + '"><input type="hidden" name="fileID" value="' + fileID + '"> <input type="hidden" name="fileName" value="' + fileName + '"><input type="submit" value="Delete" onclick="return confirm(\'Are you sure you want to delete this file?\')">';
     }
 
     function addTableHeader()
@@ -181,6 +183,9 @@
     }
 
   </script>
+
+  <form action="" method="post">
+
 </body>
 </html>
 
@@ -245,6 +250,8 @@
 </script>
 
 <?php
+echo '<script type="text/javascript"> createRow(\'Filename\' , \'COMP10120\', \'mbaxask3\', \'Suvi\'); </script>';
+
 session_start();
 
 $userID = $_SESSION['login_user'];
@@ -267,83 +274,24 @@ $numOfFiles = mysqli_num_rows($notesResult);
 //-------------------------------------------------------------------------
 if ($foundFiles -> num_rows > 0)
 {
+  $rowNum = 0;
   while($row = $foundFiles->fetch_assoc())
 	{
+    $fileOwner = $row["userID"];
     $name = $row["fileName"];
     $module = $row["fileModuleCode"];
-    $isPublic = $row["filePublic"];
-    $nameArray = explode('<', $name);
+    $isPublic = $row["isPublic"];
+    $fileID = $row["fileID"];
 
-    //$nameQuery = "SELECT * FROM registeredUsers WHERE userID = '$fileOwner'";
-    //$foundUser = $conn -> query($nameQuery);
-    //$r = $foundUser->fetch_assoc();
-
-    //$ownerName = $r["prefFirstName"] . " " . $r["prefLastName"];
-    //$ownerFollowingString = $r["followingUsers"];
-
-    //$thisUserQuery = "SELECT followingUsers FROM registeredUsers where userID = '$loggedInUser'";
-    //$foundThisUser = $conn -> query($thisUserQuery);
-    //$thisUser = $foundThisUser->fetch_assoc();
-    //$currentUserFollowingString = $thisUser["followingUsers"];
-
-    //$userArray = explode('-', $currentUserFollowingString);
-    //$viewUserArray = explode('-', $ownerFollowingString);
-
-    //$followingEachOther = FALSE;
-    //$secondFollowFirst = FALSE;
-    //$firstFollowSecond = FALSE;
-    // for($index = 0; $index < count($userArray); $index++)
-    // {
-    //     if($userArray[$index] == $fileOwner)
-    //       $firstFollowSecond = TRUE;
-    // }
-    // for($index = 0; $index < count($viewUserArray); $index++)
-    // {
-    //     if($viewUserArray[$index] == $loggedInUser)
-    //         $secondFollowFirst = TRUE;
-    // }
-    // if($secondFollowFirst && $firstFollowSecond)
-    //   $followingEachOther = TRUE;
-
-    // if($searchTerms !== "")
-    // {
-    //   $searchTermsArray = explode(' ', $searchTerms);
-    //   $searchMatch = TRUE;
-    //   for($index = 0; $index < count($searchTermsArray); $index++)
-    //   {
-    //     if($searchMatch)
-    //     {
-    //        if(($searchTermsArray[$index] == $fileOwner) || ($searchTermsArray[$index] == $nameArray[0]) || ($searchTermsArray[$index] == $r["prefFirstName"] ) || ( $searchTermsArray[$index] == $r["prefLastName"]))
-    //          $searchMatch = TRUE;
-    //        else if($searchMatch)
-    //           $searchMatch = FALSE;
-    //     }
-    //   }
-    // }
-    // else
-    //   $searchMatch = TRUE;
-    // if($searchMatch)
-    // {
-    //   if(($isPublic == 1) || $followingEachOther || ($fileOwner == $loggedInUser))
-    //   {
-  	// 	echo '<script type="text/javascript"> createRow(\'' . $name . '\' , \'' . $module . '\' , \'' . $fileOwner . '\' , \'' . $ownerName . '\'); </script>';
-    //       $numberRows = $numberRows + 1;
-    //   }
-    // }
+		echo '<script type="text/javascript"> createRow(\'' . $name . '\' , \'' . $module . '\' , \'' . $fileOwner . '\' , \'' . $fileID . '\' , \'' . $rowNum . '\'); </script>';
+    $rowNum++;
   }
-
-  if($numberRows > 0)
-  {
     echo '<script type="text/javascript"> addTableHeader(); </script>';
-  }
 }
-
-
-
-
-
-
-
+else
+{
+  echo "No files found!";
+}
 
 //-------------------------------------------------------------------------
 
@@ -359,11 +307,7 @@ if ($queryResult -> num_rows == 1)
 
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
-  if (isset($_POST["fname"]))
-  {
-
-  }
-  else if (isset($_POST["ufname"]))
+  if (isset($_POST["ufname"]))
   {
     saveChanges($_POST["ufname"], $_POST["ulname"], $_POST["uemail"]);
   }
@@ -400,6 +344,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
       }
     }
   }
+  if (isset($_POST["fileID"]))
+  {
+    deleteFile($_POST['fileID'], $_POST['fileName'], $_POST['userID']);
+  }
 }
 
 function saveChanges($fname, $lname, $email)
@@ -424,5 +372,24 @@ function saveChanges($fname, $lname, $email)
   echo '<script type=text/javascript /> alert("UPDATED INFO!"); </script>';
 }
 
-?>
+function deleteFile($fileID, $fileName, $userID)
+{
+  require("/home/pi/NOTEBOAT/config.inc.php");
+  $conn = new mysqli($database_host, $database_user, $database_pass, $database_name);
 
+  if($conn -> connect_error)
+  {
+     die('Connect Error ('.$conn -> connect_errno.')'.$conn -> connect_error);
+  }
+
+  $query = "DELETE FROM Notes WHERE `fileID` = '$fileID' AND `userID` = '$userID'";
+  $result = $conn -> query($query);
+window.location.href="following.php"
+  chdir('/home/pi/NOTEBOAT/NotesSharing/uploads/' . $userID);
+  $fileName .= "<" . $fileID;
+  echo shell_exec("rm " . $fileName);
+
+  echo '<script type="text/javascript"> alert("File Deleted"); window.location.href="settingTEST.php"</script>';
+}
+
+?>

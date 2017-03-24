@@ -88,7 +88,7 @@
   function followingArray(followingString)
   {
     return followingString.split("-");
-  } 
+  }
 
   function createRow(name, userID, following, thisUser)
   {
@@ -119,12 +119,12 @@
   var row = table.insertRow(0);
   var cell1 = row.insertCell(0);
   var cell2 = row.insertCell(1);
- 
+
   cell1.innerHTML = "Name";
   cell2.innerHTML = "Following";
 }
 </script>
-  
+
 
 <?php
 
@@ -133,15 +133,15 @@ require("/home/pi/NOTEBOAT/config.inc.php");
 $conn = new mysqli($database_host, $database_user, $database_pass, $database_name);
 if($conn -> connect_error)
 {
-        die('Connect Error ('.$conn -> connect_errno.')'.$conn -> connect_error); 
+  die('Connect Error ('.$conn -> connect_errno.')'.$conn -> connect_error); 
 }
 $query = "SELECT userID, prefFirstName, prefLastName FROM registeredUsers";
 $foundUsers = $conn -> query($query);
 $numOfUsers = mysqli_num_rows($foundUsers);
 
-$thisUserID = $_SESSION['login_user']; 
+$thisUserID = $_SESSION['login_user'];
 
-$followingQuery = "SELECT followingUsers FROM registeredUsers WHERE userID = '$thisUserID'"; 
+$followingQuery = "SELECT followingUsers FROM registeredUsers WHERE userID = '$thisUserID'";
 $foundUsers2 = $conn -> query($followingQuery);
 $thisUser = $foundUsers2 -> fetch_assoc();
 $following = $thisUser["followingUsers"];
@@ -177,7 +177,7 @@ echo 'To filter through users, search for usernames, first names and surnames he
 
 <div class="row">
       <div class="nine columns offset-by-two" style="text-align:center">
-        <input class="u-full-width" type="text" placeholder="Search " name="search"> 
+        <input class="u-full-width" type="text" placeholder="Search " name="search">
 
         <input class="button" type="submit" value="Go" id="button" >
       </div>
@@ -206,5 +206,3 @@ echo 'To filter through users, search for usernames, first names and surnames he
 
 </body>
 </html>
-
-
