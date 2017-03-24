@@ -194,17 +194,20 @@
    var span1 = document.getElementById('pwordSpan');
 
    var password = document.getElementById("npwd")
-     , confirm_password = document.getElementById("nCpwd");
+     , confirm_password = document.getElementById("nCpwd")
+	, regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
 
-   function validatePassword()
-   {
-     if(password.value != confirm_password.value)
-     {
-       confirm_password.setCustomValidity("Passwords Don't Match");
-     } else {
-       confirm_password.setCustomValidity('');
-     }
-   }
+function validatePassword(){
+	var passValue = password.value;
+    if(!regex.test(passValue)){
+      password.setCustomValidity("Password must contain at least 8 characters with 1 number, 1 upper and 1 lower case");
+    }
+    if(password.value != confirm_password.value) {
+    confirm_password.setCustomValidity("Passwords Don't Match");
+  } else {
+    confirm_password.setCustomValidity('');
+  }
+}
    password.onchange = validatePassword;
    confirm_password.onkeyup = validatePassword;
    </script>

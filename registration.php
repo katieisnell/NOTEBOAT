@@ -234,7 +234,7 @@ var password = document.getElementById("passwordInput")
 
 
 function validatePassword(){
-    var passValue = password.value;
+	var passValue = password.value;
     if(!regex.test(passValue)){
       password.setCustomValidity("Password must contain at least 8 characters with 1 number, 1 upper and 1 lower case");
     }
