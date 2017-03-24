@@ -32,4 +32,189 @@
 
 
 
+
+
+<!-- The above form looks like this -->
+<form>
+  <div class="row">
+    <div class="six columns">
+      <label for="exampleEmailInput">Your email</label>
+      <input class="u-full-width" type="email" placeholder="test@mailbox.com" id="exampleEmailInput">
+    </div>
+    <div class="six columns">
+      <label for="exampleRecipientInput">Reason for contacting</label>
+      <select class="u-full-width" id="exampleRecipientInput">
+        <option value="Option 1">Questions</option>
+        <option value="Option 2">Admiration</option>
+        <option value="Option 3">Can I get your number?</option>
+      </select>
+    </div>
+  </div>
+  <label for="exampleMessage">Message</label>
+  <textarea class="u-full-width" placeholder="Hi Dave …" id="exampleMessage"></textarea>
+  <label class="example-send-yourself-copy">
+    <input type="checkbox">
+    <span class="label-body">Send a copy to yourself</span>
+  </label>
+  <input class="button-primary" type="submit" value="Submit">
+</form>
+
+<!-- Always wrap checkbox and radio inputs in a label and use a <span class="label-body"> inside of it -->
+
+<!-- Note: The class .u-full-width is just a utility class shorthand for width: 100% -->
+
+
+
+
+
+<!-- The actual box code -->
+
+<h1>Make Activity</h1>
+<form id="makeActivity" >
+  Name*:  <input type="text" name="activityName" ><br><br>
+
+  Start day*:
+  <select name="startDay" form="makeActivity">
+  <option value="0">Saturday</option>
+  <option value="1">Sunday</option>
+  <option value="2">Monday</option>
+  <option value="3">Tuesday</option>
+  <option value="4">Wednesday</option>
+  <option value="5">Thursday</option>
+  <option value="6">Friday</option>
+  </select>
+
+  Start time*:
+  <select name="startHour", form="makeActivity">
+  <option value="0">00</option>
+  <option value="1">01</option>
+  <option value="2">02</option>
+  <option value="3">03</option>
+  <option value="4">04</option>
+  <option value="5">05</option>
+  <option value="6">06</option>
+  <option value="7">07</option>
+  <option value="8">08</option>
+  <option value="9">09</option>
+  <option value="10">10</option>
+  <option value="11">11</option>
+  <option value="12">12</option>
+  <option value="13">13</option>
+  <option value="14">14</option>
+  <option value="15">15</option>
+  <option value="16">16</option>
+  <option value="17">17</option>
+  <option value="18">18</option>
+  <option value="19">19</option>
+  <option value="20">20</option>
+  <option value="21">21</option>
+  <option value="22">22</option>
+  <option value="23">23</option>
+  </select> :
+
+  <select name="startMin" form="makeActivity">
+  <option value="0">00</option>
+  <option value="1">05</option>
+  <option value="2">10</option>
+  <option value="3">15</option>
+  <option value="4">20</option>
+  <option value="5">25</option>
+  <option value="6">30</option>
+  <option value="7">35</option>
+  <option value="8">40</option>
+  <option value="9">45</option>
+  <option value="10">50</option>
+  <option value="11">55</option>
+  </select><br><br>
+
+  Length*:
+  <select name="activityLengthHrs" form="makeActivity">
+  <option value="0">0</option>
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+  <option value="6">6</option>
+  <option value="7">7</option>
+  <option value="8">8</option>
+  <option value="9">9</option>
+  <option value="10">10</option>
+  <option value="11">11</option>
+  <option value="12">12</option>
+  <option value="13">13</option>
+  <option value="14">14</option>
+  <option value="15">15</option>
+  <option value="16">16</option>
+  <option value="17">17</option>
+  <option value="18">18</option>
+  <option value="19">19</option>
+  <option value="20">20</option>
+  <option value="21">21</option>
+  <option value="22">22</option>
+  <option value="23">23</option>
+  <option value="24">24</option>
+  </select>Hours
+
+  <select name="activityLengthMins" form="makeActivity">
+  <option value="0">0</option>
+  <option value="1">5</option>
+  <option value="2">10</option>
+  <option value="3">15</option>
+  <option value="4">20</option>
+  <option value="5">25</option>
+  <option value="6">30</option>
+  <option value="7">35</option>
+  <option value="8">40</option>
+  <option value="9">45</option>
+  <option value="10">50</option>
+  <option value="11">55</option>
+  </select>Mins<br><br>
+
+
+
+
+
+
+
+  Type*:
+  <select name="activityType" form="makeActivity">
+  <option value="1">Revision</option>
+  <option value="2">Extra curricular</option>
+  <option value="3">Job</option>
+  <option value="4">Misc</option>
+  </select><br><br>
+
+
+  > Activity Colour*:<br>
+  <select name="activityColour" form="makeActivity">
+  <option value="#5DFDCB" style="background-color: #5DFDCB;">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp    </option>
+  <option value="#AD7A99" style="background-color: #AD7A99;">    </option>
+  <option value="#558564" style="background-color: #558564;">    </option>
+  <option value="#442B48" style="background-color: #442B48;">    </option>
+  <option value="#F9B9F2" style="background-color: #F9B9F2;">    </option>
+</select><br><br>
+  <input type="submit">
+</form>
+
+
+<table class="u-full-width">
+
+  <tbody>
+    <tr>
+      <td>Dave Gamache</td>
+      <td>26</td>
+      <td>Male</td>
+      <td>San Francisco</td>
+    </tr>
+    <tr>
+      <td>Dwayne Johnson</td>
+      <td>42</td>
+      <td>Male</td>
+      <td>Hayward</td>
+    </tr>
+  </tbody>
+</table>
+
+
 </html>

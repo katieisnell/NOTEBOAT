@@ -1,6 +1,6 @@
 <style type="text/css">
 body {
-  background-color:lightblue;
+  background-color:white;
   color:black;
   font-family: Signika Negative, Asap, sans-serif;
 }
@@ -12,6 +12,7 @@ body {
   border:1px solid pink;
   padding:0;
   position:relative;
+  background-color: pink;
 }
 
 
@@ -36,9 +37,10 @@ body {
 
 div.grid{
     position: absolute;
-    border:1px solid white;
-	color:white;
+    border:1px solid blue;
+	color:blue;
 	font-size: 20px;
+
   }
 .box {
 	text-align: center;
@@ -54,12 +56,13 @@ div.grid{
 	-webkit-border-radius: 15px;
 	-moz-border-radius: 15px;
 	border-radius: 15px;
-	border:1px solid green;
+	border:2px solid black;
   word-wrap: break-word;
   text-overflow: ellipsis;
 }
 span {
   display: table-cell;
+  white-space: nowrap;
   vertical-align: middle;
   font-size: 16px;
   overflow: hidden;
@@ -94,6 +97,7 @@ span {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
     <script src="insertNewActivityWithButton.php"></script>
+    <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel = "stylesheet">
 
 <div id="timetableHolder">
   <div id="timetableHeader"style="left:0px; top:0px;">
@@ -221,7 +225,13 @@ span {
 
 
   > Activity Colour*:<br>
-  <input type="color" name="activityColour"><br>
+  <select name="activityColour" form="makeActivity">
+  <option value="#5DFDCB" style="background-color: #5DFDCB;">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp    </option>
+  <option value="#AD7A99" style="background-color: #AD7A99;">    </option>
+  <option value="#558564" style="background-color: #558564;">    </option>
+  <option value="#442B48" style="background-color: #442B48;">    </option>
+  <option value="#F9B9F2" style="background-color: #F9B9F2;">    </option>
+  </select><br>
   <input type="submit">
 </form>
 
@@ -229,7 +239,7 @@ span {
   <input type="hidden" name="array" id="array">
   <input type="hidden" name="arrayRemoving" id="arrayRemoving">
 </form>
-<button id="saveChanges">Save Changes</button>
+<button id="saveChanges" style="display:none;" >Save Changes</button>
 
 </div>
 
@@ -256,6 +266,7 @@ arrayToRemove = [],
 allActivities = [],
 divsToRemove = [],
 moduleArray = [],
+pointsToCompare = [],
 i, x, y, day, time,
 doneQuestionnaire = true,
 currentWeekNo,
@@ -368,18 +379,29 @@ classIndex=0;
 
 
   function updateStart(id, top, left){
+    var duration;
     for( index = 0; index<allActivities.length; index++){
         if(allActivities[index][0]==id){
           var dayX = Math.round((left -1)/ (gridWidth));
           top = top -1 + parseInt($("#timetableMeat").scrollTop())
           var dayY = Math.round(top/ (gridHeight/12));
           var newStart = parseInt(288*(dayX-1)) + parseInt(dayY);
-
+          duration= allActivities[index][4];
           allActivities[index][6]= newStart;
-        }
-      }
-    }
+          if(newStart !=allActivities[index][3])
+          $("#saveChanges").show();
 
+        }
+
+      }
+
+    for( index = 0; index<pointsToCompare.length; index++)
+      if(pointsToCompare[index][0]==id){
+        pointsToCompare[index][1]=dayX;
+        pointsToCompare[index][2]=dayY;
+        pointsToCompare[index][3]=parseInt(dayY)+parseInt(duration);
+    }
+  }
 
   function updateDraggables(){
     for(i=1; i<=boxCount; i++)
@@ -406,7 +428,13 @@ classIndex=0;
     //
     var typeString=getType(type);
     $('#box').attr('id', 'box'+boxCount);
-    $('#box'+boxCount ).html('<span> '+name+'<br>'+typeString+'</span>');
+    if(duration>5)
+      $('#box'+boxCount ).html('<span id="boxSpan"> '+name+'<br>'+typeString+'</span>');
+    else if(duration >2)
+      $('#box'+boxCount ).html('<span id="boxSpan">...</span>');
+    else
+      $('#box'+boxCount ).html('<span id="boxSpan"></span>');
+    $('#boxSpan' ).attr('id', 'boxSpan'+boxCount);
     $('#box'+boxCount ).contextmenu(function(){
         var confirmDelete = confirm("delete this div or nah");
         if(confirmDelete){
@@ -420,21 +448,34 @@ classIndex=0;
 
     document.getElementById('box'+boxCount).style.top=(((gridHeight/12) *dayY +1 )+'px');
     document.getElementById('box'+boxCount).style.left=((gridWidth*dayX +1)+'px');
-    document.getElementById('box'+boxCount).style.minHeight=(((gridHeight)/12) *duration -2 +'px');
-    document.getElementById('box'+boxCount).style.minWidth=((gridWidth-2)+'px');
-    document.getElementById('box'+boxCount).style.maxHeight=(((gridHeight)/12) *duration -2 +'px');
-    document.getElementById('box'+boxCount).style.maxWidth=((gridWidth-2)+'px');
+    document.getElementById('box'+boxCount).style.minHeight=(((gridHeight)/12) *duration -4 +'px');
+    document.getElementById('box'+boxCount).style.minWidth=((gridWidth-4)+'px');
+    document.getElementById('box'+boxCount).style.maxHeight=(((gridHeight)/12) *duration -4 +'px');
+    document.getElementById('box'+boxCount).style.maxWidth=((gridWidth-4)+'px');
+    document.getElementById('boxSpan'+boxCount).style.minHeight=(((gridHeight)/12) *duration -4 +'px');
+    document.getElementById('boxSpan'+boxCount).style.minWidth=((gridWidth-4)+'px');
+    document.getElementById('boxSpan'+boxCount).style.maxHeight=(((gridHeight)/12) *duration -4 +'px');
+    document.getElementById('boxSpan'+boxCount).style.maxWidth=((gridWidth-4)+'px');
     $('#box'+boxCount ).css('background-color', colour);
 
     updateDraggables();
 
      var id2 = 'box'+boxCount;
 
+
      allActivities.push([id2,type, name, startTime, duration, colour, startTime]);
+
+    pointsToCompare.push([id2 ,dayX, dayY, parseInt(dayY)+parseInt(duration)]);
+
+    $("<div class='box' id='boxDialog'></div>").appendTo("#"+id2);
+    $('#boxDialog').attr('id', id2+'Dialog');
+
+
+    addDialogActivity(id2, type, name, startTime, duration, colour);
 
   }
 
-  function placeClass(name, startTime, duration, type, weekNo, sem, colour) {
+  function placeClass(name, startTime, duration, className, weekNo, sem, colour, weekNo, location) {
 
 
     dayX = Math.floor(startTime/288)+1;
@@ -444,15 +485,23 @@ classIndex=0;
     $("<div class='box' id='unmovableBox'  style='left:0px; top:0px; min-height: 162.5; background-color:red;'></div>").appendTo('#timetableMeat');
 
     $('#unmovableBox').attr('id', 'unmovableBox'+classIndex);
-    $('#unmovableBox'+classIndex ).html('<span> '+name+'<br>'+type+'</span>');
+    $('#unmovableBox'+classIndex ).html('<span> '+name+'<br>'+className+'</span>');
 
     document.getElementById('unmovableBox'+classIndex).style.top=(((gridHeight/12) *dayY +1 )+'px');
     document.getElementById('unmovableBox'+classIndex).style.left=((gridWidth*dayX +1)+'px');
-    document.getElementById('unmovableBox'+classIndex).style.minHeight=(((gridHeight)/12) *duration -2 +'px');
-    document.getElementById('unmovableBox'+classIndex).style.minWidth=((gridWidth-2)+'px');
+    document.getElementById('unmovableBox'+classIndex).style.minHeight=(((gridHeight)/12) *duration -4 +'px');
+    document.getElementById('unmovableBox'+classIndex).style.minWidth=((gridWidth-4)+'px');
     $('#unmovableBox'+classIndex ).css('background-color', colour);
 
-    classIndex++;
+
+    pointsToCompare.push(['unmovableBox'+classIndex, dayX, dayY, parseInt(dayY)+parseInt(duration)]);
+
+    $("<div class='box' id='box1Dialog'></div>").appendTo("#unmovableBox"+classIndex);
+    $('#box1Dialog').attr('id',  'Dialog'+classIndex );
+
+
+    addDialogClass(name, startTime, duration, className, weekNo, sem, weekNo, location);
+        classIndex++;
   }
 
   function extractClasses(){
@@ -473,7 +522,7 @@ classIndex=0;
       }
 
       if(sem == currentSemester && (weekNo == currentWeekNo || weekNo ==0))
-        placeClass(name, start, duration, className, weekNo, sem, colour);
+        placeClass(name, start, duration, className, weekNo, sem, colour, weekNo, location);
 
     }
   }
@@ -503,17 +552,27 @@ classIndex=0;
    var startTime = parseInt(document.forms["makeActivity"]["startDay"].value * 288) + parseInt(document.forms["makeActivity"]["startHour"].value*12) +parseInt(document.forms["makeActivity"]["startMin"].value);
    var activityType = document.forms["makeActivity"]["activityType"].value;
    var colour = document.forms["makeActivity"]["activityColour"].value;
-   arrayToAdd.push([activityType, name, startTime, duration, colour]);
-   if(duration>0)
-     placeActivity(name, startTime, duration, activityType, colour);
+
+   if(duration>0 && name!="" && (startTime%288 +duration) < 289 ){
+    placeActivity(name, startTime, duration, activityType, colour);
+    arrayToAdd.push([activityType, name, startTime, duration, colour]);
+    $("#saveChanges").show();
+   }
+  if(!(duration>0) )
+  alert("Please set a length for the activity");
+  if(!(name!=""))
+  alert("Please name your activity");
+  if(!((startTime%288 +duration) < 289) )
+  alert("Please ensure your activity does not exceed day length")
+
 
   });
 
   function removeDiv(div, type, name, startTime, duration, colour ){
-    var confirmDelete = confirm("delete this div or nah");
+    var confirmDelete = confirm("delete this activity or nah");
     if(confirmDelete){
       div.remove()
-    //arrayToRemove.push([type, name, startTime, duration, colour]);
+    arrayToRemove.push([type, name, startTime, duration, colour]);
 
     }
   }
@@ -547,26 +606,35 @@ classIndex=0;
 
 
   function passArray() {
-
+    if(!overlaps()){
     movedActivities();
     $('#array').val(JSON.stringify(arrayToAdd));
     $('#arrayRemoving').val(JSON.stringify(arrayToRemove));
     //console.log(JSON.stringify(array));
     $('#form').submit();
   }
+  else
+    alert("Please ensure there are no overlaps");
+
+  }
 
   function setModuleColours(){
     var colourIndex = 0;
     for(index=0; index<moduleArray.length; index++){
       moduleArray[index].push(getColour(colourIndex));
-      colourIndex = (colourIndex+1)%9;
+      colourIndex = (colourIndex+1)%6;
     }
   }
 
   function getColour(colourIndex){
     var colourToReturn;
     switch(colourIndex){
-      default: colourToReturn = "pink";
+      case 1 : colourToReturn = "#8783D1"; break;
+      case 2 : colourToReturn = "#92B9BD"; break;
+      case 3 : colourToReturn = "#942911"; break;
+      case 4 : colourToReturn = "#9D8420"; break;
+      case 5 : colourToReturn = "#593837"; break;
+      default: colourToReturn = "#8783D1";
     }
     return colourToReturn
   }
@@ -609,6 +677,65 @@ classIndex=0;
       $('#unmovableBox'+index ).remove();
     classIndex=0;
   }
+
+  function overlaps(){
+    for(index = 0; index<pointsToCompare.length; index++ )
+      for(index2 = index+1; index2<pointsToCompare.length; index2++)
+        if(pointsToCompare[index][1]==pointsToCompare[index2][1]){
+                var startsAfter = pointsToCompare[index][2]>=pointsToCompare[index2][3];
+                var endsBefore = pointsToCompare[index][3]<=pointsToCompare[index2][2];
+                var overlap = !( startsAfter || endsBefore );
+          if(overlap)
+            return true;
+        }
+
+      return false;
+  }
+
+
+  function addDialogActivity(id2, type, name, startTime, duration, colour){
+    type=getType(type);
+    $( "#"+id2+"Dialog" ).html("Name:"+ name +'<br>'+"Type:"+type);
+    $( "#"+id2+"Dialog" ).dialog({
+                 autoOpen: false,
+                 buttons: {
+                    'OK': function() {$(this).dialog("close");},
+                    'Delete': function() {$(this).dialog("close"); removeDiv($("#"+id2), type, name, startTime, duration, colour )}
+                 },
+                 title: name,
+                 position: {
+                    my: " center",
+                    at: " center"
+                 }
+              });
+
+
+    $("#"+id2).dblclick(function(){  $( "#"+id2+"Dialog" ).dialog( "open" );});
+  }
+
+  function   addDialogClass(name, start, duration, className, weekNo, sem, weekNo, location){
+    if(weekNo==0)
+      weekNo ="Both";
+    $(  "#Dialog"+classIndex ).html("Name: "+ name +'<br>'+"Type: "+className+'<br>'+"Class Name: "+className
+                                      +'<br>'+"Week Number: "+weekNo+'<br>'+"Semester: "+sem
+                                      +'<br>'+"location: "+location);
+    $(  "#Dialog"+classIndex ).dialog({
+                 autoOpen: false,
+                 buttons: {
+                    'OK': function() {$(this).dialog("close");}
+                 },
+                 title: name,
+                 position: {
+                    my: " center",
+                    at: " center"
+                 }
+              });
+
+    var dialogBox =$( "#Dialog"+classIndex );
+    $("#unmovableBox"+classIndex).dblclick(function(){ dialogBox.dialog( "open" ); });
+
+  }
+
 
   $(document).ready(function() {
 
@@ -769,17 +896,35 @@ classIndex=0;
       echo "0 results from find optional modules";
     }
 
-  
+    $sqlSelectCurrentWeekNo = sprintf("SELECT currentWeek
+                                       FROM registeredUsers
+                                       WHERE userID='%s'", mysqli_real_escape_string($conn, $userID));
+
+    $resultSelectCurrentWeekNo = mysqli_query($conn, $sqlSelectCurrentWeekNo);
+
+    $currentWeek;
+
+    if (mysqli_num_rows($resultSelectCurrentWeekNo) > 0) {
+      while($row = $resultSelectCurrentWeekNo->fetch_assoc()) {
+        $currentWeek = $row['currentWeek'];
+
+      }
+    } else {
+    echo "0 results from find current week no";
+    }
+
+
 
     $conn->close();
   ?>
 
 
 <script type="text/javascript">
-  currentWeek = 11;
+  currentWeek = <?php echo $currentWeek; ?>;
   getWeekDetails();
-  moduleArray = [["MATH10111", 1, 10]];
+  moduleArray = <?php echo json_encode($moduleStudyHoursArray); ?>;
   setModuleColours();
+
    var jArray =<?php echo json_encode($mandatoryModulesArray); ?>;
    extractClasses();
    var jArray2 =<?php echo json_encode($userActivitiesArray); ?>;
