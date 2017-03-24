@@ -126,6 +126,12 @@
   
 
 <?php
+session_start();
+if (!isset($_SESSION['login_user']))
+{
+  header("location: login.php");
+}
+
 $searchTerms = $_POST['search'];
 $searchTermsArray = explode(' ', $searchTerms); 
 session_start();

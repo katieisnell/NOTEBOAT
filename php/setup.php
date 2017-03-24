@@ -1,8 +1,12 @@
 <html>
-    <?php
-        require_once('/home/pi/NOTEBOAT/config.inc.php');
+<?php
+session_start();
+if (!isset($_SESSION['login_user']))
+{
+  header("location: login.php");
+}
+  require_once('/home/pi/NOTEBOAT/config.inc.php');
 
-        session_start();
         
             $userID = $_SESSION['login_user'];
         $conn = new mysqli($database_host, $database_user, $database_pass, $database_name);

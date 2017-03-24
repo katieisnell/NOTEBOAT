@@ -129,6 +129,11 @@
 <?php
 
 session_start();
+if (!isset($_SESSION['login_user']))
+{
+  header("location: login.php");
+}
+
 require("/home/pi/NOTEBOAT/config.inc.php");
 $conn = new mysqli($database_host, $database_user, $database_pass, $database_name);
 if($conn -> connect_error)

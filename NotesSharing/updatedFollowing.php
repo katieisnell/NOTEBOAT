@@ -1,5 +1,10 @@
 <?php
 session_start();
+if (!isset($_SESSION['login_user']))
+{
+  header("location: login.php");
+}
+
 $nowFollowing = $_POST['following'];
 $gonnaFollow = $_POST['ID'];
 $loggedUser = $_SESSION['login_user'];

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-
-<?php 
+<?php
 function test_input($data) {
     $data = trim($data);
     $data = stripslashes($data);
@@ -16,7 +15,7 @@ function test_input($data) {
     {
       die('Connect Error ('.$conn -> connect_errno.')'.$conn -> connect_error);
     }
-    
+
     $username = trim(strtolower($_POST['username']));
     $fname = $_POST['fname'];
     $lname = $_POST['lname'];
@@ -25,9 +24,9 @@ function test_input($data) {
     if (empty($_POST['email']))
     {
       $getEmailQuery = "SELECT * FROM `allStudents` WHERE `userID` = '$username'";
-      
+
       $emailResult = $conn -> query($getEmailQuery);
-  
+
       while ($row = $emailResult->fetch_assoc())
       {
         $email = $row["email"];
@@ -40,8 +39,8 @@ function test_input($data) {
     $password = $_POST['password1'];
     $outputMessage;
 
-  
-    
+
+
     $checkUser = "SELECT * FROM allStudents WHERE `userID` = '$username'";
     $isRegQuery = "SELECT * FROM allStudents WHERE `userID` = '$username' AND `registered` = 1";
     $foundUser = $conn -> query($checkUser);
@@ -54,7 +53,7 @@ function test_input($data) {
       // Use the current time for our unique salt for each user
       $currentTime = time();
       $salt = hash('sha512', $username . $currentTime);
-     
+
       // Then create a hashed password with the unique salt, we will have to compare hashed password and salt
       // each time the user logs in
       $hashPassword = hash('sha512', $password . $salt);
@@ -66,7 +65,7 @@ $email = test_input($email);
 
       $insertQuery = "INSERT INTO registeredUsers (`userID`, `prefFirstName`, `prefLastName`, `prefEmailAddress`, `courseID` , `schoolYear` , `password`, `salt`, `isVerified`) VALUES ('$username', '$fname', '$lname', '$email', 'cm', '1' , '$hashPassword', '$salt', '1')";
 	  $insertAllStud = "UPDATE allStudents SET `registered` =  '1' WHERE `userID` = '$username'";
-	  $addReg = $conn -> query($insertAllStud); 
+	  $addReg = $conn -> query($insertAllStud);
       $insertSuccess = $conn -> query($insertQuery);
 echo '<script type=text/javascript > alert("You have now boarded the NoteBoat! Click OK to log in and set up your account."); window.location.href="login.php";</script>';
     }
@@ -81,7 +80,7 @@ echo '<script type=text/javascript > alert("You have now boarded the NoteBoat! C
 
     }
   }
-  
+
 ?>
 <html>
 <html lang="en">
@@ -134,9 +133,9 @@ echo '<script type=text/javascript > alert("You have now boarded the NoteBoat! C
   </div>
   </section>
 
- 
+
 <section class="login">
- 
+
   <div class="container">
 <div class="row">
 <h1 style="text-align: center">Create an account</h1>
@@ -149,7 +148,7 @@ echo '<script type=text/javascript > alert("You have now boarded the NoteBoat! C
       <input name= "username" class="u-full-width" type="text" placeholder="..." id="userInput" required>
     </div>
   </div>
-    
+
   <div class="row">
     <div class="four columns offset-by-two">
       <label for="firstNameInput">First Name(s)</label>
@@ -187,7 +186,7 @@ echo '<script type=text/javascript > alert("You have now boarded the NoteBoat! C
      <div class="six columns offset-by-three">
        <button class="u-full-width" type="submit" style="margin-top:20px;">Register</button>
      </div>
-  </div>  
+  </div>
 
 </form>
 </div>
